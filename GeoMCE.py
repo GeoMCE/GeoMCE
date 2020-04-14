@@ -405,7 +405,7 @@ class GeoMCE:
                 layer.changeAttributeValue(feat.id(),9, val9)
             layer.changeAttributeValue(feat.id(),10, codeinsee())
 
-        layer.commitChanges()
+        #layer.commitChanges()
 
         
         
