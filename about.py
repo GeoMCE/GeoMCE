@@ -50,7 +50,7 @@ class Ui_About(object):
         file_path = os.path.abspath(os.path.join(os.path.dirname(__file__), "aide.html"))
         self.webView.setGeometry(QtCore.QRect(20, 270, 771, 271))
         self.webView.setProperty("url", QUrl.fromLocalFile(file_path))
-        self.webView.setProperty("zoomFactor", 0.699999988079)
+        self.webView.setProperty("zoomFactor", 1)
         self.webView.setObjectName(_fromUtf8("webView"))
 
         self.retranslateUi(About)
@@ -66,13 +66,16 @@ class Ui_About(object):
 "<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"
 "p, li { white-space: pre-wrap; }\n"
 "</style></head><body style=\" font-family:\'Ubuntu\'; font-size:11pt; font-weight:400; font-style:normal;\">\n"
-"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\">GéoMCE v.0.1 - Version initiale</p>\n"
-"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\">GéoMCE v.0.2 - Ajout du module d'aide</p>\n"
-"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\">Compatible avec Qgis v2.x seulement - développement pour Qgis v3.x en cours</p>\n"
 "<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\">Plug-in qui permet la mise en forme des couches shapes dans un format compatible pour un import sur la plateforme GéoMCE (services de l'Etat)</p>\n"
 "<p style=\"-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><br /></p>\n"
+"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\">Compatible avec Qgis v2.x seulement - développement pour Qgis v3.x en cours</p>\n"
+"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\">Changelog :</p>\n"
+"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"> - v.0.1 - Version initiale</p>\n"
+"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"> - v.0.2 - Corrections mineurs / Ajout du module d'aide</p>\n"
+"<p style=\"-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><br /></p>\n"
 "<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\">Les remarques/suggestions sont les bienvenues!</p>\n"
-"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\">Pour plus de renseignement sur la géolocalisation des mesures de compensations et GéoMCE : https://www.ecologique-solidaire.gouv.fr/biodiversite-nouvelle-version-geomce </p>\n"
+"<p style=\"-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><br /></p>\n"
+"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\">\nPour plus de renseignement sur la géolocalisation des mesures de compensations et GéoMCE : https://www.ecologique-solidaire.gouv.fr/biodiversite-nouvelle-version-geomce </p>\n"
 "<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\">Les mesures de compensations visibles sur Géoportail : https://www.geoportail.gouv.fr/donnees/mesures-compensatoires-des-atteintes-a-la-biodiversite </p>\n"
 "<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\">Les mesures de compensations téléchargeables via CeremaData : https://www.cdata.cerema.fr/geonetwork/srv/fre/catalog.search#/metadata/48ac3589-499d-4f42-9716-73b4eefef35c </p></body></html>", None))
 
