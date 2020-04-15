@@ -468,8 +468,13 @@ class GeoMCE:
         self.dlg.mMapLayerComboBox.clear()
         layer = self.dlg.mMapLayerComboBox.currentLayer()
         layer.startEditing()
-        #efface les champs de la couche active en ne conservant que la geometrie. Le [0] correspond au premier champ, le [1] au second, etc... Pour supprimer plusieurs champs, utiliser une virgule. Ex [0,2,4,5]. Si suppression de plus de champs que reellement present, un message d'erreur apparaitra dans la fenetre principale de visualisation de QGIS sans consequences
-        layer.dataProvider().deleteAttributes([0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20 ])
+        prov = layer.dataProvider()
+        field_names = [field.name() for field in prov.fields()]
+        for count, f in enumerate(field_names):
+            doudou =range(count, count +1 )
+            zaza = range(count)
+            pipi = doudou + zaza
+        layer.dataProvider().deleteAttributes(pipi)
 
         #creation des nouveaux champs compatibles avec un import dans GeoMCE (sur v2.2.6)  
         layer.dataProvider().addAttributes(
