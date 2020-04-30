@@ -36,7 +36,7 @@ import resources, os, processing, fnmatch, sys, glob
 # Import the code for the dialog
 from GeoMCE_dialog import GeoMCEDialog
 import os.path
-
+import datetime
 
 
 
@@ -79,6 +79,9 @@ class GeoMCE:
         self.saved = False
         self.countchange = 0
         selectall = 0
+        self.dlg.mFieldComboBox.clear()
+        self.dlg.mMapLayerComboBox.clear()
+        self.dlg.mMapLayerComboBox_2.clear()
 
         # Declare instance attributes
         self.actions = []
@@ -155,28 +158,21 @@ class GeoMCE:
 
         # Create the dialog (after translation) and keep reference
         self.dlg = GeoMCEDialog()
-
         icon = QIcon(icon_path)
         action = QAction(icon, text, parent)
         action.triggered.connect(callback)
         action.setEnabled(enabled_flag)
-
         if status_tip is not None:
             action.setStatusTip(status_tip)
-
         if whats_this is not None:
             action.setWhatsThis(whats_this)
-
         if add_to_toolbar:
             self.toolbar.addAction(action)
-
         if add_to_menu:
             self.iface.addPluginToVectorMenu(
                 self.menu,
                 action)
-
         self.actions.append(action)
-
         return action
 
     def initGui(self):
@@ -202,23 +198,77 @@ class GeoMCE:
         for layer in qgis.utils.iface.mapCanvas().layers():
             layer.triggerRepaint()
 
- #choix de la couche a traiter
+ #choix de la couche a pour traitement splitlayervector
     def chooselayer(self):
-        layerlist=[]
-        slist=[]
         self.dlg.mMapLayerComboBox_2.clear()
         self.dlg.mMapLayerComboBox.clear()
-        self.dlg.mFieldComboBox.clear()
-        #self.dlg.txtFeedBack.clear()
-        #self.dlg.newvalue.clear()
+        self.dlg.mFieldComboBox.clear()        
+        layerlist=[]
+        slist=[]
         layers = self.iface.legendInterface().layers()
         for layer in layers:
             layerType = layer.type()
             if layerType == QgsMapLayer.VectorLayer:
                 self.dlg.mMapLayerComboBox_2.addItem(layer.name())
-        #update other comboboxes
         self.set_select_attributes()
-        #self.set_unique_value()
+
+ #choix du champ separateur pour fonction splitlayervector
+    def set_select_attributes(self):
+        self.dlg.mMapLayerComboBox_2.clear()
+        self.dlg.mFieldComboBox.clear()
+        if self.dlg.mMapLayerComboBox.currentText() != "":
+            layername = self.dlg.mMapLayerComboBox.currentText()
+            for name, selectlayer in QgsMapLayerRegistry.instance().mapLayers().iteritems():
+                if selectlayer.name() == layername:
+                    for field in selectlayer.dataProvider().fields():
+                        self.dlg.mFieldComboBox.addItem(field.name())
+
+
+ #on connecte le champ en fonction de la couche a séparer
+    def select_layer_fields2(self, vlayer): 
+        self.dlg.mFieldComboBox.setLayer(vlayer)
+        field = self.dlg.mFieldComboBox.setLayer(vlayer)
+        
+    def newfield_connect(self):
+        self.create_new_field()
+        self.set_select_attributes()
+        return
+
+    def newfield_connect_2(self):
+        self.create_new_field_2()
+        self.set_select_attributes()
+        return
+
+ #on lance splitlayervector   
+    def create_new_field(self) :
+        #creation d un dossier dans C: nomme GeoMCE et d un sous dossier horodate qui va porter le nom de la couche + le nom du champ separateur qui va etre traiter
+        couche = self.dlg.mMapLayerComboBox_2.currentText()
+        champ = self.dlg.mFieldComboBox.currentText()
+        path = "C:/GeoMCE" + "/"
+        p = path + datetime.datetime.now().strftime('%Y-%m-%d_%H-%M') + "_" + couche + "_" + champ 
+        os.makedirs(p)    
+               
+        #separation de la couche active par le champ defini au debut du script et enregistrement dans le dossier c:/GeoMCE/nom_de_la_couche_d_origine
+        sep = processing.runalg("qgis:splitvectorlayer", self.dlg.mMapLayerComboBox_2.currentText(), self.dlg.mFieldComboBox.currentText(), p)
+
+        # chargement de toutes les couches issues de la separation contenu dans le dossier c:/geomce/nom_de_la_couche_d_origine
+        def find_files(directory, pattern, only_root_directory):
+            for root, dirs, files in os.walk(directory):
+                for basename in files:
+                    if fnmatch.fnmatch(basename.lower(), pattern):
+                        filename = os.path.join(root, basename)
+                        yield filename
+                if (only_root_directory):
+                    break
+
+        count = 0
+        for src_file in find_files(p, '*.shp', True):
+            (head, tail) = os.path.split(src_file)
+            (name, ext) = os.path.splitext(tail)
+            vlayer = iface.addVectorLayer(src_file, name, "ogr")
+        output = count
+        self.dlg.mFieldComboBox.clear()
+        self.dlg.mMapLayerComboBox_2.clear()
 
  #choix de la couche a traiter
     def chooselayer_2(self):
@@ -229,100 +279,91 @@ class GeoMCE:
         for layer in Layers:
             Layer_list.append (layer.name())
             self.dlg.mMapLayerComboBox.addItems(Layer_list)
-        #update other comboboxes
         self.set_select_attributes()
-        #self.set_unique_value()
 
-    def set_select_attributes(self):
-       #clear comboboxes and linedits
-        self.dlg.mMapLayerComboBox_2.clear()
-        self.dlg.mFieldComboBox.clear()
-        #self.dlg.new_field.clear()
-        if self.dlg.mMapLayerComboBox.currentText() != "":
-            layername = self.dlg.mMapLayerComboBox.currentText()
-            for name, selectlayer in QgsMapLayerRegistry.instance().mapLayers().iteritems():
-                if selectlayer.name() == layername:
-                    for field in selectlayer.dataProvider().fields():
-                        self.dlg.mFieldComboBox.addItem(field.name())
-                        #self.dlg.new_field.addItem(field.name())
-                    #once populated combobox with fields 
-                    #names populate attributes values
-                    self.set_unique_value()
+ #on efface tous les champs existants et on cree ceux indispensable pour un import dans GeoMCE        
+    def create_new_field_2(self):
+        self.dlg.mMapLayerComboBox.clear()
+        layer = self.dlg.mMapLayerComboBox.currentLayer()
+        layer.startEditing()
+        #on efface tout les champs existants...
+        prov = layer.dataProvider()
+        field_names = [field.name() for field in prov.fields()]
+        for count, f in enumerate(field_names):
+            jean = range(count, count +1 )
+            paul = range(count)
+            jeanpaul = jean + paul
+        layer.dataProvider().deleteAttributes(jeanpaul)
 
-    
-    #choose attribute value
+        #... et creation des nouveaux champs compatibles avec un import dans GeoMCE (sur v2.2.6)  
+        layer.dataProvider().addAttributes(
+                    [QgsField("id", QVariant.Int,'Integer64',10,0),
+                    QgsField("nom", QVariant.String,'String',254,0),
+                    QgsField("categorie", QVariant.String,'String',7,0),
+                    QgsField("cible", QVariant.String,'String',100,0),
+                    QgsField("descriptio", QVariant.String,'String',254,0),
+                    QgsField("decision", QVariant.String,'String',254,0),
+                    QgsField("refei", QVariant.String,'String',254,0),
+                    QgsField("duree", QVariant.String,'String',25,0),
+                    QgsField("unite", QVariant.String,'String',25,0),
+                    QgsField("modalite",QVariant.String, 'String', 50,0),
+                    QgsField("communes", QVariant.String,'String',220,0)])         
+        layer.updateFields()
+        layer.selectAll()
+        return
+         
+ #les champs de saisi texte et listes deroulantes    
+    def get_new_nom(self):
+        new_nom = self.dlg.nom.text()
+        return new_nom
+    def get_description(self):
+        new_val_description = self.dlg.description.text()
+        return new_val_description
+    def get_decision(self):
+        new_val_decicision = self.dlg.decision.text()
+        return new_val_decicision
+    def get_refei(self):
+        new_val_refei = self.dlg.refei.text()
+        return new_val_refei
+    def get_duree(self):
+        new_val_duree = self.dlg.duree.text()
+        return new_val_duree
+    def get_categorie(self):
+        new_val_categorie = self.dlg.comboBox.currentText()
+        return new_val_categorie
+    def get_cible(self):
+        new_val_cible = self.dlg.comboBox_2.currentText()
+        return new_val_cible
+    def get_unite(self):
+        new_val_unite = self.dlg.comboBox_3.currentText()
+        return new_val_unite
+    def get_modalite(self):
+        new_val_modalite = self.dlg.comboBox_4.currentText()
+        return new_val_modalite
+    def get_communes(self):
+        new_val_communes = self.dlg.communes.text()
+        return new_val_communes
+        
+ #on va chercher le fichier commune.shp pour recuperer le code insee
+    def select_output_file(self):
+        qfd = QFileDialog()
+        title = u'Il est où ton fichier Commune.shp?'
+        path = ""
+        filename = QFileDialog.getOpenFileName(qfd, title, path)
+        self.dlg.communes.setText(filename)
+
+ #selection des toutes les entites de la couche
     def select_all(self):
         self.selectall = 0
         layername = self.dlg.mMapLayerComboBox.currentLayer()
-        #select layer
         for name, selectlayer in QgsMapLayerRegistry.instance().mapLayers().iteritems():
             if selectlayer.name() == layername:
                 selectlayer.setSelectedFeatures([])
                 selectlayer.invertSelection()
                 self.selectall = 1
- 
- #find unique values in layer feature classification 
-    def set_unique_value(self):
-        #pyqtRemoveInputHook()
-        #pdb.set_trace()
-        #self.dlg.oldattribute.clear()
-        uniquelayer = self.dlg.mMapLayerComboBox.currentLayer()
-        uniquecolumn = self.dlg.mFieldComboBox.currentText()
-        for name, selectlayer in QgsMapLayerRegistry.instance().mapLayers().iteritems():
-            if selectlayer.name() == uniquelayer:
-                uniqueprovider = selectlayer.dataProvider()
-                list = []
-                if (uniqueprovider):
-                    fields = uniqueprovider.fields()
-                    for field in fields:
-                        if field.name() == uniquecolumn:
-                            id = fields.indexFromName(field.name())
-                            uniquevalue = uniqueprovider.uniqueValues(id)
-                            for uv in uniquevalue:
-                                self.dlg.oldattribute.addItem(unicode(uv))
 
-    #Select features to process
-    def select_features(self):
-        #pyqtRemoveInputHook()
-        #pdb.set_trace()
-        provider = None
-        #clear any feature from list...
-        self.selectList = []
-        #let's begin
-        #retrieve comboboxes data
-        currlayer = self.dlg.mMapLayerComboBox.currentLayer()
-        currcolumn = self.dlg.mFieldComboBox.currentText()
-        #currfeature = self.dlg.oldattribute.currentText()
-        #turn selected layer off to ensure selection of all features in layer
-        self.turn_layer_off(currlayer)
-        nsel = 0
-        #select data provider and layer
-        for name, selectlayer in QgsMapLayerRegistry.instance().mapLayers().iteritems():
-            if selectlayer.name() == currlayer:
-                cLayer = selectlayer
-                provider = cLayer.dataProvider()
-                fields = provider.fields()
-                index = None
-                if cLayer:
-                    for field in fields:
-                        if field.name() == currcolumn:
-                            #navigates through the features and select those whose name
-                            #corresponds to the value in combo box
-                            for f in cLayer.getFeatures():
-                                attrs = f.attributes()
-                                for attr in attrs:
-                                    if unicode(attr) == currfeature:#check string instead of number
-                                        self.selectList.append(f.id())
-        # make the actual selection
-        if self.selectList:
-            cLayer.setSelectedFeatures(self.selectList)
-            nsel = cLayer.selectedFeatureCount()
-            
-        #some info in the text browser to know what's going on
-        #self.dlg.txtFeedBack.setText(unicode(nsel)+" Feature/s selected"+"\nin Layer--> " + cLayer.name() + "\nin Field--> " + currcolumn + "\nValue to be modified--> " + currfeature)
- 
-    def change_to_any(self):#change values to any fields at the corresponding row attribute
-        self.dlg.mMapLayerComboBox.clear()
+ #application des nouvelles valeurs dans la nouvelle table attributaire
+    def change_to_any(self):
         layer = self.dlg.mMapLayerComboBox.currentLayer()
         val1 = self.get_new_nom()
         val2 = self.get_description()
@@ -334,8 +375,9 @@ class GeoMCE:
         val8 = self.get_unite()
         val9 = self.get_modalite()
 
+        #permet de recuperer le code INSEE des communes concernes par la mesure. Necessite de changer les champs compare_field_index, concat_field_index et new_field_index en fonction du shape commune.
         def codeinsee():
-            #ici se trouve le chemin vers couche contenant toutes les communes de votre region. A MODIFIER DONC EN FONCTION DE VOTRE RESEAU
+            #ici se trouve le chemin vers couche contenant toutes les communes de votre region. 
             self.dlg.mMapLayerComboBox.clear()
             layer5 = self.dlg.mMapLayerComboBox.currentLayer()
             val10 = self.get_communes()
@@ -405,102 +447,26 @@ class GeoMCE:
                 layer.changeAttributeValue(feat.id(),9, val9)
             layer.changeAttributeValue(feat.id(),10, codeinsee())
 
-        #layer.commitChanges()
+ #sauvegarde des elements saisis dans la table attributaire
+    def save_edits(self):
+        self.saved = False
+        layername = self.dlg.mMapLayerComboBox.currentText()
+        for name, selectlayer in QgsMapLayerRegistry.instance().mapLayers().iteritems():
+            if selectlayer.name() == layername:
+                if (selectlayer.isEditable()):
+                    selectlayer.commitChanges()
+                    self.saved = True
+                    self.countchange = 0
+        return self.saved
 
-        
-        
-    def get_field(self):
-        Name = self.dlg.newfield.text()
-        return Name
-    
-    def check_unique_fields(self, fields, newfieldname):
-        for i in fields:
-            confront = fields[i].name()
-            self.dlg.txtFeedBack.append("Searching fields for:  "+unicode(confront))
-            if confront == newfieldname:
-                unique = 1
-            else:
-                unique = 0
-        return unique
-
-    def create_new_field(self) :
-        #creation d un dossier dans C: nomme GeoMCE et d un sous dossier qui va porter le nom de la couche qui va etre traiter
-        self.dlg.mFieldComboBox.clear()
-        self.dlg.mMapLayerComboBox_2.clear()
-        idx = self.dlg.mMapLayerComboBox_2.currentText()
-        path = "C:/GeoMCE" + "/"
-        p = path + idx
-        for feat in self.dlg.mFieldComboBox.currentText():
-            #attrs = feat.attributes()
-            if not os.path.exists(path + idx):
-                os.makedirs(path + idx)    
-               
-        #separation de la couche active par le champ defini au debut du script et enregistrement dans le dossier c:/GeoMCE/nom_de_la_couche_d_origine
-        sep = processing.runalg("qgis:splitvectorlayer", self.dlg.mMapLayerComboBox_2.currentText(), self.dlg.mFieldComboBox.currentText(), p)
-
-        # chargement de toutes les couches issues de la separation contenu dans le dossier c:/geomce/nom_de_la_couche_d_origine
-        def find_files(directory, pattern, only_root_directory):
-            for root, dirs, files in os.walk(directory):
-                for basename in files:
-                    if fnmatch.fnmatch(basename.lower(), pattern):
-                        filename = os.path.join(root, basename)
-                        yield filename
-                if (only_root_directory):
-                    break
-
-        count = 0
-        for src_file in find_files(p, '*.shp', True):
-            (head, tail) = os.path.split(src_file)
-            (name, ext) = os.path.splitext(tail)
-            vlayer = iface.addVectorLayer(src_file, name, "ogr")
-        output = count
-        self.dlg.mFieldComboBox.clear()
-        self.dlg.mMapLayerComboBox_2.clear()
-
-    def select_layer_fields2(self, vlayer):                              #new function
-        self.dlg.mFieldComboBox.setLayer(vlayer)
-        field = self.dlg.mFieldComboBox.setLayer(vlayer)
-        
-    def create_new_field_2(self):
-        #create new field in layer table
-        #pyqtRemoveInputHook()
-        #pdb.set_trace()
-        self.dlg.mMapLayerComboBox.clear()
-        layer = self.dlg.mMapLayerComboBox.currentLayer()
-        layer.startEditing()
-        prov = layer.dataProvider()
-        field_names = [field.name() for field in prov.fields()]
-        for count, f in enumerate(field_names):
-            doudou =range(count, count +1 )
-            zaza = range(count)
-            pipi = doudou + zaza
-        layer.dataProvider().deleteAttributes(pipi)
-
-        #creation des nouveaux champs compatibles avec un import dans GeoMCE (sur v2.2.6)  
-        layer.dataProvider().addAttributes(
-                    [QgsField("id", QVariant.Int,'Integer64',10,0),
-                    QgsField("nom", QVariant.String,'String',254,0),
-                    QgsField("categorie", QVariant.String,'String',7,0),
-                    QgsField("cible", QVariant.String,'String',100,0),
-                    QgsField("descriptio", QVariant.String,'String',254,0),
-                    QgsField("decision", QVariant.String,'String',254,0),
-                    QgsField("refei", QVariant.String,'String',254,0),
-                    QgsField("duree", QVariant.String,'String',25,0),
-                    QgsField("unite", QVariant.String,'String',25,0),
-                    QgsField("modalite",QVariant.String, 'String', 50,0),
-                    QgsField("communes", QVariant.String,'String',220,0)])         
-        layer.updateFields()
-        layer.selectAll()
-        return
-
- #Clear selected vector features 
+ #on deselectionne les entites modifies 
     def clearselection(self):
-        #self.dlg.txtFeedBack.clear()
         clearlist = []
         for name, selectlayer in QgsMapLayerRegistry.instance().mapLayers().iteritems():
             if selectlayer.type() == QgsMapLayer.VectorLayer:
                 selectlayer.setSelectedFeatures(clearlist)
 
+ #permet d afficher la table attributaire de la couche qui a ete traiter
     def show_table(self):
         #shows attribute table of chosen layer 
         table_layer=self.dlg.mMapLayerComboBox.currentText()
@@ -508,124 +474,37 @@ class GeoMCE:
             if selectlayer.name() == table_layer:
                 show_layer_t = selectlayer
                 self.iface.showAttributeTable(show_layer_t)
-            
-    
-    def get_new_nom(self):
-        new_nom = self.dlg.nom.text()
-        return new_nom
-    def get_description(self):
-        new_val_description = self.dlg.description.text()
-        return new_val_description
-    def get_decision(self):
-        new_val_decicision = self.dlg.decision.text()
-        return new_val_decicision
-    def get_refei(self):
-        new_val_refei = self.dlg.refei.text()
-        return new_val_refei
-    def get_duree(self):
-        new_val_duree = self.dlg.duree.text()
-        return new_val_duree
-    def get_categorie(self):
-        new_val_categorie = self.dlg.comboBox.currentText()
-        return new_val_categorie
-    def get_cible(self):
-        new_val_cible = self.dlg.comboBox_2.currentText()
-        return new_val_cible
-    def get_unite(self):
-        new_val_unite = self.dlg.comboBox_3.currentText()
-        return new_val_unite
-    def get_modalite(self):
-        new_val_modalite = self.dlg.comboBox_4.currentText()
-        return new_val_modalite
-    def get_communes(self):
-        new_val_communes = self.dlg.communes.text()
-        return new_val_communes
-        
-    def turn_layer_off(self, loadedlayer):
-        for name, selectlayer in QgsMapLayerRegistry.instance().mapLayers().iteritems():
-            if selectlayer.name() == loadedlayer:
-                theloadedlayer = selectlayer
-                legend = self.iface.legendInterface()
-                #access legendInteface class to determine if a layer is visible
-                #then set it unvisible and add layer to a list
-                if (legend.isLayerVisible(theloadedlayer)):
-                    legend.setLayerVisible(theloadedlayer, False)
-                    self.turnedoffLayers.append(selectlayer)
-        
-    def turn_layer_on (self, unloadedlayer):
-        #access legendInterface class and turn unloadelayer layer on
-        legend = self.iface.legendInterface()
-        legend.setLayerVisible(unloadedlayer, True)
 
-    def restore_visibility(self):
-        #pick turned off layers from a list and set them visible
-        if self.turnedoffLayers != []:
-            for i in range(len(self.turnedoffLayers)):
-                self.turn_layer_on(self.turnedoffLayers[i])
-        else:
-            return
-
-    def select_output_file(self):
-        qfd = QFileDialog()
-        title = 'Open File'
-        path = ""
-        filename = QFileDialog.getOpenFileName(qfd, title, path)
-        self.dlg.communes.setText(filename)
-
+ #on ferme le plugin
     def exit(self):
-        #pyqtRemoveInputHook()
-        #pdb.set_trace()
-        QgsMapLayerRegistry.instance().reloadAllLayers()
+        #QgsMapLayerRegistry.instance().reloadAllLayers()
         self.clearselection()
-        #disconnect QT objects 
+        #disconnect QT objects
+        self.dlg.nom.clear()
+        self.dlg.reject()
+        self.dlg.description.clear()
+        self.dlg.decision.clear()
+        self.dlg.refei.clear()
+        self.dlg.duree.clear()
+        self.dlg.categorie.clear()
+        self.dlg.cible.clear()
+        self.dlg.unite.clear()
+        self.dlg.modalite.clear()
+        self.dlg.communes.clear()
+        self.dlg.select_layer_fields2.clear()
+        self.dlg.mMapLayerComboBox_2.disconnect()
         QObject.disconnect(self.dlg.chosenlayer, SIGNAL("currentIndexChanged(QString)"), self.clearselection)
         QObject.disconnect(self.dlg.chosenlayer_2, SIGNAL("currentIndexChanged(QString)"), self.clearselection)
-        QObject.disconnect(self.dlg.create_new_field, SIGNAL("clicked(bool)"), self.newfield_connect)
-        QObject.disconnect(self.dlg.create_new_field_2, SIGNAL("clicked(bool)"), self.newfield_connect_2)
-        QObject.disconnect(self.dlg.select, SIGNAL("clicked(bool)"), self.select_features)
-        #QObject.disconnect(self.dlg.all, SIGNAL("clicked(bool)"), self.select_all)
-        QObject.disconnect(self.dlg.unselect, SIGNAL("clicked(bool)"), self.clearselection)
-        QObject.disconnect(self.dlg.save, SIGNAL("clicked(bool)"), self.save_edits)
-        QObject.disconnect(self.dlg.show_t, SIGNAL("clicked(bool)"), self.show_table)
-        QObject.disconnect(self.dlg.change_another, SIGNAL("clicked(bool)"), self.change_to_any)
-        QObject.disconnect(self.dlg.Exit, SIGNAL("clicked(bool)"), self.exit)
-        QObject.disconnect(self.dlg.about, SIGNAL("clicked(bool)"), self.doabout )
-        #turn on layers turned off by turn_layer_off
-        self.restore_visibility()
-        if (self.saved == False and self.countchange > 0):
-            self.iface.messageBar().pushMessage("MultiEdit","Remember to review the changes and then save the edits. Thank you", level=QgsMessageBar.INFO)
-        return
+        QObject.disconnect(self.dlg.create_new_field, SIGNAL("clicked()"), self.newfield_connect)
+        QObject.disconnect(self.dlg.create_new_field_2, SIGNAL("clicked()"), self.newfield_connect_2)
+        QObject.disconnect(self.dlg.unselect, SIGNAL("clicked()"), self.clearselection)
+        QObject.disconnect(self.dlg.save, SIGNAL("clicked()"), self.save_edits)
+        QObject.disconnect(self.dlg.show_t, SIGNAL("clicked()"), self.show_table)
+        QObject.disconnect(self.dlg.change_another, SIGNAL("clicked()"), self.change_to_any)
+        QObject.disconnect(self.dlg.Exit, SIGNAL("clicked()"), self.exit)
+        QObject.disconnect(self.dlg.about, SIGNAL("clicked()"), self.doabout )
 
-    def save_edits(self):
-        self.saved = False
-        #chose layer name to check in iteration
-        layername = self.dlg.mMapLayerComboBox.currentText()
-        #browse layers in project to find matching items, select layer and if started editing
-        #commit changes...
-        for name, selectlayer in QgsMapLayerRegistry.instance().mapLayers().iteritems():
-            if selectlayer.name() == layername:
-                if (selectlayer.isEditable()):
-                    selectlayer.commitChanges()
-                    #show result in textBrowser
-                    #self.dlg.txtFeedBack.setText(u'Modifications enregistrées dans la couche -->'+ layername)
-                    self.saved = True
-                    #check for unsaved layers set to 0...
-                    self.countchange = 0
-        #update comboboxes
-        #self.set_unique_value()
-                    
-        return self.saved
-    
-    def newfield_connect(self):
-        self.create_new_field()
-        self.set_select_attributes()
-        return
-
-    def newfield_connect_2(self):
-        self.create_new_field_2()
-        self.set_select_attributes()
-        return
-
+  #ouvre la boite de dialogie Aide/A propos
     def doabout(self):
         self.dlga.show()
 
@@ -638,10 +517,6 @@ class GeoMCE:
             self.iface.removeToolBarIcon(action)
         # remove the toolbar
         del self.toolbar
-
-    def select_layer_fields2(self, vlayer):                              #new function
-        self.dlg.mFieldComboBox.setLayer(vlayer)
-        field = self.dlg.mFieldComboBox.setLayer(vlayer)
 
     def run(self):
         #initial check if no vector layer no party...
@@ -656,43 +531,22 @@ class GeoMCE:
             return
         else:
             boolvar ="Oui"
-            #Initial comboboxes filling
-            self.chooselayer()
-            #self.chooselayer_2()
-            #pyqtRemoveInputHook()
-            #pdb.set_trace()
-            #Connect to change in layer combobox and column combobox and execute
-            #information retrieving procedures
-            QObject.connect(self.dlg.mMapLayerComboBox_2, SIGNAL("currentIndexChanged(QString)"), self.set_select_attributes)
-            self.set_select_attributes()
-            #every change in layer choice clears selection anyway
-            QObject.connect(self.dlg.mMapLayerComboBox_2, SIGNAL("currentIndexChanged(QString)"), self.clearselection)
-            #information retrieving procedures
-            QObject.connect(self.dlg.mMapLayerComboBox, SIGNAL("currentIndexChanged(QString)"), self.set_select_attributes)
-            self.set_select_attributes()
-            #every change in layer choice clears selection anyway
-            QObject.connect(self.dlg.mMapLayerComboBox, SIGNAL("currentIndexChanged(QString)"), self.clearselection)
-            #populate attribute values combobox
-            #2nd version stable with unique values
-            #self.set_unique_value()
-            #Connection for 2nd version
-            #QObject.connect(self.dlg.mFieldComboBox, SIGNAL("currentIndexChanged(QString)"), self.set_unique_value)
-            QObject.connect(self.dlg.mFieldComboBox, SIGNAL("activated(QString)"), self.set_unique_value)#changed  
-            #Connection for 1st version
-            #QObject.connect(self.dlg.mFieldComboBox, SIGNAL("currentIndexChanged(QString)"), self.set_select_value)
-            #self.set_select_value()
-            #Plaintext event
-            #QObject.connect(self.dlg.newvalue, SIGNAL("textChanged(QString)"), self.get_new_value)
-            #Buttons events
-            #QObject.connect(self.dlg.select, SIGNAL("clicked(bool)"), self.select_features)
-            #QObject.connect(self.dlg.all, SIGNAL("clicked(bool)"), self.select_all)
-            #QObject.connect(self.dlg.unselect, SIGNAL("clicked(bool)"), self.clearselection)
-            QObject.connect(self.dlg.save, SIGNAL("clicked(bool)"), self.save_edits)
-            QObject.connect(self.dlg.show_t, SIGNAL("clicked(bool)"), self.show_table)
-            QObject.connect(self.dlg.create_new_field, SIGNAL("clicked(bool)"), self.newfield_connect)
-            QObject.connect(self.dlg.create_new_field_2, SIGNAL("clicked(bool)"), self.newfield_connect_2)
-            QObject.connect(self.dlg.change_another, SIGNAL("clicked(bool)"), self.change_to_any)#the real thing 2...
             self.dlg.show()
+            self.chooselayer()
+            QObject.connect(self.dlg.mMapLayerComboBox_2, SIGNAL("currentIndexChanged(QString)"), self.set_select_attributes)
+            QObject.connect(self.dlg.mMapLayerComboBox_2, SIGNAL("currentIndexChanged(QString)"), self.clearselection)
+            QObject.connect(self.dlg.mMapLayerComboBox, SIGNAL("currentIndexChanged(QString)"), self.set_select_attributes)
+            QObject.connect(self.dlg.mMapLayerComboBox, SIGNAL("currentIndexChanged(QString)"), self.clearselection)
+            QObject.connect(self.dlg.save, SIGNAL("clicked()"), self.save_edits)
+            QObject.connect(self.dlg.show_t, SIGNAL("clicked()"), self.show_table)
+            QObject.connect(self.dlg.create_new_field, SIGNAL("clicked()"), self.newfield_connect)
+            QObject.connect(self.dlg.create_new_field_2, SIGNAL("clicked()"), self.newfield_connect_2)
+            QObject.connect(self.dlg.change_another, SIGNAL("clicked()"), self.change_to_any)
+            self.set_select_attributes()
+            self.dlg.mFieldComboBox.clear()
+            self.dlg.mMapLayerComboBox.clear()
+            self.dlg.mMapLayerComboBox_2.clear()
+            self.dlg.mMapLayerComboBox_2.layerChanged.connect(self.select_layer_fields2)
             self.dlg.comboBox.clear()
             categorie = [u'E - Évitement',u'E',u'E1 - Évitement « amont » (stade anticipé)',u'E1',u'E1-1. - Phase de conception du dossier de demande',u'E1-1.',u'E1-1-a. - Évitement des populations connues d\'espèces protégées ou à fort enjeux',u'E1-1-a.',u'E1-1-b. - Évitement des sites à enjeux du territoire',u'E1-1-b.',u'E1-1-c. - Redéfinition des caractéristiques du projet',u'E1-1-c.',u'E1-1-d. - Autre : à préciser',u'E1-1-d.',u'E2 - Évitement géographique',u'E2',u'E2-1. - Phase travaux',u'E2-1.',u'E2-1-a. - Balisage préventif divers ou mise en défens ou dispositif de protection d\'une station d\'une espèce patrimoniale, d\'un habitat d\'une espèce patrimoniale, d\'habitats d\'espèces, d\'arbres remarquable',u'E2-1-a.',u'E2-1-b. - Limitation des emprises des travaux',u'E2-1-b.',u'E2-1-c. - Autre : à préciser',u'E2-1-c.',u'E2-2. - Phase exploitation / fonctionnement',u'E2-2.',u'E2-2-a. - Éloignement de l\'ouvrage vis-à-vis des populations (humaines) sensibles',u'E2-2-a.',u'E2-2-b. - Mesure des documents de planification délimitant des zones et affectant les sols de manière à éloigner les populations sensibles, application de marges de recul (urbanisations futures)',u'E2-2-b.',u'E2-2-c. - Mesure d\'orientation d\'une installation ou d\'optimisation de la géométrie du projet',u'E2-2-c.',u'E2-2-d. - Mesure d\'acquisition hors emprise du projet',u'E2-2-d.',u'E2-2-e. - Limitation des emprises du projet',u'E2-2-e.',u'E2-2-f. - Positionnement du projet sur un secteur de moindre enjeu',u'E2-2-f.',u'E2-2-g. - Autre : à préciser',u'E2-2-g.',u'E3 - Évitement technique',u'E3',u'E3-1. - Phase travaux',u'E3-1.',u'E3-1-a. - Absence de rejet dans le milieu naturel (air, eau, sol)',u'E3-1-a.',u'E3-1-b. - Autre : à préciser',u'E3-1-b.',u'E3-2. - Phase exploitation / fonctionnement',u'E3-2.',u'E3-2-a. - Absence totale d\'utilisation de produits phytosanitaires',u'E3-2-a.',u'E3-2-b. - Modifications / adaptations des choix d\'aménagement, des caractéristiques du projet (à préciser)',u'E3-2-b.',u'E3-2-c. - Autre : à préciser',u'E3-2-c.',u'E4 - Évitement temporel',u'E4',u'E4-1. - Phase travaux',u'E4-1.',u'E4-1-a. - Adaptation de la période des travaux sur l\'année',u'E4-1-a.',u'E4-1-b. - Adaptation des horaires des travaux (en journalier)',u'E4-1-b.',u'E4-1-c. - Autre : à préciser',u'E4-1-c.',u'E4-2. - Phase exploitation / fonctionnement',u'E4-2.',u'E4-2-a. - Adaptation des périodes d\'exploitation sur l\'année',u'E4-2-a.',u'E4-2-b. - Adaptation des horaires d\'exploitation (fonctionnement diurne, nocturne)',u'E4-2-b.',u'E4-2-c. - Autre : à préciser',u'E4-2-c.',u'R - Réduction',u'R',u'R1 - Réduction géographique',u'R1',u'R1-1. - Phase travaux',u'R1-1.',u'R1-1-a. - Limitation / adaptation des emprises des travaux et/ou des zones d\'accès et/ou des zones de circulation des engins de chantier',u'R1-1-a.',u'R1-1-b. - Limitation / adaptation des installations de chantier',u'R1-1-b.',u'R1-1-c. - Balisage préventif divers ou mise en défens (pour partie) ou dispositif de protection d\'une station d\'une espèce patrimoniale, d\'un habitat d\'une espèce patrimoniale, d\'habitats d\'espèces, arbres remarquables',u'R1-1-c.',u'R1-1-d. - Autre : à préciser',u'R1-1-d.',u'R1-2. - Phase exploitation / fonctionnement',u'R1-2.',u'R1-2-a. - Limitation / adaptation des emprises du projet',u'R1-2-a.',u'R1-2-b. - Balisage définitif divers ou mise en défens définitive (pour partie) ou dispositif de protection définitif d\'une station d\'une espèce patrimoniale, d\'un habitat d\'une espèce patrimoniale, d\'habitats d\'espèces, arbres remarquables',u'R1-2-b.',u'R1-2-c. - Autre : à préciser',u'R1-2-c.',u'R2 - Réduction technique',u'R2',u'R2-1. - Phase travaux',u'R2-1.',u'R2-1-a. - Adaptation des modalités de circulation des engins de chantier',u'R2-1-a.',u'R2-1-b. - Mise en place d\'écran naturel ou artificiel temporaire',u'R2-1-b.',u'R2-1-c. - Mode particulier d\'évacuation des matériaux, déblais et résidus de chantier : transport fluvial, transport ferroviaire, etc.',u'R2-1-c.',u'R2-1-d. - Procédé technique limitant les impacts du chantier à la source',u'R2-1-d.',u'R2-1-e. - Optimisation de la gestion des matériaux et déblais',u'R2-1-e.',u'R2-1-f. - Dispositif préventif de lutte contre une pollution et dispositif d\'assainissement provisoire de gestion des eaux pluviales et de chantier',u'R2-1-f.',u'R2-1-g. - Actions correctives faisant suite à une mise en évidence d\'une dégradation sur le milieu',u'R2-1-g.',u'R2-1-h. - Dispositif préventif de lutte contre l\'érosion des sols',u'R2-1-h.',u'R2-1-i. - Dispositif préventif de lutte contre les espèces exotiques envahissantes',u'R2-1-i.',u'R2-1-j. - Dispositif limitant les impacts liés au passage des engins de chantier',u'R2-1-j.',u'R2-1-k. - Clôture et dispositif de franchissement provisoires adaptés aux espèces animales cibles',u'R2-1-k.',u'R2-1-l. - Dispositif permettant d\'éloigner les espèces à enjeux et limitant leur installation. Mise en ouvre avant les travaux ou pendant la phase travaux',u'R2-1-l.',u'R2-1-m. - Dispositif de limitation des nuisances autre que écran',u'R2-1-m.',u'R2-1-n. - Maintien d\'un débit minimum de cours d\'eau',u'R2-1-n.',u'R2-1-o. - Maintien d\'une connexion latérale (espèces aquatiques)',u'R2-1-o.',u'R2-1-p. - Récupération et transfert d\'une partie du milieu naturel',u'R2-1-p.',u'R2-1-q. - Prélèvement ou sauvetage avant destruction de spécimens d\'espèces - Espèce(s) à préciser',u'R2-1-q.',u'R2-1-r. - Gestion écologique temporaire des habitats dans la zone d\'emprise des travaux',u'R2-1-r.',u'R2-1-s. - Dispositif d\'aide à la recolonisation du milieu',u'R2-1-s.',u'R2-1-t. - Dispositif de repli du chantier',u'R2-1-t.',u'R2-1-t. - Autre : à préciser',u'R2-1-t.',u'R2-2. - Phase exploitation / fonctionnement',u'R2-2.',u'R2-2-a. - Action sur les conditions de circulation (ferroviaire, routier, aérien)',u'R2-2-a.',u'R2-2-b. - Procédés techniques limitant les émissions polluantes et sonores à la source',u'R2-2-b.',u'R2-2-c. - Procédés techniques limitant la dispersion des polluants et la propagation des ondes acoustiques (écrans, etc.)',u'R2-2-c.',u'R2-2-d. - Dispositif anti-collision et d\'effarouchement (hors clôture spécifique)',u'R2-2-d.',u'R2-2-e. - Adaptation d\'un ouvrage de franchissement hydraulique pour le passage de la faune',u'R2-2-e.',u'R2-2-f. - Passage à faune (supérieur et inférieur)',u'R2-2-f.',u'R2-2-g. - Choix d\'aménagements permettant de limiter l\'exposition aux nuisances (TC, modes actifs, élévation d\'un bâtiment)',u'R2-2-g.',u'R2-2-h. - Dispositif complémentaire au droit d\'un passage faune afin de favoriser sa fonctionnalité',u'R2-2-h.',u'R2-2-i. - Dispositif de limitation des nuisances',u'R2-2-i.',u'R2-2-j. - Maintien d\'un débit minimum biologique de cours d\'eau pour le maintien des populations en bon état écologique ou d\'une connexion latérale',u'R2-2-j.',u'R2-2-k. - Clôture spécifique (y compris échappatoire) et dispositif anti-pénétration dans les emprises',u'R2-2-k.',u'R2-2-l. - Plantation sur talus type up-over',u'R2-2-l.',u'R2-2-m. - Installation d\'abris ou de gîtes artificiels pour la faune au droit du projet ou à proximité',u'R2-2-m.',u'R2-2-n. - Dispositif technique limitant les impacts sur la continuité hydraulique',u'R2-2-n.',u'R2-2-o. - Optimisation de la gestion des matériaux et déblais',u'R2-2-o.',u'R2-2-p. - Autre : à préciser',u'R2-2-p.',u'R3 - Réduction temporelle',u'R3',u'R3-1. - Phase travaux',u'R3-1.',u'R3-1-a. - Adaptation de la période des travaux sur l\'année',u'R3-1-a.',u'R3-1-b. - Adaptation des horaires des travaux (en journalier)',u'R3-1-b.',u'R3-1-c. - Autre : à préciser',u'R3-1-c.',u'R3-2. - Phase exploitation / fonctionnement',u'R3-2.',u'R3-2-a. - Adaptation des périodes d\'exploitation / d\'activité (sur l\'année)',u'R3-2-a.',u'R3-2-b. - Adaptation des horaires d\'exploitation / d\'activité (fonctionnement diurne, nocturne)',u'R3-2-b.',u'R3-2-c. - Autre : à préciser',u'R3-2-c.',u'C - Compensation',u'C',u'C1 - Création / Renaturation de milieu',u'C1',u'C1-1. - Action concernant tous types de milieux',u'C1-1.',u'C1-1-a. - Création ou renaturation d\'habitats et d\'habitats favorables aux espèces cibles et à leur guilde (à préciser)',u'C1-1-a.',u'C1-1-b. - Aménagement ponctuel (abris ou gîtes artificiels pour la faune) complémentaire à une mesure C1.a Se distingue de la mesure R2-2 « installation d\'abris ou de gîtes artificiels pour la faune » car n\'est pas localisé sur le site impacté mais sur le site de compensation',u'C1-1-b.',u'C1-1-c. - Autre : à préciser',u'C1-1-c.',u'C2 - Restauration / Réhabilitation',u'C2',u'C2-1. - Action concernant tous types de milieux (sauf cours d\'eau)',u'C2-1.',u'C2-1-a. - Enlèvement de dispositifs d\'aménagements antérieurs (déconstruction) hors ouvrages en eau (voir C2.2.i)',u'C2-1-a.',u'C2-1-b. - Enlèvement / traitement d\'espèces exotiques envahissantes',u'C2-1-b.',u'C2-1-c. - Etrépage / Décapage / Décaissement du sol ou suppression de remblais,',u'C2-1-c.',u'C2-1-d. - Réensemencement de milieux dégradés, replantation, restauration de haies existantes mais dégradées',u'C2-1-d.',u'C2-1-e. - Réouverture du milieu par débroussaillage d\'espèces ligneuses, abattage d\'arbres, etc.',u'C2-1-e.',u'C2-1-f. - Restauration de corridor écologique',u'C2-1-f.',u'C2-1-g. - Aménagement ponctuel (abris ou gîtes artificiels pour la faune) complémentaire à une autre mesure C2 Se distingue de la mesure R2-2t « installation d\'abris ou de gîtes artificiels pour la faune » car n\'est pas localisé sur le site impacté mais sur le site d compensation',u'C2-1-g.',u'C2-1-h. - Autre : à préciser',u'C2-1-h.',u'C2-2. - Actions spécifiques aux cours d\'eau (lit mineur + lit majeur), annexes hydrauliques, étendues d\'eau stagnantes et zones humides',u'C2-2.',u'C2-2-a. - Reprofilage / Restauration de berges (yc suppression des protections artificielles)',u'C2-2-a.',u'C2-2-b. - Amélioration / entretien d\'annexes hydrauliques / décolmatage de fond et action sur la source du colmatage',u'C2-2-b.',u'C2-2-c. - Reconnexion d\'annexes hydrauliques avec le cours d\'eau / reconnexion lit mineur/lit majeur',u'C2-2-c.',u'C2-2-d. - Restauration des conditions hydromorphologique du lit mineur (hors emprise)',u'C2-2-d.',u'C2-2-e. - Restauration des modalités d\'alimentation et de circulation de l\'eau au sein d\'une ZH',u'C2-2-e.',u'C2-2-f. - Restauration des zones de frayes',u'C2-2-f.',u'C2-2-g. - Restauration de ripisylves existantes mais dégradées',u'C2-2-g.',u'C2-2-h. - Modification ou équipement d\'ouvrage existant (hors emprise du projet)',u'C2-2-h.',u'C2-2-i. - Arasement ou dérasement d\'un obstacle transversal, d\'un seuil, d\'un busage (cours d\'eau)',u'C2-2-i.',u'C2-2-j. - Aménagement d\'un point d\'abreuvement et mise en défens des berges',u'C2-2-j.',u'C2-2-k. - Autre : à préciser',u'C2-2-k.',u'C3 - Evolution des pratiques de gestion',u'C3',u'C3-1. - Abandon ou changement total des modalités de gestion antérieures',u'C3-1.',u'C3-1-a. - Abandon ou forte réduction de tout traitement phytosanitaire – messicoles',u'C3-1-a.',u'C3-1-b. - Abandon de toute gestion :  îlot de senescence, autre (à préciser)',u'C3-1-b.',u'C3-1-c. - Changement des pratiques culturales par conversion de terres cultivées ou exploitées de manière intensive',u'C3-1-c.',u'C3-1-d. - Autre : à préciser',u'C3-1-d.',u'C3-2. - Simple évolution des modalités de gestion antérieures',u'C3-2.',u'C3-2-a. - Modification de la gestion des niveaux d\'eau',u'C3-2-a.',u'C3-2-b. - Modification des modalités de fauche et/ou de pâturage',u'C3-2-b.',u'C3-2-c. - Mise en place de pratiques de gestion alternatives plus respectueuses',u'C3-2-c.',u'C3-2-d. - Modification des modalités de fréquentation humaine',u'C3-2-d.',u'C3-2-e. - Autre : à préciser',u'C3-2-e.',u'A - Accompagnement',u'A',u'A1 - Préservation foncière',u'A1',u'A1-1. - Site en bon état écologique et fortement menacé répondant au cas dérogatoire des LD ERC',u'A1-1.',u'A1-1-a. - Acquisition de parcelle sans mise en ouvre d\'action écologique complémentaire',u'A1-1-a.',u'A1-2. - Site en bon état de conservation',u'A1-2.',u'A1-2-a. - Acquisition de parcelle sans mise en ouvre d\'action écologique complémentaire. Le milieu acquis peut ne pas respecter la condition d\'équivalence écologique',u'A1-2-a.',u'A2 - Pérennité des mesures compensatoires C1 à C3 et A2',u'A2',u'A2-1. - Pérennité des mesures compensatoires C1 à C3 et A2',u'A2-1.',u'A2-1-a. - Mise en place d\'un outil réglementaire du Code de l\'Environnement ou du Code Rural et de la pêche ou du Code de l\'Urbanisme',u'A2-1-a.',u'A2-1-b. - Rattachement du foncier à un réseau de sites locaux',u'A2-1-b.',u'A2-1-c. - Cession / rétrocession du foncier',u'A2-1-c.',u'A2-1-d. - Mise en place d\'obligations réelles environnementales',u'A2-1-d.',u'A3 - Réaménagement / rétablissement',u'A3',u'A3-1. - Réaménagement / rétablissement',u'A3-1.',u'A3-1-a. - Aménagement ponctuel (abris ou gîtes artificiels pour la faune)',u'A3-1-a.',u'A3-1-b. - Aide à la recolonisation végétale',u'A3-1-b.',u'A3-1-c. - Autre : à préciser',u'A3-1-c.',u'A4 - Financement',u'A4',u'A4-1. - Financement intégral du maître d\'ouvrage',u'A4-1.',u'A4-1-a. - Aide financière au fonctionnement de structures locales',u'A4-1-a.',u'A4-1-b. - Approfondissement des connaissances relatives à une espèce ou un habitat impacté, à la qualité de l\'air et aux niveaux de bruit',u'A4-1-b.',u'A4-1-c. - Financement de programmes de recherche',u'A4-1-c.',u'A4-1-d. - Autre : à préciser',u'A4-1-d.',u'A4-2. - Contribution à une politique publique',u'A4-2.',u'A4-2-a. - Contribution financière au déploiement d\'actions prévues par un document couvrant le territoire impacté',u'A4-2-a.',u'A4-2-b. - Contribution au financement de la réalisation de document d\'action en faveur d\'une espèce ou d\'un habitat impacté par le projet',u'A4-2-b.',u'A4-2-c. - Financement de programmes de recherche',u'A4-2-c.',u'A4-2-d. - Autre : à préciser',u'A4-2-d.',u'A5 - Actions expérimentales',u'A5',u'A5-1. - Actions expérimentales',u'A5-1.',u'A5-1-a. - Action expérimentale de génie-écologique',u'A5-1-a.',u'A5-1-b. - Action expérimentale de renforcement de population ou de transplantation d\'individus / translocation manuelle ou mécanique',u'A5-1-b.',u'A5-1-c. - Autre : à préciser',u'A5-1-c.',u'A6 - Action de gouvernance/ sensibilisation / communication /',u'A6',u'A6-1. - Gouvernance',u'A6-1.',u'A6-1-a. - Organisation administrative du chantier',u'A6-1-a.',u'A6-1-b. - Mise en place d\'un comité de suivi des mesures',u'A6-1-b.',u'A6-1-c. - Autre : à préciser',u'A6-1-c.',u'A6-2. - Communication, sensibilisation ou de diffusion des connaissances',u'A6-2.',u'A6-2-a. - Action de gestion de la connaissance collective',u'A6-2-a.',u'A6-2-b. - Déploiement d\'actions de communication',u'A6-2-b.',u'A6-2-c. - Déploiement d\'actions de sensibilisation',u'A6-2-c.',u'A6-2-d. - Dispositif de canalisation du public ou de limitation des accès',u'A6-2-d.',u'A6-2-e. - Autre : à préciser',u'A6-2-e.',u'A7 - Autre',u'A7',u'A7-1. - autre',u'A7-1.',u'A7-1-a. - Mesure d\'accompagnement ne rentrant dans aucune des catégories ci-avant A1 à A6 ',u'A7-1-a.']
             self.dlg.comboBox.addItems(categorie)
@@ -705,13 +559,9 @@ class GeoMCE:
             self.dlg.comboBox_4.clear()
             modalite = [u'Audit de chantier',u'Bilan/compte rendu de suivi',u'Rapport de fin de chantier',u'Autre']
             self.dlg.comboBox_4.addItems(modalite)
-            vlayer = self.dlg.mMapLayerComboBox_2.currentLayer()                           #new line
-            self.dlg.mFieldComboBox.setLayer(vlayer)                                     #new line
-            self.dlg.mMapLayerComboBox_2.layerChanged.connect(self.select_layer_fields2)   #new line
+            vlayer = self.dlg.mMapLayerComboBox_2.currentLayer()                           
+            self.dlg.mFieldComboBox.setLayer(vlayer)                                     
             self.dlg.pushButton.clicked.connect(self.select_output_file)
-            #self.dlg.txtFeedBack.append("Couche vecteur? -->"+ boolvar)
-            #self.dlg.txtFeedBack.append("Saved layers? -->"+unicode(self.saved))
-            #self.dlg.txtFeedBack.append("Turned off layer by MultiEdit"+unicode(self.turnedoffLayers))
-            #QObject.connect(self.dlg.Exit, SIGNAL("clicked(bool)"), self.exit)
+            QObject.connect(self.dlg.Exit, SIGNAL("clicked()"), self.exit)
             #----About dialog
-            QObject.connect(self.dlg.about, SIGNAL("clicked(bool)"), self.doabout )
+            QObject.connect(self.dlg.about, SIGNAL("clicked()"), self.doabout )

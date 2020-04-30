@@ -21,22 +21,12 @@ class Ui_About(object):
     def setupUi(self, About):
         About.setObjectName(_fromUtf8("A propos"))
         About.resize(810, 559)
-#        self.label_3 = QtGui.QLabel(About)
-#        self.label_3.setGeometry(QtCore.QRect(280, 0, 191, 41))
         font = QtGui.QFont()
         font.setPointSize(15)
         font.setBold(True)
         font.setWeight(75)
-#        self.label_3.setFont(font)
-#        self.label_3.setAlignment(QtCore.Qt.AlignCenter)
-#        self.label_3.setObjectName(_fromUtf8("label_3"))
-#        self.label = QtGui.QLabel(About)
-#        self.label.setGeometry(QtCore.QRect(220, 40, 311, 41))
         font = QtGui.QFont()
         font.setPointSize(9)
-#        self.label.setFont(font)
-#        self.label.setAlignment(QtCore.Qt.AlignCenter)
-#        self.label.setObjectName(_fromUtf8("label"))
         self.textBrowser = QtGui.QTextBrowser(About)
         self.textBrowser.setGeometry(QtCore.QRect(20, 100, 761, 151))
         self.textBrowser.setObjectName(_fromUtf8("textBrowser"))
@@ -52,16 +42,11 @@ class Ui_About(object):
         self.webView.setProperty("url", QUrl.fromLocalFile(file_path))
         self.webView.setProperty("zoomFactor", 1)
         self.webView.setObjectName(_fromUtf8("webView"))
-
         self.retranslateUi(About)
         QtCore.QMetaObject.connectSlotsByName(About)
 
     def retranslateUi(self, About):
-        About.setWindowTitle(_translate("A propos", "A propos/Aide", None))
-        #self.label_3.setText(_translate("A propos", "GeoMCE v 0.1", None))
-        #self.label.setText(_translate("A propos", "les copyright qui vont bien\n"
-#" si ya\n"
-#" besoin", None))
+        About.setWindowTitle(_translate("A propos", "Aide - A propos", None))
         self.textBrowser.setHtml(_translate("A propos", "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
 "<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"
 "p, li { white-space: pre-wrap; }\n"
@@ -70,9 +55,12 @@ class Ui_About(object):
 "<p style=\"-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><br /></p>\n"
 "<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\">Compatible avec Qgis v2.x seulement - développement pour Qgis v3.x en cours</p>\n"
 "<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\">Changelog :</p>\n"
-"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"> - v.0.1 - Version initiale</p>\n"
+"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"> - v.0.6 - Retouches cosmétiques</p>\n"
+"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"> - v.0.5 - (Gros) Nettoyage du code et ajout d'explications des fonctions</p>\n"
+"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"> - v.0.4 - Modification de la fonction de séparation des couches : le nom du dossier crée est maintenant horodaté et mentionne également le champ séparateur. Permet de créer un dossier par manipulation</p>\n"
+"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"> - v.0.3 - Amélioration de la fonction de suppression des champs existants par itération</p>\n"
 "<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"> - v.0.2 - Corrections mineurs / Ajout du module d'aide</p>\n"
-"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"> - v.0.3 - Amélioration de la fonction de suppression des champs existants</p>\n"
+"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"> - v.0.1 - Version initiale</p>\n"
 "<p style=\"-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><br /></p>\n"
 "<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\">Les remarques/suggestions sont les bienvenues!</p>\n"
 "<p style=\"-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><br /></p>\n"

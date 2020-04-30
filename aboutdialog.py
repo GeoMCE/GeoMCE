@@ -7,5 +7,3 @@ class AboutDialog(QtGui.QDialog):
         # Set up the user interface from Designer.
         self.ui =Ui_About()
         self.ui.setupUi(self)
-
-
