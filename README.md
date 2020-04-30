@@ -1,3 +1,11 @@
+ - v.0.6 - Retouches cosmétiques
+ - v.0.5 - (Gros) Nettoyage du code et ajout d'explications des fonctions
+ - v.0.4 - Modification de la fonction de séparation des couches : le nom du dossier crée est maintenant horodaté et mentionne également le champ séparateur. Permet de créer un dossier par manipulation
+ - v.0.3 - Amélioration de la fonction de suppression des champs existants par itération
+ - v.0.2 - Corrections mineurs / Ajout du module d'aide
+ - v.0.1 - Version initiale
+
+
 <h1 style="color: #5e9ca0;">Notice d'utilisation de l'extension G&eacute;oMCE</h1>
 <h2 style="color: #2e6c80;">Utilit&eacute; de l'extension :</h2>
 <p>L'<a href="https://www.legifrance.gouv.fr/affichTexteArticle.do;jsessionid=B260EC079FBEEED07F572858B35C4D0A.tplgfr29s_1?idArticle=JORFARTI000033016416&amp;cidTexte=JORFTEXT000033016237&amp;dateTexte=29990101&amp;categorieLien=id">article 69</a> de loi sur la reconqu&ecirc;te de la biodiversit&eacute;, de la nature et des paysages du 8 a&ocirc;ut 2016 introduit l'obligation de <em>g&eacute;olocaliser les mesures de compensation des atteintes &agrave; la biodiversit&eacute; d&eacute;finies au I de l'article L. 163-1&nbsp;dans un syst&egrave;me national d'information g&eacute;ographique, accessible au public sur internet</em>. Pour cela, <em>l</em><em>es ma&icirc;tres d'ouvrage fournissent aux services comp&eacute;tents de l'Etat toutes les informations n&eacute;cessaires &agrave; la bonne tenue de cet outil par ces services.</em></p>
