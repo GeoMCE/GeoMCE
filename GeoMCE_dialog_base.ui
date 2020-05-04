@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>901</width>
-    <height>652</height>
+    <width>865</width>
+    <height>561</height>
    </rect>
   </property>
   <property name="mouseTracking">
@@ -30,16 +30,16 @@
        <rect>
         <x>0</x>
         <y>0</y>
-        <width>881</width>
-        <height>632</height>
+        <width>845</width>
+        <height>541</height>
        </rect>
       </property>
       <widget class="QLabel" name="label_3">
        <property name="geometry">
         <rect>
          <x>0</x>
-         <y>0</y>
-         <width>881</width>
+         <y>-10</y>
+         <width>871</width>
          <height>137</height>
         </rect>
        </property>
@@ -53,552 +53,11 @@
         <set>Qt::AlignCenter</set>
        </property>
       </widget>
-      <widget class="QLabel" name="label">
-       <property name="geometry">
-        <rect>
-         <x>9</x>
-         <y>159</y>
-         <width>131</width>
-         <height>21</height>
-        </rect>
-       </property>
-       <property name="toolTip">
-        <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;justify&quot;&gt;&lt;br/&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-       </property>
-       <property name="whatsThis">
-        <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;justify&quot;&gt;Si une couche contient éventuellement plusieurs mesures, cette partiedu plugin va permettre de les séparer en fonction du champ défini ci-dessous.&lt;/p&gt;&lt;p align=&quot;justify&quot;&gt;Les couches créées sont présentes dans un dossier spécifique sous C:/GeomCE/&amp;quot;nom de la couche d'origine&amp;quot; et seront importées ensuite dans l'interface &lt;/p&gt;&lt;p align=&quot;justify&quot;&gt;&lt;br/&gt;&lt;/p&gt;&lt;p align=&quot;justify&quot;&gt;ex : un fichier polygone.shp avec un champ &amp;quot;nom&amp;quot; contient 3 entités (2 MC1 et 1 MC2). 2 couches shapes (MC1.shp et MC2.shpà) seront créées dans le dossier C:/GeoMCE/polygone &lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-       </property>
-       <property name="text">
-        <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;right&quot;&gt;Couche d'origine :&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-       </property>
-      </widget>
-      <widget class="QLabel" name="label_2">
-       <property name="geometry">
-        <rect>
-         <x>9</x>
-         <y>185</y>
-         <width>131</width>
-         <height>21</height>
-        </rect>
-       </property>
-       <property name="text">
-        <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;right&quot;&gt;Champ séparateur :&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-       </property>
-      </widget>
-      <widget class="QLabel" name="label_9">
-       <property name="geometry">
-        <rect>
-         <x>9</x>
-         <y>257</y>
-         <width>131</width>
-         <height>21</height>
-        </rect>
-       </property>
-       <property name="whatsThis">
-        <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;La couche qui va etre mise en forme en vue d'êtreimporter dans GéoMCE&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-       </property>
-       <property name="text">
-        <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;right&quot;&gt;Couche à traiter :&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-       </property>
-      </widget>
-      <widget class="QLabel" name="label_4">
-       <property name="geometry">
-        <rect>
-         <x>9</x>
-         <y>312</y>
-         <width>131</width>
-         <height>21</height>
-        </rect>
-       </property>
-       <property name="toolTip">
-        <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:9pt;&quot;&gt;Nom de la couche&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-       </property>
-       <property name="text">
-        <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;right&quot;&gt;Nom de la mesure :&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-       </property>
-      </widget>
-      <widget class="QLabel" name="label_13">
-       <property name="geometry">
-        <rect>
-         <x>9</x>
-         <y>338</y>
-         <width>131</width>
-         <height>21</height>
-        </rect>
-       </property>
-       <property name="toolTip">
-        <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:9pt;&quot;&gt;Catégorie selon la typologie du guide ERC&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-       </property>
-       <property name="text">
-        <string>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
-&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
-p, li { white-space: pre-wrap; }
-&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'MS Shell Dlg 2'; font-size:8pt; font-weight:400; font-style:normal;&quot;&gt;
-&lt;p align=&quot;right&quot; style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;a href=&quot;https://www.cerema.fr/fr/actualites/guide-aide-definition-mesures-eviter-reduire-compenser&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;Catégorie :&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-       </property>
-       <property name="openExternalLinks">
-        <bool>true</bool>
-       </property>
-      </widget>
-      <widget class="QLabel" name="label_14">
-       <property name="geometry">
-        <rect>
-         <x>9</x>
-         <y>364</y>
-         <width>131</width>
-         <height>21</height>
-        </rect>
-       </property>
-       <property name="toolTip">
-        <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:9pt;&quot;&gt;Cible de la mesure&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-       </property>
-       <property name="text">
-        <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;right&quot;&gt;&lt;a href=&quot;https://www.cerema.fr/fr/actualites/guide-aide-definition-mesures-eviter-reduire-compenser&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;Cible :&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-       </property>
-       <property name="openExternalLinks">
-        <bool>true</bool>
-       </property>
-      </widget>
-      <widget class="QLabel" name="label_8">
-       <property name="geometry">
-        <rect>
-         <x>9</x>
-         <y>390</y>
-         <width>131</width>
-         <height>21</height>
-        </rect>
-       </property>
-       <property name="toolTip">
-        <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:9pt;&quot;&gt;Bref description de la mesure - 254 caractères max&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-       </property>
-       <property name="text">
-        <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;right&quot;&gt;Description :&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-       </property>
-      </widget>
-      <widget class="QLabel" name="label_10">
-       <property name="geometry">
-        <rect>
-         <x>9</x>
-         <y>418</y>
-         <width>131</width>
-         <height>21</height>
-        </rect>
-       </property>
-       <property name="toolTip">
-        <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:9pt;&quot;&gt;Article et annexe décrivant la mesure - 254 caractères max&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-       </property>
-       <property name="text">
-        <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;right&quot;&gt;Decision :&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-       </property>
-      </widget>
-      <widget class="QLabel" name="label_11">
-       <property name="geometry">
-        <rect>
-         <x>9</x>
-         <y>444</y>
-         <width>131</width>
-         <height>21</height>
-        </rect>
-       </property>
-       <property name="toolTip">
-        <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:9pt;&quot;&gt;Pages du dossier décrivant la mesure&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-       </property>
-       <property name="text">
-        <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;right&quot;&gt;REFEI :&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-       </property>
-      </widget>
-      <widget class="QLabel" name="label_12">
-       <property name="geometry">
-        <rect>
-         <x>9</x>
-         <y>470</y>
-         <width>131</width>
-         <height>21</height>
-        </rect>
-       </property>
-       <property name="text">
-        <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;right&quot;&gt;Durée :&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-       </property>
-      </widget>
-      <widget class="QgsSpinBox" name="duree">
-       <property name="geometry">
-        <rect>
-         <x>147</x>
-         <y>470</y>
-         <width>71</width>
-         <height>20</height>
-        </rect>
-       </property>
-       <property name="toolTip">
-        <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Durée d'application de la mesure&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-       </property>
-       <property name="alignment">
-        <set>Qt::AlignCenter</set>
-       </property>
-      </widget>
-      <widget class="QLabel" name="label_15">
-       <property name="geometry">
-        <rect>
-         <x>264</x>
-         <y>470</y>
-         <width>41</width>
-         <height>21</height>
-        </rect>
-       </property>
-       <property name="text">
-        <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;right&quot;&gt;Unité :&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-       </property>
-      </widget>
-      <widget class="QComboBox" name="comboBox_3">
-       <property name="geometry">
-        <rect>
-         <x>309</x>
-         <y>470</y>
-         <width>141</width>
-         <height>20</height>
-        </rect>
-       </property>
-       <property name="toolTip">
-        <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Modalité temporelle d'application de la mesure&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-       </property>
-      </widget>
-      <widget class="Line" name="line_2">
-       <property name="geometry">
-        <rect>
-         <x>10</x>
-         <y>495</y>
-         <width>861</width>
-         <height>16</height>
-        </rect>
-       </property>
-       <property name="frameShadow">
-        <enum>QFrame::Sunken</enum>
-       </property>
-       <property name="orientation">
-        <enum>Qt::Horizontal</enum>
-       </property>
-      </widget>
-      <widget class="QLabel" name="label_5">
-       <property name="geometry">
-        <rect>
-         <x>9</x>
-         <y>510</y>
-         <width>851</width>
-         <height>16</height>
-        </rect>
-       </property>
-       <property name="text">
-        <string>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
-&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
-p, li { white-space: pre-wrap; }
-&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'MS Shell Dlg 2'; font-size:8pt; font-weight:400; font-style:normal;&quot;&gt;
-&lt;p align=&quot;center&quot; style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;a href=&quot;https://geoservices.ign.fr/documentation/diffusion/telechargement-donnees-libres.html#admin-express&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;Pour le champ commune, il faut télécharger la couche&lt;/span&gt;&lt;/a&gt;&lt;a href=&quot;https://geoservices.ign.fr/documentation/diffusion/telechargement-donnees-libres.html#admin-express&quot;&gt;&lt;span style=&quot; font-weight:600; text-decoration: underline; color:#0000ff;&quot;&gt; ADMIN EXPRESS COG 2019&lt;/span&gt;&lt;/a&gt;&lt;a href=&quot;https://geoservices.ign.fr/documentation/diffusion/telechargement-donnees-libres.html#admin-express&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt; sur le site IGN&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-       </property>
-       <property name="openExternalLinks">
-        <bool>true</bool>
-       </property>
-      </widget>
-      <widget class="QLabel" name="label_6">
-       <property name="geometry">
-        <rect>
-         <x>9</x>
-         <y>536</y>
-         <width>132</width>
-         <height>38</height>
-        </rect>
-       </property>
-       <property name="text">
-        <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;justify&quot;&gt;Chemin vers la couche&lt;/p&gt;&lt;p align=&quot;justify&quot;&gt; COMMUNE.shp téléchargée&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-       </property>
-      </widget>
-      <widget class="QLineEdit" name="communes">
-       <property name="geometry">
-        <rect>
-         <x>147</x>
-         <y>545</y>
-         <width>671</width>
-         <height>20</height>
-        </rect>
-       </property>
-      </widget>
-      <widget class="QPushButton" name="pushButton">
-       <property name="geometry">
-        <rect>
-         <x>824</x>
-         <y>543</y>
-         <width>41</width>
-         <height>23</height>
-        </rect>
-       </property>
-       <property name="text">
-        <string>...</string>
-       </property>
-      </widget>
-      <widget class="QPushButton" name="change_another">
-       <property name="geometry">
-        <rect>
-         <x>9</x>
-         <y>580</y>
-         <width>211</width>
-         <height>34</height>
-        </rect>
-       </property>
-       <property name="font">
-        <font>
-         <weight>75</weight>
-         <bold>true</bold>
-        </font>
-       </property>
-       <property name="toolTip">
-        <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;OBLIGATOIRE - Saisir les champs saisis dans la table attributaire créée&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-       </property>
-       <property name="text">
-        <string>Ecrire les nouvelles valeurs
-dans les champs sélectionnés</string>
-       </property>
-      </widget>
-      <widget class="QPushButton" name="save">
-       <property name="geometry">
-        <rect>
-         <x>240</x>
-         <y>580</y>
-         <width>231</width>
-         <height>34</height>
-        </rect>
-       </property>
-       <property name="font">
-        <font>
-         <weight>75</weight>
-         <bold>true</bold>
-        </font>
-       </property>
-       <property name="toolTip">
-        <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;OBLIGATOIRE - Enregistrement des modications&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-       </property>
-       <property name="text">
-        <string>Sauvegarder les
- modifications</string>
-       </property>
-      </widget>
-      <widget class="QLabel" name="label_16">
-       <property name="geometry">
-        <rect>
-         <x>498</x>
-         <y>470</y>
-         <width>71</width>
-         <height>21</height>
-        </rect>
-       </property>
-       <property name="text">
-        <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;right&quot;&gt;Modalité :&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-       </property>
-      </widget>
-      <widget class="QComboBox" name="comboBox_4">
-       <property name="geometry">
-        <rect>
-         <x>574</x>
-         <y>470</y>
-         <width>291</width>
-         <height>20</height>
-        </rect>
-       </property>
-       <property name="toolTip">
-        <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Modalité de suivi de la mesure&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-       </property>
-      </widget>
-      <widget class="QLineEdit" name="refei">
-       <property name="geometry">
-        <rect>
-         <x>147</x>
-         <y>444</y>
-         <width>721</width>
-         <height>20</height>
-        </rect>
-       </property>
-       <property name="toolTip">
-        <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Pages du dossier du projet décrivant la mesure&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-       </property>
-      </widget>
-      <widget class="QLineEdit" name="decision">
-       <property name="geometry">
-        <rect>
-         <x>147</x>
-         <y>418</y>
-         <width>721</width>
-         <height>20</height>
-        </rect>
-       </property>
-       <property name="toolTip">
-        <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Référence de l'acte adminsitratif prescrivant cette mesure (Article et annexe)&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-       </property>
-      </widget>
-      <widget class="QLineEdit" name="description">
-       <property name="geometry">
-        <rect>
-         <x>147</x>
-         <y>390</y>
-         <width>721</width>
-         <height>20</height>
-        </rect>
-       </property>
-       <property name="toolTip">
-        <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Description de la mesure.&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; text-decoration: underline;&quot;&gt;Remarque&lt;/span&gt; : champ limité à 254 caractères. Pour une descrpition plus fine, saisir les informations directement dans GéoMCE&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-       </property>
-      </widget>
-      <widget class="QComboBox" name="comboBox_2">
-       <property name="geometry">
-        <rect>
-         <x>147</x>
-         <y>364</y>
-         <width>721</width>
-         <height>20</height>
-        </rect>
-       </property>
-      </widget>
-      <widget class="QPushButton" name="show_t">
-       <property name="geometry">
-        <rect>
-         <x>500</x>
-         <y>580</y>
-         <width>161</width>
-         <height>34</height>
-        </rect>
-       </property>
-       <property name="toolTip">
-        <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;FACULTATIF - Afficher la table attributaire&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-       </property>
-       <property name="text">
-        <string>Afficher la nouvelle 
-table attributaire</string>
-       </property>
-      </widget>
-      <widget class="QComboBox" name="comboBox">
-       <property name="geometry">
-        <rect>
-         <x>147</x>
-         <y>338</y>
-         <width>721</width>
-         <height>20</height>
-        </rect>
-       </property>
-       <property name="contextMenuPolicy">
-        <enum>Qt::CustomContextMenu</enum>
-       </property>
-       <property name="toolTip">
-        <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Catégorie de la mesure selon la &lt;a href=&quot;https://www.cerema.fr/fr/actualites/guide-aide-definition-mesures-eviter-reduire-compenser&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;classification ERC&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-       </property>
-      </widget>
-      <widget class="QLineEdit" name="nom">
-       <property name="geometry">
-        <rect>
-         <x>147</x>
-         <y>312</y>
-         <width>721</width>
-         <height>20</height>
-        </rect>
-       </property>
-       <property name="toolTip">
-        <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Saisir un nom pour la mesure&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-       </property>
-      </widget>
-      <widget class="QPushButton" name="create_new_field_2">
-       <property name="geometry">
-        <rect>
-         <x>9</x>
-         <y>283</y>
-         <width>861</width>
-         <height>23</height>
-        </rect>
-       </property>
-       <property name="font">
-        <font>
-         <weight>75</weight>
-         <bold>true</bold>
-        </font>
-       </property>
-       <property name="toolTip">
-        <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:9pt; font-weight:600;&quot;&gt;ATTENTION : Opération irréversible! Travailler si possible avec une copie de la couche originale&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-size:9pt;&quot;&gt;Efface la table de la couche à traiter et crée la table compatible pour un import dans GéoMCE&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-       </property>
-       <property name="text">
-        <string>Création des champs compatibles avec l'outil GéoMCE</string>
-       </property>
-      </widget>
-      <widget class="QgsMapLayerComboBox" name="mMapLayerComboBox">
-       <property name="geometry">
-        <rect>
-         <x>147</x>
-         <y>257</y>
-         <width>721</width>
-         <height>20</height>
-        </rect>
-       </property>
-       <property name="toolTip">
-        <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Couche qui va être modifier en vue d'être importer danns GéoMCE&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-       </property>
-      </widget>
-      <widget class="QPushButton" name="create_new_field">
-       <property name="geometry">
-        <rect>
-         <x>9</x>
-         <y>211</y>
-         <width>861</width>
-         <height>23</height>
-        </rect>
-       </property>
-       <property name="font">
-        <font>
-         <weight>75</weight>
-         <bold>true</bold>
-        </font>
-       </property>
-       <property name="toolTip">
-        <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:9pt;&quot;&gt;Couche contenant les différentes mesures. Le champ séparateur va créer autant de couche qu'il y a de nom différent. Les nouvelles couches sont créées dans C:/GeoMCE&lt;/span&gt;&lt;/p&gt;&lt;p align=&quot;justify&quot;&gt;&lt;span style=&quot; font-size:9pt;&quot;&gt;ex : une couche nommée &amp;quot;ligne.shp&amp;quot; ayant un champ &amp;quot;mesures&amp;quot; avec les mesures MC1 et MC2. La fonction va créer 2 couches (MC1.shp et MC2.shp) dans le dossier C:/GeoMCE/date_ligne_mesures&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-       </property>
-       <property name="text">
-        <string>Création des nouvelles couches à partir du champ séparateur</string>
-       </property>
-      </widget>
-      <widget class="QgsFieldComboBox" name="mFieldComboBox">
-       <property name="geometry">
-        <rect>
-         <x>147</x>
-         <y>185</y>
-         <width>721</width>
-         <height>20</height>
-        </rect>
-       </property>
-      </widget>
-      <widget class="QgsMapLayerComboBox" name="mMapLayerComboBox_2">
-       <property name="geometry">
-        <rect>
-         <x>147</x>
-         <y>159</y>
-         <width>721</width>
-         <height>20</height>
-        </rect>
-       </property>
-      </widget>
-      <widget class="Line" name="line_4">
-       <property name="geometry">
-        <rect>
-         <x>10</x>
-         <y>240</y>
-         <width>861</width>
-         <height>16</height>
-        </rect>
-       </property>
-       <property name="frameShadow">
-        <enum>QFrame::Sunken</enum>
-       </property>
-       <property name="orientation">
-        <enum>Qt::Horizontal</enum>
-       </property>
-      </widget>
       <widget class="QPushButton" name="about">
        <property name="geometry">
         <rect>
          <x>670</x>
-         <y>40</y>
+         <y>30</y>
          <width>161</width>
          <height>71</height>
         </rect>
@@ -612,28 +71,984 @@ table attributaire</string>
        <property name="toolTip">
         <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Aide - A propos :&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-weight:400;&quot;&gt;Notice d'utilisation du plugin + ressources relatives à la séquence ERC et plus particulièrement la géolocalisation des mesures de compensation&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
        </property>
+       <property name="styleSheet">
+        <string notr="true">QPushButton#about {
+   background-color: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1, stop: 0 white, stop: 1 rgb(217, 217, 217));
+   border-style: solid;
+   border-width: 1px;
+   border-color: rgb(132, 132, 132);
+   border-radius: 5px;
+}
+
+QPushButton#about:pressed {
+   background-color: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1, stop:1 white, stop: 0 rgb(217, 217, 217));
+  	border-color: rgb(0, 85, 255);
+};</string>
+       </property>
        <property name="text">
         <string>Aide - A propos</string>
        </property>
       </widget>
-      <widget class="QPushButton" name="Exit">
+      <widget class="QTabWidget" name="tabWidget">
        <property name="geometry">
         <rect>
-         <x>690</x>
-         <y>570</y>
-         <width>171</width>
-         <height>51</height>
+         <x>0</x>
+         <y>130</y>
+         <width>881</width>
+         <height>421</height>
         </rect>
        </property>
-       <property name="font">
-        <font>
-         <weight>75</weight>
-         <bold>true</bold>
-        </font>
+       <property name="autoFillBackground">
+        <bool>false</bool>
        </property>
-       <property name="text">
-        <string>Fermer</string>
+       <property name="styleSheet">
+        <string notr="true">background-color: rgb(241, 241, 241);
+border-radius:5px;</string>
        </property>
+       <property name="currentIndex">
+        <number>0</number>
+       </property>
+       <widget class="QWidget" name="tab_2">
+        <attribute name="title">
+         <string>Mise en forme de vecteurs existants</string>
+        </attribute>
+        <widget class="QPushButton" name="pushButton">
+         <property name="geometry">
+          <rect>
+           <x>790</x>
+           <y>295</y>
+           <width>41</width>
+           <height>20</height>
+          </rect>
+         </property>
+         <property name="styleSheet">
+          <string notr="true">QPushButton#pushButton {
+   background-color: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1, stop: 0 white, stop: 1 rgb(217, 217, 217));
+   border-style: solid;
+   border-width: 1px;
+   border-color: rgb(132, 132, 132);
+   border-radius: 5px;
+}
+
+QPushButton#pushButton:pressed {
+   background-color: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1, stop:1 white, stop: 0 rgb(217, 217, 217));
+  	border-color: rgb(0, 85, 255);
+};</string>
+         </property>
+         <property name="text">
+          <string>...</string>
+         </property>
+        </widget>
+        <widget class="QLineEdit" name="description">
+         <property name="geometry">
+          <rect>
+           <x>143</x>
+           <y>157</y>
+           <width>681</width>
+           <height>20</height>
+          </rect>
+         </property>
+         <property name="toolTip">
+          <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Description de la mesure.&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; text-decoration: underline;&quot;&gt;Remarque&lt;/span&gt; : champ limité à 254 caractères. Pour une descrpition plus fine, saisir les informations directement dans GéoMCE&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+         </property>
+         <property name="styleSheet">
+          <string notr="true">background-color: rgb(255, 255, 255);
+border-top-color:rgb(132, 132, 132);
+border-top-width: 1px;
+border-left-color: rgb(132, 132, 132);
+border-left-width: 1px;
+border-style: solid;
+border-bottom-color: rgb(132, 132, 132);
+border-bottom-width:1px;
+border-right-color : rgb(132, 132, 132);
+border-right-width :1px;
+border-radius: 5px;</string>
+         </property>
+        </widget>
+        <widget class="QPushButton" name="show_t">
+         <property name="geometry">
+          <rect>
+           <x>460</x>
+           <y>340</y>
+           <width>181</width>
+           <height>34</height>
+          </rect>
+         </property>
+         <property name="toolTip">
+          <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;FACULTATIF - Afficher la table attributaire&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+         </property>
+         <property name="styleSheet">
+          <string notr="true">QPushButton#show_t {
+   background-color: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1, stop: 0 white, stop: 1 rgb(217, 217, 217));
+   border-style: solid;
+   border-width: 1px;
+   border-color: rgb(132, 132, 132);
+   border-radius: 5px;
+}
+
+QPushButton#show_t:pressed {
+   background-color: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1, stop:1 white, stop: 0 rgb(217, 217, 217));
+  	border-color: rgb(0, 85, 255);
+};</string>
+         </property>
+         <property name="text">
+          <string>Afficher la nouvelle 
+table attributaire</string>
+         </property>
+        </widget>
+        <widget class="QLabel" name="label_16">
+         <property name="geometry">
+          <rect>
+           <x>450</x>
+           <y>239</y>
+           <width>71</width>
+           <height>21</height>
+          </rect>
+         </property>
+         <property name="text">
+          <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;right&quot;&gt;Modalité :&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+         </property>
+        </widget>
+        <widget class="QPushButton" name="save">
+         <property name="geometry">
+          <rect>
+           <x>236</x>
+           <y>340</y>
+           <width>211</width>
+           <height>34</height>
+          </rect>
+         </property>
+         <property name="font">
+          <font>
+           <weight>75</weight>
+           <bold>true</bold>
+          </font>
+         </property>
+         <property name="toolTip">
+          <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;OBLIGATOIRE - Enregistrement des modications&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+         </property>
+         <property name="styleSheet">
+          <string notr="true">QPushButton#save {
+   background-color: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1, stop: 0 white, stop: 1 rgb(217, 217, 217));
+   border-style: solid;
+   border-width: 1px;
+   border-color: rgb(132, 132, 132);
+   border-radius: 5px;
+}
+
+QPushButton#save:pressed {
+   background-color: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1, stop:1 white, stop: 0 rgb(217, 217, 217));
+  	border-color: rgb(0, 85, 255);
+};</string>
+         </property>
+         <property name="text">
+          <string>Sauvegarder les
+ modifications</string>
+         </property>
+        </widget>
+        <widget class="QLineEdit" name="communes">
+         <property name="geometry">
+          <rect>
+           <x>263</x>
+           <y>295</y>
+           <width>511</width>
+           <height>20</height>
+          </rect>
+         </property>
+         <property name="styleSheet">
+          <string notr="true">   border-style: solid;
+   border-width: 1px;
+   border-color: rgb(132, 132, 132);
+   border-radius: 5px;background-color: rgb(255, 255, 255);</string>
+         </property>
+        </widget>
+        <widget class="QLabel" name="label_14">
+         <property name="geometry">
+          <rect>
+           <x>5</x>
+           <y>131</y>
+           <width>131</width>
+           <height>21</height>
+          </rect>
+         </property>
+         <property name="toolTip">
+          <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:9pt;&quot;&gt;Cible de la mesure&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+         </property>
+         <property name="text">
+          <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;right&quot;&gt;&lt;a href=&quot;https://www.cerema.fr/fr/actualites/guide-aide-definition-mesures-eviter-reduire-compenser&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;Cible :&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+         </property>
+         <property name="openExternalLinks">
+          <bool>true</bool>
+         </property>
+        </widget>
+        <widget class="QLineEdit" name="decision">
+         <property name="geometry">
+          <rect>
+           <x>143</x>
+           <y>185</y>
+           <width>681</width>
+           <height>20</height>
+          </rect>
+         </property>
+         <property name="toolTip">
+          <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Référence de l'acte adminsitratif prescrivant cette mesure (Article et annexe)&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+         </property>
+         <property name="styleSheet">
+          <string notr="true">background-color: rgb(255, 255, 255);
+border-top-color:rgb(132, 132, 132);
+border-top-width: 1px;
+border-left-color: rgb(132, 132, 132);
+border-left-width: 1px;
+border-style: solid;
+border-bottom-color: rgb(132, 132, 132);
+border-bottom-width:1px;
+border-right-color : rgb(132, 132, 132);
+border-right-width :1px;
+border-radius: 5px;</string>
+         </property>
+        </widget>
+        <widget class="QPushButton" name="create_new_field_2">
+         <property name="geometry">
+          <rect>
+           <x>5</x>
+           <y>50</y>
+           <width>821</width>
+           <height>23</height>
+          </rect>
+         </property>
+         <property name="font">
+          <font>
+           <weight>75</weight>
+           <bold>true</bold>
+          </font>
+         </property>
+         <property name="toolTip">
+          <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:9pt; font-weight:600;&quot;&gt;ATTENTION : Opération irréversible! Travailler si possible avec une copie de la couche originale&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-size:9pt;&quot;&gt;Efface la table de la couche à traiter et crée la table compatible pour un import dans GéoMCE&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+         </property>
+         <property name="styleSheet">
+          <string notr="true">QPushButton#create_new_field_2 {
+   background-color: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1, stop: 0 white, stop: 1 rgb(217, 217, 217));
+   border-style: solid;
+   border-width: 1px;
+   border-color: rgb(132, 132, 132);
+   border-radius: 5px;
+}
+
+QPushButton#create_new_field_2:pressed {
+   background-color: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1, stop:1 white, stop: 0 rgb(217, 217, 217));
+  	border-color: rgb(0, 85, 255);
+};</string>
+         </property>
+         <property name="text">
+          <string>Création des champs compatibles avec l'outil GéoMCE</string>
+         </property>
+         <property name="default">
+          <bool>false</bool>
+         </property>
+         <property name="flat">
+          <bool>false</bool>
+         </property>
+        </widget>
+        <widget class="QLabel" name="label_4">
+         <property name="geometry">
+          <rect>
+           <x>5</x>
+           <y>79</y>
+           <width>131</width>
+           <height>21</height>
+          </rect>
+         </property>
+         <property name="toolTip">
+          <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:9pt;&quot;&gt;Nom de la couche&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+         </property>
+         <property name="text">
+          <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;right&quot;&gt;Nom de la mesure :&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+         </property>
+        </widget>
+        <widget class="QLabel" name="label_8">
+         <property name="geometry">
+          <rect>
+           <x>5</x>
+           <y>157</y>
+           <width>131</width>
+           <height>21</height>
+          </rect>
+         </property>
+         <property name="toolTip">
+          <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:9pt;&quot;&gt;Bref description de la mesure - 254 caractères max&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+         </property>
+         <property name="text">
+          <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;right&quot;&gt;Description :&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+         </property>
+        </widget>
+        <widget class="QLabel" name="label_11">
+         <property name="geometry">
+          <rect>
+           <x>5</x>
+           <y>211</y>
+           <width>131</width>
+           <height>21</height>
+          </rect>
+         </property>
+         <property name="toolTip">
+          <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:9pt;&quot;&gt;Pages du dossier décrivant la mesure&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+         </property>
+         <property name="text">
+          <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;right&quot;&gt;REFEI :&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+         </property>
+        </widget>
+        <widget class="QLineEdit" name="nom">
+         <property name="geometry">
+          <rect>
+           <x>143</x>
+           <y>79</y>
+           <width>681</width>
+           <height>20</height>
+          </rect>
+         </property>
+         <property name="toolTip">
+          <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Saisir un nom pour la mesure&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+         </property>
+         <property name="styleSheet">
+          <string notr="true">background-color: rgb(255, 255, 255);
+border-top-color:rgb(132, 132, 132);
+border-top-width: 1px;
+border-left-color: rgb(132, 132, 132);
+border-left-width: 1px;
+border-style: solid;
+border-bottom-color: rgb(132, 132, 132);
+border-bottom-width:1px;
+border-right-color : rgb(132, 132, 132);
+border-right-width :1px;
+border-radius: 5px;</string>
+         </property>
+        </widget>
+        <widget class="QLineEdit" name="refei">
+         <property name="geometry">
+          <rect>
+           <x>143</x>
+           <y>211</y>
+           <width>681</width>
+           <height>20</height>
+          </rect>
+         </property>
+         <property name="toolTip">
+          <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Pages du dossier du projet décrivant la mesure&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+         </property>
+         <property name="styleSheet">
+          <string notr="true">background-color: rgb(255, 255, 255);
+border-top-color:rgb(132, 132, 132);
+border-top-width: 1px;
+border-left-color: rgb(132, 132, 132);
+border-left-width: 1px;
+border-style: solid;
+border-bottom-color: rgb(132, 132, 132);
+border-bottom-width:1px;
+border-right-color : rgb(132, 132, 132);
+border-right-width :1px;
+border-radius: 5px;</string>
+         </property>
+        </widget>
+        <widget class="QLabel" name="label_9">
+         <property name="geometry">
+          <rect>
+           <x>40</x>
+           <y>23</y>
+           <width>91</width>
+           <height>21</height>
+          </rect>
+         </property>
+         <property name="whatsThis">
+          <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;La couche qui va etre mise en forme en vue d'êtreimporter dans GéoMCE&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+         </property>
+         <property name="text">
+          <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;right&quot;&gt;Couche à traiter :&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+         </property>
+        </widget>
+        <widget class="QLabel" name="label_5">
+         <property name="geometry">
+          <rect>
+           <x>5</x>
+           <y>270</y>
+           <width>851</width>
+           <height>16</height>
+          </rect>
+         </property>
+         <property name="text">
+          <string>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
+&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
+p, li { white-space: pre-wrap; }
+&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'MS Shell Dlg 2'; font-size:8pt; font-weight:400; font-style:normal;&quot;&gt;
+&lt;p align=&quot;center&quot; style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;a href=&quot;https://geoservices.ign.fr/documentation/diffusion/telechargement-donnees-libres.html#admin-express&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;Pour le champ commune, il faut télécharger la couche&lt;/span&gt;&lt;/a&gt;&lt;a href=&quot;https://geoservices.ign.fr/documentation/diffusion/telechargement-donnees-libres.html#admin-express&quot;&gt;&lt;span style=&quot; font-weight:600; text-decoration: underline; color:#0000ff;&quot;&gt; ADMIN EXPRESS COG 2019&lt;/span&gt;&lt;/a&gt;&lt;a href=&quot;https://geoservices.ign.fr/documentation/diffusion/telechargement-donnees-libres.html#admin-express&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt; sur le site IGN&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+         </property>
+         <property name="openExternalLinks">
+          <bool>true</bool>
+         </property>
+        </widget>
+        <widget class="QComboBox" name="comboBox_4">
+         <property name="geometry">
+          <rect>
+           <x>530</x>
+           <y>237</y>
+           <width>291</width>
+           <height>23</height>
+          </rect>
+         </property>
+         <property name="toolTip">
+          <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Modalité de suivi de la mesure&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+         </property>
+         <property name="styleSheet">
+          <string notr="true">background-color: rgb(255, 255, 255);
+border-top-color:rgb(132, 132, 132);
+border-top-width: 1px;
+border-left-color: rgb(132, 132, 132);
+border-left-width: 1px;
+border-style: solid;
+border-bottom-color: rgb(132, 132, 132);
+border-bottom-width:1px;
+border-right-color : rgb(132, 132, 132);
+border-right-width :1px;
+border-radius: 5px;</string>
+         </property>
+        </widget>
+        <widget class="QgsSpinBox" name="duree">
+         <property name="geometry">
+          <rect>
+           <x>143</x>
+           <y>237</y>
+           <width>83</width>
+           <height>23</height>
+          </rect>
+         </property>
+         <property name="toolTip">
+          <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Durée d'application de la mesure&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+         </property>
+         <property name="styleSheet">
+          <string notr="true">background-color: rgb(255, 255, 255);
+border-top-color:rgb(132, 132, 132);
+border-top-width: 1px;
+border-left-color: rgb(132, 132, 132);
+border-left-width: 1px;
+border-style: solid;
+border-bottom-color: rgb(132, 132, 132);
+border-bottom-width:1px;
+border-right-color : rgb(132, 132, 132);
+border-right-width :1px;
+border-radius: 5px;
+arrow-background-color:rgb(132, 132,132);</string>
+         </property>
+         <property name="alignment">
+          <set>Qt::AlignCenter</set>
+         </property>
+        </widget>
+        <widget class="QPushButton" name="Exit">
+         <property name="geometry">
+          <rect>
+           <x>660</x>
+           <y>330</y>
+           <width>171</width>
+           <height>51</height>
+          </rect>
+         </property>
+         <property name="font">
+          <font>
+           <weight>75</weight>
+           <bold>true</bold>
+          </font>
+         </property>
+         <property name="styleSheet">
+          <string notr="true">QPushButton#Exit {
+   background-color: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1, stop: 0 white, stop: 1 rgb(217, 217, 217));
+   border-style: solid;
+   border-width: 1px;
+   border-color: rgb(132, 132, 132);
+   border-radius: 5px;
+}
+
+QPushButton#Exit:pressed {
+   background-color: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1, stop:1 white, stop: 0 rgb(217, 217, 217));
+  	border-color: rgb(0, 85, 255);
+};</string>
+         </property>
+         <property name="text">
+          <string>Fermer</string>
+         </property>
+        </widget>
+        <widget class="QgsMapLayerComboBox" name="mMapLayerComboBox">
+         <property name="geometry">
+          <rect>
+           <x>143</x>
+           <y>23</y>
+           <width>681</width>
+           <height>20</height>
+          </rect>
+         </property>
+         <property name="toolTip">
+          <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Couche qui va être modifier en vue d'être importer danns GéoMCE&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+         </property>
+         <property name="styleSheet">
+          <string notr="true">background-color: rgb(255, 255, 255);
+border-top-color:rgb(132, 132, 132);
+border-top-width: 1px;
+border-left-color: rgb(132, 132, 132);
+border-left-width: 1px;
+border-style: solid;
+border-bottom-color: rgb(132, 132, 132);
+border-bottom-width:1px;
+border-right-color : rgb(132, 132, 132);
+border-right-width :1px;
+border-radius: 5px;</string>
+         </property>
+        </widget>
+        <widget class="QLabel" name="label_15">
+         <property name="geometry">
+          <rect>
+           <x>250</x>
+           <y>239</y>
+           <width>51</width>
+           <height>21</height>
+          </rect>
+         </property>
+         <property name="text">
+          <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;right&quot;&gt;Unité :&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+         </property>
+        </widget>
+        <widget class="QLabel" name="label_13">
+         <property name="geometry">
+          <rect>
+           <x>5</x>
+           <y>105</y>
+           <width>131</width>
+           <height>21</height>
+          </rect>
+         </property>
+         <property name="toolTip">
+          <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:9pt;&quot;&gt;Catégorie selon la typologie du guide ERC&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+         </property>
+         <property name="text">
+          <string>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
+&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
+p, li { white-space: pre-wrap; }
+&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'MS Shell Dlg 2'; font-size:8pt; font-weight:400; font-style:normal;&quot;&gt;
+&lt;p align=&quot;right&quot; style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;a href=&quot;https://www.cerema.fr/fr/actualites/guide-aide-definition-mesures-eviter-reduire-compenser&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;Catégorie :&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+         </property>
+         <property name="openExternalLinks">
+          <bool>true</bool>
+         </property>
+        </widget>
+        <widget class="QLabel" name="label_10">
+         <property name="geometry">
+          <rect>
+           <x>5</x>
+           <y>185</y>
+           <width>131</width>
+           <height>21</height>
+          </rect>
+         </property>
+         <property name="toolTip">
+          <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:9pt;&quot;&gt;Article et annexe décrivant la mesure - 254 caractères max&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+         </property>
+         <property name="text">
+          <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;right&quot;&gt;Decision :&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+         </property>
+        </widget>
+        <widget class="QComboBox" name="comboBox">
+         <property name="geometry">
+          <rect>
+           <x>143</x>
+           <y>105</y>
+           <width>681</width>
+           <height>20</height>
+          </rect>
+         </property>
+         <property name="contextMenuPolicy">
+          <enum>Qt::CustomContextMenu</enum>
+         </property>
+         <property name="toolTip">
+          <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Catégorie de la mesure selon la &lt;a href=&quot;https://www.cerema.fr/fr/actualites/guide-aide-definition-mesures-eviter-reduire-compenser&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;classification ERC&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+         </property>
+         <property name="styleSheet">
+          <string notr="true">background-color: rgb(255, 255, 255);
+border-top-color:rgb(132, 132, 132);
+border-top-width: 1px;
+border-left-color: rgb(132, 132, 132);
+border-left-width: 1px;
+border-style: solid;
+border-bottom-color: rgb(132, 132, 132);
+border-bottom-width:1px;
+border-right-color : rgb(132, 132, 132);
+border-right-width :1px;
+border-radius: 5px;</string>
+         </property>
+        </widget>
+        <widget class="QComboBox" name="comboBox_2">
+         <property name="geometry">
+          <rect>
+           <x>143</x>
+           <y>131</y>
+           <width>681</width>
+           <height>20</height>
+          </rect>
+         </property>
+         <property name="styleSheet">
+          <string notr="true">background-color: rgb(255, 255, 255);
+border-top-color:rgb(132, 132, 132);
+border-top-width: 1px;
+border-left-color: rgb(132, 132, 132);
+border-left-width: 1px;
+border-style: solid;
+border-bottom-color: rgb(132, 132, 132);
+border-bottom-width:1px;
+border-right-color : rgb(132, 132, 132);
+border-right-width :1px;
+border-radius: 5px;</string>
+         </property>
+        </widget>
+        <widget class="QLabel" name="label_6">
+         <property name="geometry">
+          <rect>
+           <x>5</x>
+           <y>294</y>
+           <width>251</width>
+           <height>21</height>
+          </rect>
+         </property>
+         <property name="text">
+          <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;justify&quot;&gt;Chemin de la couche &lt;span style=&quot; font-weight:600;&quot;&gt;COMMUNE.shp&lt;/span&gt; téléchargée :&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+         </property>
+        </widget>
+        <widget class="QLabel" name="label_12">
+         <property name="geometry">
+          <rect>
+           <x>5</x>
+           <y>239</y>
+           <width>131</width>
+           <height>21</height>
+          </rect>
+         </property>
+         <property name="text">
+          <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;right&quot;&gt;Durée :&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+         </property>
+        </widget>
+        <widget class="QPushButton" name="change_another">
+         <property name="geometry">
+          <rect>
+           <x>5</x>
+           <y>340</y>
+           <width>211</width>
+           <height>34</height>
+          </rect>
+         </property>
+         <property name="font">
+          <font>
+           <weight>75</weight>
+           <bold>true</bold>
+          </font>
+         </property>
+         <property name="toolTip">
+          <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;OBLIGATOIRE - Saisir les champs saisis dans la table attributaire créée&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+         </property>
+         <property name="styleSheet">
+          <string notr="true">QPushButton#change_another {
+   background-color: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1, stop: 0 white, stop: 1 rgb(217, 217, 217));
+   border-style: solid;
+   border-width: 1px;
+   border-color: rgb(132, 132, 132);
+   border-radius: 5px;
+}
+
+QPushButton#change_another:pressed {
+   background-color: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1, stop:1 white, stop: 0 rgb(217, 217, 217));
+  	border-color: rgb(0, 85, 255);
+};</string>
+         </property>
+         <property name="text">
+          <string>Ecrire les nouvelles valeurs
+dans les champs sélectionnés</string>
+         </property>
+        </widget>
+        <widget class="QComboBox" name="comboBox_3">
+         <property name="geometry">
+          <rect>
+           <x>305</x>
+           <y>237</y>
+           <width>141</width>
+           <height>23</height>
+          </rect>
+         </property>
+         <property name="toolTip">
+          <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Modalité temporelle d'application de la mesure&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+         </property>
+         <property name="styleSheet">
+          <string notr="true">background-color: rgb(255, 255, 255);
+border-top-color:rgb(132, 132, 132);
+border-top-width: 1px;
+border-left-color: rgb(132, 132, 132);
+border-left-width: 1px;
+border-style: solid;
+border-bottom-color: rgb(132, 132, 132);
+border-bottom-width:1px;
+border-right-color : rgb(132, 132, 132);
+border-right-width :1px;
+border-radius: 5px;</string>
+         </property>
+        </widget>
+       </widget>
+       <widget class="QWidget" name="tab">
+        <attribute name="title">
+         <string>Fonctionnalités supplémentaires</string>
+        </attribute>
+        <widget class="QgsFieldComboBox" name="mFieldComboBox">
+         <property name="geometry">
+          <rect>
+           <x>138</x>
+           <y>180</y>
+           <width>691</width>
+           <height>20</height>
+          </rect>
+         </property>
+         <property name="styleSheet">
+          <string notr="true">background-color: rgb(255, 255, 255);
+border-top-color:rgb(132, 132, 132);
+border-top-width: 1px;
+border-left-color: rgb(132, 132, 132);
+border-left-width: 1px;
+border-style: solid;
+border-bottom-color: rgb(132, 132, 132);
+border-bottom-width:1px;
+border-right-color : rgb(132, 132, 132);
+border-right-width :1px;
+border-radius: 5px;</string>
+         </property>
+        </widget>
+        <widget class="QLabel" name="label_2">
+         <property name="geometry">
+          <rect>
+           <x>0</x>
+           <y>180</y>
+           <width>131</width>
+           <height>21</height>
+          </rect>
+         </property>
+         <property name="text">
+          <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;right&quot;&gt;Champ séparateur :&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+         </property>
+        </widget>
+        <widget class="QPushButton" name="create_new_field">
+         <property name="geometry">
+          <rect>
+           <x>0</x>
+           <y>206</y>
+           <width>831</width>
+           <height>23</height>
+          </rect>
+         </property>
+         <property name="font">
+          <font>
+           <weight>75</weight>
+           <bold>true</bold>
+          </font>
+         </property>
+         <property name="toolTip">
+          <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:9pt;&quot;&gt;Couche contenant les différentes mesures. Le champ séparateur va créer autant de couche qu'il y a de nom différent. Les nouvelles couches sont créées dans C:/GeoMCE&lt;/span&gt;&lt;/p&gt;&lt;p align=&quot;justify&quot;&gt;&lt;span style=&quot; font-size:9pt;&quot;&gt;ex : une couche nommée &amp;quot;ligne.shp&amp;quot; ayant un champ &amp;quot;mesures&amp;quot; avec les mesures MC1 et MC2. La fonction va créer 2 couches (MC1.shp et MC2.shp) dans le dossier C:/GeoMCE/date_ligne_mesures&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+         </property>
+         <property name="styleSheet">
+          <string notr="true">QPushButton#create_new_field {
+   background-color: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1, stop: 0 white, stop: 1 rgb(217, 217, 217));
+   border-style: solid;
+   border-width: 1px;
+   border-color: rgb(132, 132, 132);
+   border-radius: 5px;
+}
+
+QPushButton#create_new_field:pressed {
+   background-color: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1, stop:1 white, stop: 0 rgb(217, 217, 217));
+  	border-color: rgb(0, 85, 255);
+};</string>
+         </property>
+         <property name="text">
+          <string>Création des nouvelles couches à partir du champ séparateur</string>
+         </property>
+        </widget>
+        <widget class="QgsMapLayerComboBox" name="mMapLayerComboBox_2">
+         <property name="geometry">
+          <rect>
+           <x>138</x>
+           <y>154</y>
+           <width>691</width>
+           <height>20</height>
+          </rect>
+         </property>
+         <property name="styleSheet">
+          <string notr="true">background-color: rgb(255, 255, 255);
+border-top-color:rgb(132, 132, 132);
+border-top-width: 1px;
+border-left-color: rgb(132, 132, 132);
+border-left-width: 1px;
+border-style: solid;
+border-bottom-color: rgb(132, 132, 132);
+border-bottom-width:1px;
+border-right-color : rgb(132, 132, 132);
+border-right-width :1px;
+border-radius: 5px;</string>
+         </property>
+        </widget>
+        <widget class="QLabel" name="label">
+         <property name="geometry">
+          <rect>
+           <x>0</x>
+           <y>154</y>
+           <width>131</width>
+           <height>21</height>
+          </rect>
+         </property>
+         <property name="toolTip">
+          <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;justify&quot;&gt;&lt;br/&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+         </property>
+         <property name="whatsThis">
+          <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;justify&quot;&gt;Si une couche contient éventuellement plusieurs mesures, cette partiedu plugin va permettre de les séparer en fonction du champ défini ci-dessous.&lt;/p&gt;&lt;p align=&quot;justify&quot;&gt;Les couches créées sont présentes dans un dossier spécifique sous C:/GeomCE/&amp;quot;nom de la couche d'origine&amp;quot; et seront importées ensuite dans l'interface &lt;/p&gt;&lt;p align=&quot;justify&quot;&gt;&lt;br/&gt;&lt;/p&gt;&lt;p align=&quot;justify&quot;&gt;ex : un fichier polygone.shp avec un champ &amp;quot;nom&amp;quot; contient 3 entités (2 MC1 et 1 MC2). 2 couches shapes (MC1.shp et MC2.shpà) seront créées dans le dossier C:/GeoMCE/polygone &lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+         </property>
+         <property name="text">
+          <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;right&quot;&gt;Couche d'origine :&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+         </property>
+        </widget>
+        <widget class="QLabel" name="label_31">
+         <property name="geometry">
+          <rect>
+           <x>0</x>
+           <y>127</y>
+           <width>211</width>
+           <height>21</height>
+          </rect>
+         </property>
+         <property name="text">
+          <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;right&quot;&gt;Dossier d'enregistrement (C:/ par défaut) :&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+         </property>
+        </widget>
+        <widget class="QPushButton" name="pushButton_3">
+         <property name="geometry">
+          <rect>
+           <x>790</x>
+           <y>127</y>
+           <width>41</width>
+           <height>20</height>
+          </rect>
+         </property>
+         <property name="styleSheet">
+          <string notr="true">QPushButton#pushButton_3 {
+   background-color: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1, stop: 0 white, stop: 1 rgb(217, 217, 217));
+   border-style: solid;
+   border-width: 1px;
+   border-color: rgb(132, 132, 132);
+   border-radius: 5px;
+}
+
+QPushButton#pushButton_3:pressed {
+   background-color: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1, stop:1 white, stop: 0 rgb(217, 217, 217));
+  	border-color: rgb(0, 85, 255);
+};</string>
+         </property>
+         <property name="text">
+          <string>...</string>
+         </property>
+        </widget>
+        <widget class="QLineEdit" name="enregistrement">
+         <property name="geometry">
+          <rect>
+           <x>220</x>
+           <y>127</y>
+           <width>561</width>
+           <height>20</height>
+          </rect>
+         </property>
+         <property name="styleSheet">
+          <string notr="true">background-color: rgb(255, 255, 255);
+border-top-color:rgb(132, 132, 132);
+border-top-width: 1px;
+border-left-color: rgb(132, 132, 132);
+border-left-width: 1px;
+border-style: solid;
+border-bottom-color: rgb(132, 132, 132);
+border-bottom-width:1px;
+border-right-color : rgb(132, 132, 132);
+border-right-width :1px;
+border-radius: 5px;</string>
+         </property>
+        </widget>
+        <widget class="QLabel" name="label_32">
+         <property name="geometry">
+          <rect>
+           <x>20</x>
+           <y>10</y>
+           <width>841</width>
+           <height>101</height>
+          </rect>
+         </property>
+         <property name="text">
+          <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;justify&quot;&gt;Cette section du plugin permet de séparer une couche vecteur en plusieurs nouvelles couches en utilisant le traitement &amp;quot;&lt;span style=&quot; font-weight:600;&quot;&gt;Séparer une couche vecteu&lt;/span&gt;r&amp;quot; intégré à Qgis.&lt;br/&gt;Fonctionnalité utilse si les mesures sont discriminées par type de géométrie et non par leur nom.&lt;/p&gt;&lt;p align=&quot;justify&quot;&gt;&lt;span style=&quot; text-decoration: underline;&quot;&gt;Exemple :&lt;/span&gt; une couche nommée &amp;quot;&lt;span style=&quot; font-weight:600;&quot;&gt;Projet_x_poly.shp&lt;/span&gt;&amp;quot; (géométrie de type polygone) contient les mesures &lt;span style=&quot; font-weight:600;&quot;&gt;ME1&lt;/span&gt;, &lt;span style=&quot; font-weight:600;&quot;&gt;MR2&lt;/span&gt;, &lt;span style=&quot; font-weight:600;&quot;&gt;MC2 &lt;/span&gt;et &lt;span style=&quot; font-weight:600;&quot;&gt;MC3 &lt;/span&gt;réunit dans un champ &amp;quot;&lt;span style=&quot; font-weight:600;&quot;&gt;mesure&lt;/span&gt;&amp;quot;.&lt;br/&gt;En selectionnant &amp;quot;&lt;span style=&quot; font-weight:600;&quot;&gt;Projet_x_poly&lt;/span&gt;&amp;quot; dans &lt;span style=&quot; font-style:italic;&quot;&gt;Couche d'origine&lt;/span&gt; et &amp;quot;&lt;span style=&quot; font-weight:600;&quot;&gt;mesure&lt;/span&gt;&amp;quot; dans &lt;span style=&quot; font-style:italic;&quot;&gt;Champ séparateur&lt;/span&gt;, l'extension va créer les couches &lt;span style=&quot; font-weight:600;&quot;&gt;ME1.shp&lt;/span&gt;, &lt;span style=&quot; font-weight:600;&quot;&gt;MR2.shp&lt;/span&gt;, &lt;span style=&quot; font-weight:600;&quot;&gt;MC2.shp,&lt;br/&gt;&lt;/span&gt; &lt;span style=&quot; font-weight:600;&quot;&gt;MC3.shp&lt;/span&gt;, dans le dossier de votre choix (D&lt;span style=&quot; font-style:italic;&quot;&gt;ossier d'enregistrement&lt;/span&gt;), puis va les charger dans l'interface de Qgis&lt;/p&gt;&lt;p align=&quot;justify&quot;&gt;Vous pouvez ensuite travailler la mise en forme de vos couches pour un import dans GéoMCE&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+         </property>
+        </widget>
+        <widget class="QPushButton" name="Exit_2">
+         <property name="geometry">
+          <rect>
+           <x>660</x>
+           <y>330</y>
+           <width>171</width>
+           <height>51</height>
+          </rect>
+         </property>
+         <property name="font">
+          <font>
+           <weight>75</weight>
+           <bold>true</bold>
+          </font>
+         </property>
+         <property name="styleSheet">
+          <string notr="true">QPushButton#Exit_2{
+   background-color: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1, stop: 0 white, stop: 1 rgb(217, 217, 217));
+   border-style: solid;
+   border-width: 1px;
+   border-color: rgb(132, 132, 132);
+   border-radius: 5px;
+}
+
+QPushButton#Exit_2:pressed {
+   background-color: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1, stop:1 white, stop: 0 rgb(217, 217, 217));
+  	border-color: rgb(0, 85, 255);
+};</string>
+         </property>
+         <property name="text">
+          <string>Fermer</string>
+         </property>
+        </widget>
+        <widget class="QLabel" name="label_7">
+         <property name="geometry">
+          <rect>
+           <x>10</x>
+           <y>268</y>
+           <width>821</width>
+           <height>61</height>
+          </rect>
+         </property>
+         <property name="text">
+          <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Vous pouvez également télécharger un projet contenant des couches pré-configurées en cliquant sur le lien suivant : &lt;a href=&quot;https://github.com/GeoMCE/Fichier-Gabarit/releases/download/v1.0/GeoMCE_gabarit_Qpackage.zip&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;GéoMCE Fichiers Gabarit pré-configurés&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;&lt;p&gt;En ouvrant Projet_Gabarit_GeoMCE.qgs, Qgis va charger 3 types de couches dont les tables sont pré formatées pour un import dans GéoMCE&lt;br/&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+         </property>
+         <property name="openExternalLinks">
+          <bool>true</bool>
+         </property>
+        </widget>
+        <zorder>mFieldComboBox</zorder>
+        <zorder>label_2</zorder>
+        <zorder>create_new_field</zorder>
+        <zorder>mMapLayerComboBox_2</zorder>
+        <zorder>label</zorder>
+        <zorder>label_31</zorder>
+        <zorder>pushButton_3</zorder>
+        <zorder>enregistrement</zorder>
+        <zorder>label_32</zorder>
+        <zorder>label_7</zorder>
+        <zorder>Exit_2</zorder>
+       </widget>
       </widget>
      </widget>
     </widget>
@@ -658,9 +1073,7 @@ table attributaire</string>
   </customwidget>
  </customwidgets>
  <tabstops>
-  <tabstop>mMapLayerComboBox_2</tabstop>
-  <tabstop>mFieldComboBox</tabstop>
-  <tabstop>create_new_field</tabstop>
+  <tabstop>tabWidget</tabstop>
   <tabstop>mMapLayerComboBox</tabstop>
   <tabstop>create_new_field_2</tabstop>
   <tabstop>nom</tabstop>
@@ -678,8 +1091,12 @@ table attributaire</string>
   <tabstop>save</tabstop>
   <tabstop>show_t</tabstop>
   <tabstop>Exit</tabstop>
+  <tabstop>enregistrement</tabstop>
+  <tabstop>pushButton_3</tabstop>
+  <tabstop>mMapLayerComboBox_2</tabstop>
+  <tabstop>mFieldComboBox</tabstop>
+  <tabstop>create_new_field</tabstop>
   <tabstop>about</tabstop>
-  <tabstop>scrollArea</tabstop>
  </tabstops>
  <resources/>
  <connections/>
