@@ -16,21 +16,24 @@ email=cedric.claude@developpement-durable.gouv.fr
 
 about=Permet de mettre en compatibilité des fichiers shape en vue des les importer dans l'outil national de géolocalisation des mesures compensatoires environnementale GéoMCE
 
-tracker=http://bugs
-repository=http://repo
+tracker=https://github.com/GeoMCE/GeoMCE/issues
+repository=https://github.com/GeoMCE/GeoMCE/tree/QGIS-3.x
+
 # End of mandatory metadata
 
 # Recommended items:
 
 # Uncomment the following line and add your changelog:
-# changelog=
+changelog=
+  Version 0.9 : 1ère compatibilité avec Qgis3.x
 
 # Tags are comma separated with spaces allowed
-tags=python
+tags=GéoMCE, Géolocalisation des mesures compensatoires, France
 
-homepage=http://homepage
+homepage=https://github.com/GeoMCE/GeoMCE/tree/QGIS-3.x
 category=Vector
 icon=icon.png
+
 # experimental flag
 experimental=True
 
