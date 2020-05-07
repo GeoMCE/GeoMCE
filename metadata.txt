@@ -10,27 +10,29 @@
 name=GeoMCE
 qgisMinimumVersion=2.0
 description=Mise en compatibilité des fichiers shape pour les importer dans l'outil GéoMCE
-version=0.1
+version=0.8
 author=DREAL Auvergne-Rhône-Alpes
 email=cedric.claude@developpement-durable.gouv.fr
 
 about=Permet de mettre en compatibilité des fichiers shape en vue des les importer dans l'outil national de géolocalisation des mesures compensatoires environnementale GéoMCE
 
-tracker=http://bugs
-repository=http://repo
+tracker=https://github.com/GeoMCE/GeoMCE/issues
+repository=https://github.com/GeoMCE/GeoMCE
 # End of mandatory metadata
 
 # Recommended items:
 
 # Uncomment the following line and add your changelog:
-# changelog=
+changelog= 
+   Version 0.8 : - Refonte graphique : séparation des opérations en onglet pour plus de lisibilité - Possibilité de choisir le lieu d'enregistrement du traitement splitlayervector pour plus de commodité
 
 # Tags are comma separated with spaces allowed
-tags=python
+tags=GéoMCE, Géolocalisation des mesures compensatoires, France
 
-homepage=http://homepage
+homepage=https://github.com/GeoMCE/GeoMCE
 category=Vector
 icon=icon.png
+
 # experimental flag
 experimental=True
 
