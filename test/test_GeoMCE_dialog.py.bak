@@ -7,7 +7,6 @@
      (at your option) any later version.
 
 """
-from __future__ import absolute_import
 
 __author__ = 'cedric.claude@developpement-durable.gouv.fr'
 __date__ = '2020-03-29'
@@ -15,11 +14,11 @@ __copyright__ = 'Copyright 2020, DREAL Auvergne-Rhône-Alpes'
 
 import unittest
 
-from qgis.PyQt.QtWidgets import QDialogButtonBox, QDialog
+from PyQt4.QtGui import QDialogButtonBox, QDialog
 
 from GeoMCE_dialog import GeoMCEDialog
 
-from .utilities import get_qgis_app
+from utilities import get_qgis_app
 QGIS_APP = get_qgis_app()
 
 

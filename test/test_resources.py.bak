@@ -14,7 +14,7 @@ __copyright__ = 'Copyright 2020, DREAL Auvergne-Rhône-Alpes'
 
 import unittest
 
-from qgis.PyQt.QtGui import QIcon
+from PyQt4.QtGui import QIcon
 
 
 

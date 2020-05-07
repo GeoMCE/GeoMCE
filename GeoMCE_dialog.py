@@ -26,13 +26,14 @@
 
 import os
 
-from PyQt4 import QtGui, uic
+from PyQt5 import QtGui, uic, QtWidgets
+#from .GeoMCE_dialog import GeoMCEDialog
 
 FORM_CLASS, _ = uic.loadUiType(os.path.join(
     os.path.dirname(__file__), 'GeoMCE_dialog_base.ui'))
 
 
-class GeoMCEDialog(QtGui.QDialog, FORM_CLASS):
+class GeoMCEDialog(QtWidgets.QDialog, FORM_CLASS):
     def __init__(self, parent=None):
         """Constructor."""
         super(GeoMCEDialog, self).__init__(parent)
@@ -42,3 +43,4 @@ class GeoMCEDialog(QtGui.QDialog, FORM_CLASS):
         # http://qt-project.org/doc/qt-4.8/designer-using-a-ui-file.html
         # #widgets-and-dialogs-with-auto-connect
         self.setupUi(self)
+

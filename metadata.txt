@@ -8,9 +8,9 @@
 
 [general]
 name=GeoMCE
-qgisMinimumVersion=2.0
+qgisMinimumVersion=3.0
 description=Mise en compatibilité des fichiers shape pour les importer dans l'outil GéoMCE
-version=0.1
+version=0.9
 author=DREAL Auvergne-Rhône-Alpes
 email=cedric.claude@developpement-durable.gouv.fr
 
