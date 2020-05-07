@@ -1,5 +1,5 @@
 Changelog :
- - v.0.9 : Compatibilité Qgis3.x (voir Branch Master)
+ - v.0.9 : Compatibilité Qgis3.x (voir Branch QGIS-3.x)
  - v.0.8 : - Refonte graphique : séparation des opérations en onglet pour plus de lisibilité
            - Possibilité de choisir le lieu d'enregistrement du traitement splitlayervector pour plus de commodité
  - v.0.7 : Modification du comportement de la liste déroulante du champ Catégorie
