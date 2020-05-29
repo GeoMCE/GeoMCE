@@ -184,6 +184,19 @@ class GeoMCE:
             text=self.tr(u'GeoMCE'),
             callback=self.run,
             parent=self.iface.mainWindow())
+        QObject.connect(self.dlg.mMapLayerComboBox_2, SIGNAL("currentIndexChanged(QString)"), self.set_select_attributes)
+        QObject.connect(self.dlg.mMapLayerComboBox_2, SIGNAL("currentIndexChanged(QString)"), self.clearselection)
+        QObject.connect(self.dlg.mMapLayerComboBox, SIGNAL("currentIndexChanged(QString)"), self.set_select_attributes)
+        QObject.connect(self.dlg.mMapLayerComboBox, SIGNAL("currentIndexChanged(QString)"), self.clearselection)
+        QObject.connect(self.dlg.save, SIGNAL("clicked()"), self.save_edits)
+        QObject.connect(self.dlg.show_t, SIGNAL("clicked()"), self.show_table)
+        QObject.connect(self.dlg.create_new_field, SIGNAL("clicked()"), self.newfield_connect)
+        QObject.connect(self.dlg.create_new_field_2, SIGNAL("clicked()"), self.newfield_connect_2)
+        QObject.connect(self.dlg.change_another, SIGNAL("clicked()"), self.change_to_any)
+        QObject.connect(self.dlg.pushButton, SIGNAL("clicked()"), self.select_output_file)
+        QObject.connect(self.dlg.pushButton_3, SIGNAL("clicked()"), self.select_save_folder)
+        #----boite de dialogue Aide - A propos
+        QObject.connect(self.dlg.about, SIGNAL("clicked()"), self.doabout)
 
 #fonctions personnalisees-------------------------------------------------------------------------------------------------------------
 #fonctions generale-------------------------------------------------------------------------------------------------------------------
@@ -508,6 +521,8 @@ class GeoMCE:
         self.dlg.comboBox_3.clear()
         self.dlg.comboBox_4.clear()
         self.dlg.communes.clear()
+        self.dlg.Exit.clicked.disconnect()
+        self.dlg.Exit_2.clicked.disconnect()
 
   #ouvre la boite de dialogue Aide/A propos
     def doabout(self):
@@ -537,15 +552,6 @@ class GeoMCE:
         else:
             self.dlg.show()
             self.chooselayer()
-            QObject.connect(self.dlg.mMapLayerComboBox_2, SIGNAL("currentIndexChanged(QString)"), self.set_select_attributes)
-            QObject.connect(self.dlg.mMapLayerComboBox_2, SIGNAL("currentIndexChanged(QString)"), self.clearselection)
-            QObject.connect(self.dlg.mMapLayerComboBox, SIGNAL("currentIndexChanged(QString)"), self.set_select_attributes)
-            QObject.connect(self.dlg.mMapLayerComboBox, SIGNAL("currentIndexChanged(QString)"), self.clearselection)
-            QObject.connect(self.dlg.save, SIGNAL("clicked()"), self.save_edits)
-            QObject.connect(self.dlg.show_t, SIGNAL("clicked()"), self.show_table)
-            QObject.connect(self.dlg.create_new_field, SIGNAL("clicked()"), self.newfield_connect)
-            QObject.connect(self.dlg.create_new_field_2, SIGNAL("clicked()"), self.newfield_connect_2)
-            QObject.connect(self.dlg.change_another, SIGNAL("clicked()"), self.change_to_any)
             self.set_select_attributes()
             self.dlg.mFieldComboBox.clear()
             self.dlg.mMapLayerComboBox.clear()
@@ -564,10 +570,6 @@ class GeoMCE:
             modalite = [u'Audit de chantier',u'Bilan/compte rendu de suivi',u'Rapport de fin de chantier',u'Autre']
             self.dlg.comboBox_4.addItems(modalite)
             vlayer = self.dlg.mMapLayerComboBox_2.currentLayer()                           
-            self.dlg.mFieldComboBox.setLayer(vlayer)                                     
-            self.dlg.pushButton.clicked.connect(self.select_output_file)
-            self.dlg.pushButton_3.clicked.connect(self.select_save_folder)
+            self.dlg.mFieldComboBox.setLayer(vlayer)
             QObject.connect(self.dlg.Exit, SIGNAL("clicked()"), self.exit)
             QObject.connect(self.dlg.Exit_2, SIGNAL("clicked()"), self.exit)
-            #----boite de dialogue Aide - A propos
-            QObject.connect(self.dlg.about, SIGNAL("clicked()"), self.doabout)
