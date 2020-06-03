@@ -197,6 +197,17 @@ class GeoMCE(object):
             callback=self.run,
             parent=self.iface.mainWindow())
 
+        self.dlg.mMapLayerComboBox_2.currentIndexChanged.connect(self.set_select_attributes)
+        self.dlg.mMapLayerComboBox.currentIndexChanged.connect(self.set_select_attributes)
+        self.dlg.save.clicked.connect(self.save_edits)
+        self.dlg.show_t.clicked.connect(self.show_table)
+        self.dlg.create_new_field.clicked.connect(self.newfield_connect)
+        self.dlg.create_new_field_2.clicked.connect(self.newfield_connect_2)
+        self.dlg.change_another.clicked.connect(self.change_to_any)
+        self.dlg.pushButton.clicked.connect(self.select_output_file)
+        self.dlg.pushButton_3.clicked.connect(self.select_save_folder)
+        self.dlg.about.clicked.connect(self.doabout)
+
 #fonctions personnalisees-------------------------------------------------------------------------------------------------------------
 #fonctions generale-------------------------------------------------------------------------------------------------------------------
  #verification si couche vecteur sont chargees
@@ -545,15 +556,6 @@ class GeoMCE(object):
         else:
             self.dlg.show()
             self.chooselayer()
-            self.dlg.mMapLayerComboBox_2.currentIndexChanged.connect(self.set_select_attributes)
-            #self.dlg.mMapLayerComboBox_2.currentIndexChanged.connect(self.clearselection)
-            self.dlg.mMapLayerComboBox.currentIndexChanged.connect(self.set_select_attributes)
-            #self.dlg.mMapLayerComboBox.currentIndexChanged.connect(self.clearselection)
-            self.dlg.save.clicked.connect(self.save_edits)
-            self.dlg.show_t.clicked.connect(self.show_table)
-            self.dlg.create_new_field.clicked.connect(self.newfield_connect)
-            self.dlg.create_new_field_2.clicked.connect(self.newfield_connect_2)
-            self.dlg.change_another.clicked.connect(self.change_to_any)
             self.set_select_attributes()
             self.dlg.mFieldComboBox.clear()
             self.dlg.mMapLayerComboBox.clear()
@@ -573,9 +575,6 @@ class GeoMCE(object):
             self.dlg.comboBox_4.addItems(modalite)
             vlayer = self.dlg.mMapLayerComboBox_2.currentLayer()                           
             self.dlg.mFieldComboBox.setLayer(vlayer)                                     
-            self.dlg.pushButton.clicked.connect(self.select_output_file)
-            self.dlg.pushButton_3.clicked.connect(self.select_save_folder)
             self.dlg.Exit.clicked.connect(self.exit)
             self.dlg.Exit_2.clicked.connect(self.exit)
             #----boite de dialogue Aide - A propos
-            self.dlg.about.clicked.connect(self.doabout)
