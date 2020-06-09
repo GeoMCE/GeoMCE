@@ -10,7 +10,7 @@
 name=GeoMCE
 qgisMinimumVersion=3.0
 description=Mise en compatibilité des fichiers shape pour les importer dans l'outil GéoMCE
-version=0.9
+version=1.1
 author=DREAL Auvergne-Rhône-Alpes
 email=cedric.claude@developpement-durable.gouv.fr
 
@@ -25,7 +25,10 @@ repository=https://github.com/GeoMCE/GeoMCE/tree/QGIS-3.x
 
 # Uncomment the following line and add your changelog:
 changelog=
-  Version 0.9 : 1ère compatibilité avec Qgis3.x
+  V1.1 : - selection multiple possible pour les champs "cible", "faunes" et "flores"
+         - contournement du problème relatif au traitement qui ne gère en sortie que du .gpkg
+         - mise à jour du champ "commune" au dernier millésime de l'IGN
+  V1.0 : 1ère version complète pour QGIS
 
 # Tags are comma separated with spaces allowed
 tags=GéoMCE, Géolocalisation des mesures compensatoires, France
