@@ -1,5 +1,10 @@
 Changelog :
- - v.0.9 : Compatibilité Qgis3.x
+ - v1.1 : - champs "faunes" et "flores" sont pré remplit avec la liste des espèces protégées issues de l'inpn
+          - selection multiple possible pour les champs "cible", "faunes" et "flores"
+          - contournement du problème relatif au traitement qui ne gère en sortie que du .gpkg
+          - mise à jour du champ "commune" au dernier millésime de l'IGN
+ - v1.0 : 1ère version complète pour Qgis3.x
+ - v.0.9 : version finale Qgis2.x
  - v.0.8 : - Refonte graphique : séparation des opérations en onglet pour plus de lisibilité
            - Possibilité de choisir le lieu d'enregistrement du traitement splitlayervector pour plus de commodité
  - v.0.7 : Modification du comportement de la liste déroulante du champ Catégorie
