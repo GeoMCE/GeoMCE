@@ -45,6 +45,7 @@ from .aboutdialog import AboutDialog
 from .resources import *
 import os.path
 import datetime
+import unicodedata
 
 class GeoMCE(object):
     """QGIS Plugin Implementation."""
@@ -205,11 +206,11 @@ class GeoMCE(object):
         self.dlg.pushButton.clicked.connect(self.select_output_file)
         self.dlg.pushButton_3.clicked.connect(self.select_save_folder)
         self.dlg.about.clicked.connect(self.doabout)
-        self.dlg.nom.setPlaceholderText(u'Nom de la mesure - 254 caractères max')
+        self.dlg.nom.setPlaceholderText(u'Nom de la mesure - 100 caractères max')
         self.dlg.description.setPlaceholderText(u'Description de la mesure - 254 caractères max')
         self.dlg.decision.setPlaceholderText(u'Références de l\'acte et de l\'article prescrivant la mesure - 254 caractères max')
         self.dlg.refei.setPlaceholderText(u'Références à l\'étude d\'impact décrivant la mesure - 254 caractères max')
-        #self.dlg.faunes.setPlaceholderText(u'Espèces animales concernées par la mesure - Respecter la casse des noms latins - 254 caractères max')
+        #self.dlg.faunes.setDefaultText(u'Espèces animales concernées par la mesure - Respecter la casse des noms latins - 254 caractères max')
         #self.dlg.flores.setPlaceholderText(u'Espèces végétales concernées par la mesure - Respecter la casse des noms latins - 254 caractères max')
         self.dlg.echeances.setPlaceholderText(u'Libéllé de la mesure de suivi - 254 caractères max')
 		
@@ -335,7 +336,7 @@ class GeoMCE(object):
             self.dlg.mMapLayerComboBox.addItems(Layer_list)
         self.set_select_attributes()
 
- #on efface tous les champs existants et on cree ceux indispensable pour un import dans GeoMCE        
+ #on efface tous les champs existants et on cree ceux qui permettent un import dans GeoMCE        
     def create_new_field_2(self):
         self.dlg.mMapLayerComboBox.clear()
         layer = self.dlg.mMapLayerComboBox.currentLayer()
@@ -349,10 +350,10 @@ class GeoMCE(object):
             jeanpaul = list(range(count, count +1 )) + list (range(count))
         layer.dataProvider().deleteAttributes(jeanpaul)
 
-        #... et creation des nouveaux champs compatibles avec un import dans GeoMCE (sur v2.2.6)  
+        #... et creation des nouveaux champs compatibles avec un import dans GeoMCE 
         layer.dataProvider().addAttributes(
                     [QgsField("id", QVariant.Int,'Integer64',10,0),
-                    QgsField("nom", QVariant.String,'String',254,0),
+                    QgsField("nom", QVariant.String,'String',100,0),
                     QgsField("categorie", QVariant.String,'String',7,0),
                     QgsField("cible", QVariant.String,'String',100,0),
                     QgsField("descriptio", QVariant.String,'String',254,0),
@@ -371,18 +372,18 @@ class GeoMCE(object):
         layer.selectAll()
         return
          
- #les champs de saisi texte et listes deroulantes    
+ #les champs de saisi texte et listes deroulantes.Les caracteres speciaux sont remplaces par leurequivalant sans   
     def get_new_nom(self):
-        new_nom = self.dlg.nom.text()
+        new_nom = ''.join((c for c in unicodedata.normalize('NFD', self.dlg.nom.text()) if unicodedata.category(c) != 'Mn'))
         return new_nom
     def get_description(self):
-        new_val_description = self.dlg.description.text()
+        new_val_description = ''.join((c for c in unicodedata.normalize('NFD', self.dlg.description.text()) if unicodedata.category(c) != 'Mn'))
         return new_val_description
     def get_decision(self):
-        new_val_decicision = self.dlg.decision.text()
+        new_val_decicision = ''.join((c for c in unicodedata.normalize('NFD', self.dlg.decision.text()) if unicodedata.category(c) != 'Mn'))
         return new_val_decicision
     def get_refei(self):
-        new_val_refei = self.dlg.refei.text()
+        new_val_refei = ''.join((c for c in unicodedata.normalize('NFD', self.dlg.refei.text()) if unicodedata.category(c) != 'Mn'))
         return new_val_refei
     def get_duree(self):
         new_val_duree = self.dlg.duree.text()
@@ -418,7 +419,7 @@ class GeoMCE(object):
         new_val_flores = self.dlg.flores.currentText()
         return new_val_flores
     def get_echeances(self):
-        new_val_echeances = self.dlg.echeances.text()
+        new_val_echeances = ''.join((c for c in unicodedata.normalize('NFD', self.dlg.echeances.text()) if unicodedata.category(c) != 'Mn'))
         return new_val_echeances
 		
  #on va chercher le fichier commune.shp pour recuperer le code insee
