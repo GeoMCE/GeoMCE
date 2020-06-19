@@ -1,6 +1,6 @@
 <RCC>
   <qresource prefix="/plugins/GeoMCE">
-    <file>icon.png</file>
     <file>geomce.png</file>
+    <file>icon.png</file>
   </qresource>
 </RCC>
