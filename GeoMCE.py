@@ -30,22 +30,18 @@ from builtins import object
 from PyQt5.QtCore import *
 from PyQt5 import QtWidgets
 from PyQt5.QtGui import *
-#from qgis.PyQt.QtWidgets import QDialog, QDialogButtonBox
 from qgis.core import *
 from qgis.gui import *
 from qgis.PyQt.QtGui import *
 from qgis.utils import *
-from PyQt5.QtWidgets import QAction, QDialog, QFormLayout, QFileDialog
-#from processing.tools.vector import QgsVectorFileWriter
-# Initialize Qt resources from file resources.py
-import  os, processing, fnmatch, sys, glob
+from PyQt5.QtWidgets import QAction, QDialog, QFormLayout, QFileDialog, QProgressBar, QListWidgetItem
+import  os, processing, fnmatch, sys, glob, datetime, unicodedata, zipfile, os.path
 # Import the code for the dialog
 from .GeoMCE_dialog import GeoMCEDialog
 from .aboutdialog import AboutDialog
 from .resources import *
-import os.path
-import datetime
-import unicodedata
+from os.path import basename
+
 
 class GeoMCE(object):
     """QGIS Plugin Implementation."""
@@ -195,39 +191,71 @@ class GeoMCE(object):
             text=self.tr(u'GeoMCE'),
             callback=self.run,
             parent=self.iface.mainWindow())
-
+        valcom = self.get_communes()
+        self.dlg.communes.setText(valcom)
+        self.checkBox_read()
+        self.tampon_read()
+        self.dlg.fusion.clicked.connect(self.fusion)
+        self.dlg.checkBox.stateChanged.connect(self.checkBox_write)
+        self.dlg.checkBox.stateChanged.connect(self.checkBox_read)
+        self.dlg.tampon.stateChanged.connect(self.tampon_write)
+        self.dlg.tampon.stateChanged.connect(self.tampon_read)
         self.dlg.mMapLayerComboBox_2.currentIndexChanged.connect(self.set_select_attributes)
         self.dlg.mMapLayerComboBox.currentIndexChanged.connect(self.set_select_attributes)
         self.dlg.save.clicked.connect(self.save_edits)
         self.dlg.show_t.clicked.connect(self.show_table)
+        self.dlg.show_t_2.clicked.connect(self.show_table_2)
         self.dlg.create_new_field.clicked.connect(self.newfield_connect)
         self.dlg.create_new_field_2.clicked.connect(self.newfield_connect_2)
         self.dlg.change_another.clicked.connect(self.change_to_any)
-        self.dlg.pushButton.clicked.connect(self.select_output_file)
+        self.dlg.pushButton.clicked.connect(self.select_output_file_store)
         self.dlg.pushButton_3.clicked.connect(self.select_save_folder)
         self.dlg.about.clicked.connect(self.doabout)
-        self.dlg.nom.setPlaceholderText(u'Nom de la mesure - 100 caractères max')
-        self.dlg.description.setPlaceholderText(u'Description de la mesure - 254 caractères max')
-        self.dlg.decision.setPlaceholderText(u'Références de l\'acte et de l\'article prescrivant la mesure - 254 caractères max')
-        self.dlg.refei.setPlaceholderText(u'Références à l\'étude d\'impact décrivant la mesure - 254 caractères max')
+        #self.dlg.nom.setPlaceholderText(u'Nom de la mesure - 100 caractères max')
+        #self.dlg.description.setPlaceholderText(u'Description de la mesure - 254 caractères max')
+        #self.dlg.decision.setPlaceholderText(u'Références de l\'acte et de l\'article prescrivant la mesure - 254 caractères max')
+        #self.dlg.refei.setPlaceholderText(u'Références à l\'étude d\'impact décrivant la mesure - 254 caractères max')
         #self.dlg.faunes.setDefaultText(u'Espèces animales concernées par la mesure - Respecter la casse des noms latins - 254 caractères max')
         #self.dlg.flores.setPlaceholderText(u'Espèces végétales concernées par la mesure - Respecter la casse des noms latins - 254 caractères max')
-        self.dlg.echeances.setPlaceholderText(u'Libéllé de la mesure de suivi - 254 caractères max')
-		
+        #self.dlg.echeances.setPlaceholderText(u'Libéllé de la mesure de suivi - 254 caractères max')
+        self.listWidget()
+        QgsProject.instance().layersAdded.connect(self.listWidget)
+        QgsProject.instance().layersRemoved.connect(self.listWidget)
+        self.dlg.Exit.clicked.connect(self.exit)
+        self.dlg.Exit_2.clicked.connect(self.exit)
+        self.dlg.zipbutton.clicked.connect(self.archive)
+        self.dlg.zipbutton_2.clicked.connect(self.archive_2)
+        self.dlg.dossier.clicked.connect(self.dossier)
+        self.dlg.dossier_2.clicked.connect(self.dossier_2)
+
+    def checkBox_write(self):
+        s = QSettings()
+        s.setValue('/GeoMCE-Sortie_shp', self.dlg.checkBox.isChecked())
+        self.iface.messageBar().pushMessage(u'GéoMCE',u'Paramètre sauvegardé', level=Qgis.Info, duration=3)
+            
+    def checkBox_read(self):
+        s = QSettings()
+        self.dlg.checkBox.setChecked(s.value('/GeoMCE-Sortie_shp', True, type=bool))
+
+    def tampon_write(self):
+        s = QSettings()
+        s.setValue('/GeoMCE-tampon', self.dlg.tampon.isChecked())
+        self.iface.messageBar().pushMessage(u'GéoMCE',u'Paramètre sauvegardé', level=Qgis.Info, duration=3)
+
+    def tampon_read(self):
+        s = QSettings()
+        self.dlg.tampon.setChecked(s.value('/GeoMCE-tampon', True, type=bool))
+        
 #fonctions personnalisees-------------------------------------------------------------------------------------------------------------
 #fonctions generale-------------------------------------------------------------------------------------------------------------------
- #verification si couche vecteur sont chargees
+#verification si couche vecteur sont chargees
     def checkvector(self):
         count = 0
         for name, layer in QgsProject.instance().mapLayers().items():
             if layer.type() == QgsMapLayer.VectorLayer:
                 count += 1
         return count
-
-    def refresh_layers(self):
-        for layer in qgis.utils.iface.mapCanvas().layers():
-            layer.triggerRepaint()
-            
+           
 # fonction relative a splitlayer vector-----------------------------------------------------------------------------------------------
  #chemin d enregistrement du traitement splitvectorlayer 
     def select_save_folder(self):
@@ -239,7 +267,13 @@ class GeoMCE(object):
  
  #on recupere le chemin du dossier d enregistrement du traitement pour plus tard
     def get_enregistrement(self):
-        new_enregistrement = self.dlg.enregistrement.text()
+        chemin_couche = self.dlg.mMapLayerComboBox_2.currentLayer()
+        source_chemin_couche = chemin_couche.dataProvider().dataSourceUri() 
+        chemin_couche_separer = os.path.dirname(source_chemin_couche)      
+        if self.dlg.enregistrement.text() =="":
+            new_enregistrement = chemin_couche_separer        
+        else:
+               new_enregistrement = self.dlg.enregistrement.text()
         return new_enregistrement
 
  #choix de la couche a pour traitement splitlayervector
@@ -292,7 +326,7 @@ class GeoMCE(object):
         path = self.get_enregistrement()
         p = path + "/" + datetime.datetime.now().strftime('%Y-%m-%d_%H-%M-%S') + "_" + couche + "_" + champ 
         os.makedirs(p)    
-               
+                  
         #separation de la couche active par le champ defini au debut du script et enregistrement dans le dossier choisi par lafonction get_enregistrement. Attention, QGIS3 genere par defaut des fichiers geopackage sauf qu on veut du shape ...
         split = processing.run("qgis:splitvectorlayer", {'INPUT':self.dlg.mMapLayerComboBox_2.currentText(),'FIELD': self.dlg.mFieldComboBox.currentText(), 'OUTPUT' : p})
 
@@ -305,30 +339,38 @@ class GeoMCE(object):
                         yield filename
                 if (only_root_directory):
                     break
-		# ... on scanne le dossier pour tous les fichiers .gpkg issus du traitement ....
-        count = 0
-        for src_file in find_files(p, '*.gpkg', True):
-            (head, tail) = os.path.split(src_file)
-            (name, ext) = os.path.splitext(tail)
-            vlayer = QgsVectorLayer(src_file, name, "ogr")
-			#...et on les convertis en shape ...
-            QgsVectorFileWriter.writeAsVectorFormat(vlayer,p+ "/" + vlayer.name(), 'UTF-8',vlayer.crs(), 'ESRI Shapefile')
-        output = count
-		#... puis on scanne le dossier a la recherche des shapes et on les charge dans l interface
-        count = 0
-        for src_file in find_files(p, '*.shp', True):
-            (head, tail) = os.path.split(src_file)
-            (name, ext) = os.path.splitext(tail)
-            vlayer = iface.addVectorLayer(src_file, name, "ogr")
-        output = count
+        if self.dlg.checkBox.isChecked():
+            #... puis on scanne le dossier a la recherche des shapes et on les charge dans l interface
+            count = 0
+            for src_file in find_files(p, '*.shp', True):
+                (head, tail) = os.path.split(src_file)
+                (name, ext) = os.path.splitext(tail)
+                vlayer = iface.addVectorLayer(src_file, name, "ogr")
+            output = count
+        else :
+            count = 0
+            for src_file in find_files(p, '*.gpkg', True):
+                (head, tail) = os.path.split(src_file)
+                (name, ext) = os.path.splitext(tail)
+                vlayer = QgsVectorLayer(src_file, name, "ogr")
+                #...et on les convertis en shape ...
+                QgsVectorFileWriter.writeAsVectorFormat(vlayer,p+ "/" + vlayer.name(), 'UTF-8',vlayer.crs(), 'ESRI Shapefile')
+            output = count
+            #... puis on scanne le dossier a la recherche des shapes et on les charge dans l interface
+            count = 0
+            for src_file in find_files(p, '*.shp', True):
+                (head, tail) = os.path.split(src_file)
+                (name, ext) = os.path.splitext(tail)
+                vlayer = iface.addVectorLayer(src_file, name, "ogr")
+            output = count
         self.dlg.mFieldComboBox.clear()
-        self.dlg.mMapLayerComboBox_2.clear()
+        self.dlg.mMapLayerComboBox_2.clear()  
+        self.iface.messageBar().pushMessage(u'GéoMCE',u'Les nouvelles couches ont été créées dans le dossier ' + self.get_enregistrement() + u' et chargées dans l\'interface', level=Qgis.Info, duration=3)
 
 #fonctions assurant la mise en forme des couches pour un import dans GeoMCE---------------------------------------------------------------
  #choix de la couche a traiter
     def chooselayer_2(self):
         self.dlg.mMapLayerComboBox.clear()
-        self.dlg.txtFeedBack.clear()
         Layers = [layer for layer in QgsProject.instance().mapLayers().values()]
         Layer_list = []
         for layer in Layers:
@@ -370,9 +412,10 @@ class GeoMCE(object):
                     QgsField("communes", QVariant.String,'String',220,0)])         
         layer.updateFields()
         layer.selectAll()
+        self.iface.messageBar().pushMessage(u'GéoMCE',u'Tout a été effacé, j\'espère que tu ne le regretteras pas!', level=Qgis.Info, duration=5)
         return
-         
- #les champs de saisi texte et listes deroulantes.Les caracteres speciaux sont remplaces par leurequivalant sans   
+
+#les champs de saisi texte et listes deroulantes.Les caracteres speciaux sont remplaces par leurequivalant sans   
     def get_new_nom(self):
         new_nom = ''.join((c for c in unicodedata.normalize('NFD', self.dlg.nom.text()) if unicodedata.category(c) != 'Mn'))
         return new_nom
@@ -404,7 +447,9 @@ class GeoMCE(object):
         new_val_modalite = self.dlg.comboBox_4.currentText()
         return new_val_modalite
     def get_communes(self):
-        new_val_communes = self.dlg.communes.text()
+        s = QSettings()
+        new_val_communes = s.value('/GeoMCE-chemin_communes.shp')
+        self.dlg.communes.setText(new_val_communes)
         return new_val_communes
     def get_cout(self):
         new_val_cout = self.dlg.cout.text()
@@ -421,12 +466,15 @@ class GeoMCE(object):
     def get_echeances(self):
         new_val_echeances = ''.join((c for c in unicodedata.normalize('NFD', self.dlg.echeances.text()) if unicodedata.category(c) != 'Mn'))
         return new_val_echeances
-		
- #on va chercher le fichier commune.shp pour recuperer le code insee
-    def select_output_file(self):
+        
+ #on va chercher le fichier commune.shp pour recuperer le code insee et on l enregistre dans le fichier de configuration de QGIS
+    def select_output_file_store(self, text):
+        s= QSettings()
         filename, _filter = QFileDialog.getOpenFileName(self.dlg, u'Il est où ton fichier Commune.shp?',"", '*.shp')
         self.dlg.communes.setText(filename)
-
+        s.setValue('/GeoMCE-chemin_communes.shp', filename)
+        self.iface.messageBar().pushMessage(u'GéoMCE',u'La couche '+ filename + u' est paramétrée comme couche COMMUNES par défaut', level=Qgis.Info, duration=3)
+        
  #selection des toutes les entites de la couche
     def select_all(self):
         self.selectall = 0
@@ -437,9 +485,117 @@ class GeoMCE(object):
                 selectlayer.invertSelection()
                 self.selectall = 1
 
+        #permet de recuperer le code INSEE des communes concernes par la mesure. Necessite de changer les champs compare_field_index, concat_field_index et new_field_index en fonction du shape commune.
+    def codeinsee(self):
+        #ici se trouve le chemin vers couche contenant toutes les communes de votre region. 
+        self.dlg.mMapLayerComboBox.clear()
+        layer5 = self.dlg.mMapLayerComboBox.currentLayer()
+        val15 = self.get_communes()
+        if val15 != "" :
+            layer_communes_region = QgsVectorLayer(val15, "communes", "ogr")
+            #application d une extraction par localisation
+            extraction = processing.run('qgis:extractbylocation',{'INPUT' : layer_communes_region, 'INTERSECT' :layer5, 'PREDICATE' :[0], 'OUTPUT' :'TEMPORARY_OUTPUT'})
+            layer_extraction = extraction['OUTPUT']
+            #layer_extraction.startEditing()
+            type = layer_extraction.dataProvider().fieldNameIndex('TYPE')
+            insee =layer_extraction.dataProvider().fieldNameIndex('INSEE_COM')
+            dep = layer_extraction.dataProvider().fieldNameIndex('INSEE_DEP')
+            compare_field_index = type
+            concat_field_index = insee
+            new_field_index = dep
+            feature_dict = {f.id(): f for f in layer_extraction.getFeatures()}
+            for f in feature_dict.values():
+                if f[concat_field_index]:
+                    new_field_text = f[concat_field_index]
+                else:
+                    new_field_text = f[concat_field_index]
+                for compare_f in feature_dict.values():
+                    if (f != compare_f
+                            and f[compare_field_index] == compare_f[compare_field_index]):
+                        if compare_f[concat_field_index]:
+                            new_field_text += "|"+compare_f[concat_field_index]
+                f[new_field_index] = new_field_text
+            return new_field_text
+        else :
+            pass
+
  #application des nouvelles valeurs dans la nouvelle table attributaire
     def change_to_any(self):
-        layer = self.dlg.mMapLayerComboBox.currentLayer()
+        kiki = self.dlg.mMapLayerComboBox.currentLayer()
+        source_chemin_couche = kiki.dataProvider().dataSourceUri() 
+        chemin_tampon = os.path.dirname(source_chemin_couche)
+        nom_couche= self.dlg.mMapLayerComboBox.currentText()
+        path = chemin_tampon+"/"+nom_couche+"_TAMPON"
+        shape= path+'.shp'
+        gpkg= path+'.gpkg'
+        if self.dlg.tampon.isChecked() :
+            if kiki.geometryType()==QgsWkbTypes.PointGeometry or kiki.geometryType()== QgsWkbTypes.LineGeometry:
+                tampon = processing.run('qgis:buffer',{'INPUT': kiki,'DISTANCE': 5,'SEGMENTS': 5,'DISSOLVE': True,'END_CAP_STYLE': 0,'JOIN_STYLE': 0,'MITER_LIMIT': 2,'OUTPUT': path})
+                #layer = tampon['OUTPUT']
+                if self.dlg.checkBox.isChecked():
+                    layer = iface.addVectorLayer(shape, "", "ogr")
+                    layer.startEditing()
+                    prov = layer.dataProvider()
+                    field_names = [field.name() for field in prov.fields()]
+                    for count, f in enumerate(field_names):
+                        jean = range(count, count +1 )
+                        paul = range(count)
+                        jeanpaul = list(range(count, count +1 )) + list (range(count))
+                    layer.dataProvider().deleteAttributes(jeanpaul)
+                    #... et creation des nouveaux champs compatibles avec un import dans GeoMCE 
+                    layer.dataProvider().addAttributes(
+                                [QgsField("id", QVariant.Int,'Integer64',10,0),
+                                QgsField("nom", QVariant.String,'String',100,0),
+                                QgsField("categorie", QVariant.String,'String',7,0),
+                                QgsField("cible", QVariant.String,'String',100,0),
+                                QgsField("descriptio", QVariant.String,'String',254,0),
+                                QgsField("decision", QVariant.String,'String',254,0),
+                                QgsField("refei", QVariant.String,'String',254,0),
+                                QgsField("duree", QVariant.String,'String',25,0),
+                                QgsField("unite", QVariant.String,'String',25,0),
+                                QgsField("modalite", QVariant.String,'String',50,0),
+                                QgsField("cout",QVariant.Int,'Integer64', 10,0),
+                                QgsField("montant_pr",QVariant.Int,'Integer64', 10,0),
+                                QgsField("faunes",QVariant.String, 'String', 254,0),
+                                QgsField("flores",QVariant.String, 'String', 254,0),
+                                QgsField("echeances",QVariant.String, 'String', 254,0),
+                                QgsField("communes", QVariant.String,'String',220,0)])         
+                    layer.updateFields()
+                else :
+                    dede = QgsVectorLayer(gpkg, "", "ogr")         
+                    zaza = QgsVectorFileWriter.writeAsVectorFormat(dede,path,'UTF-8',dede.crs(), "ESRI Shapefile")
+                    layer = iface.addVectorLayer(shape, "", "ogr")
+                    layer.startEditing()
+                    prov = layer.dataProvider()
+                    field_names = [field.name() for field in prov.fields()]
+                    for count, f in enumerate(field_names):
+                        jean = range(count, count +1 )
+                        paul = range(count)
+                        jeanpaul = list(range(count, count +1 )) + list (range(count))
+                    layer.dataProvider().deleteAttributes(jeanpaul)
+                    #... et creation des nouveaux champs compatibles avec un import dans GeoMCE 
+                    layer.dataProvider().addAttributes(
+                                [QgsField("id", QVariant.Int,'Integer64',10,0),
+                                QgsField("nom", QVariant.String,'String',100,0),
+                                QgsField("categorie", QVariant.String,'String',7,0),
+                                QgsField("cible", QVariant.String,'String',100,0),
+                                QgsField("descriptio", QVariant.String,'String',254,0),
+                                QgsField("decision", QVariant.String,'String',254,0),
+                                QgsField("refei", QVariant.String,'String',254,0),
+                                QgsField("duree", QVariant.String,'String',25,0),
+                                QgsField("unite", QVariant.String,'String',25,0),
+                                QgsField("modalite", QVariant.String,'String',50,0),
+                                QgsField("cout",QVariant.Int,'Integer64', 10,0),
+                                QgsField("montant_pr",QVariant.Int,'Integer64', 10,0),
+                                QgsField("faunes",QVariant.String, 'String', 254,0),
+                                QgsField("flores",QVariant.String, 'String', 254,0),
+                                QgsField("echeances",QVariant.String, 'String', 254,0),
+                                QgsField("communes", QVariant.String,'String',220,0)])         
+                    layer.updateFields()
+            else:
+                layer = self.dlg.mMapLayerComboBox.currentLayer()
+        else :
+            layer = self.dlg.mMapLayerComboBox.currentLayer()
         val1 = self.get_new_nom()
         val2 = self.get_description()
         val3 = self.get_decision()
@@ -454,131 +610,310 @@ class GeoMCE(object):
         val12 = self.get_faunes()
         val13 = self.get_flores()
         val14 = self.get_echeances()
-
-
-        #permet de recuperer le code INSEE des communes concernes par la mesure. Necessite de changer les champs compare_field_index, concat_field_index et new_field_index en fonction du shape commune.
-        def codeinsee():
-            #ici se trouve le chemin vers couche contenant toutes les communes de votre region. 
-            self.dlg.mMapLayerComboBox.clear()
-            layer5 = self.dlg.mMapLayerComboBox.currentLayer()
-            val10 = self.get_communes()
-            if val10 != "" :
-                layer_communes_region = QgsVectorLayer(val10, "communes", "ogr")
-                #application d une extraction par localisation
-                extraction = processing.run('qgis:extractbylocation',{'INPUT' : layer_communes_region, 'INTERSECT' :layer5, 'PREDICATE' :[0], 'OUTPUT' :'TEMPORARY_OUTPUT'})
-                layer_extraction = extraction['OUTPUT']
-                layer_extraction.startEditing()
-                #les chiffres doivent correspondre a des champ identiques de votre couche commune. ex : 5 --> nom_dept; 3-->code_insee a recuperer; 6--> nom_reg
-                compare_field_index = 8
-                concat_field_index = 3
-                new_field_index = 7
-                feature_dict = {f.id(): f for f in layer_extraction.getFeatures()}
-                for f in feature_dict.values():
-                    if f[concat_field_index]:
-                        new_field_text = f[concat_field_index]
-                    else:
-                        new_field_text = f[concat_field_index]
-                    for compare_f in feature_dict.values():
-                        if (f != compare_f
-                                and f[compare_field_index] == compare_f[compare_field_index]):
-                            if compare_f[concat_field_index]:
-                                new_field_text += "|"+compare_f[concat_field_index]
-                    f[new_field_index] = new_field_text
-                return new_field_text
-            else :
-                pass
-        
-        for feat in layer.getFeatures():
-            layer.changeAttributeValue(feat.id(),0,feat.id())
-            if val1 == "":
-                layer.changeAttributeValue(feat.id(),1,"-")
-            else :
-                layer.changeAttributeValue(feat.id(),1,val1)
-            if val6 == "":
-                layer.changeAttributeValue(feat.id(),2,"E")
-            else :
-                layer.changeAttributeValue(feat.id(),2, val6)
-            if val7 == "":
-                layer.changeAttributeValue(feat.id(),3,"Habitats naturels")
-            else :
-                layer.changeAttributeValue(feat.id(),3, val7)
-            if val2 == "":
-                layer.changeAttributeValue(feat.id(),4,"-")
-            else :
-                layer.changeAttributeValue(feat.id(),4,val2)
-            if val3 == "":
-                layer.changeAttributeValue(feat.id(),5,"-")
-            else :
-                layer.changeAttributeValue(feat.id(),5,val3)                
-            if val4 == "":
-                layer.changeAttributeValue(feat.id(),6,"-")
-            else :
-                layer.changeAttributeValue(feat.id(),6,val4)
-            if val5 == "":
-                layer.changeAttributeValue(feat.id(),7,"-")
-            else :
-                layer.changeAttributeValue(feat.id(),7,val5)
-            if val8 == "":
-                layer.changeAttributeValue(feat.id(),8,"Annee")
-            else :
-                layer.changeAttributeValue(feat.id(),8, val8)
-            if val9 == "":
-                layer.changeAttributeValue(feat.id(),9,"Bilan/compte rendu de suivi")
-            else :
-                layer.changeAttributeValue(feat.id(),9, val9)
-            if val10 == "":
-                layer.changeAttributeValue(feat.id(),10,"")
-            else :
-                layer.changeAttributeValue(feat.id(),10,val10)
-            if val11 == "":
-                layer.changeAttributeValue(feat.id(),11,"")
-            else :
-                layer.changeAttributeValue(feat.id(),11,val11)
-            if val12 == "":
-                layer.changeAttributeValue(feat.id(),12,"")
-            else :
-                layer.changeAttributeValue(feat.id(),12,val12)
-            if val13 == "":
-                layer.changeAttributeValue(feat.id(),13,"")
-            else :
-                layer.changeAttributeValue(feat.id(),13,val13)
-            if val14 == "":
-                layer.changeAttributeValue(feat.id(),14,"-")
-            else :
-                layer.changeAttributeValue(feat.id(),14,val14)
-            layer.changeAttributeValue(feat.id(),15, codeinsee())
+        val15 = self.codeinsee()
+        if self.dlg.tampon.isChecked():
+            for feat in layer.getFeatures():
+                layer.changeAttributeValue(feat.id(),0,feat.id())
+                if val1 == "":
+                    layer.changeAttributeValue(feat.id(),1,"-")
+                else :
+                    layer.changeAttributeValue(feat.id(),1,val1)
+                if val6 == "":
+                    layer.changeAttributeValue(feat.id(),2,"E")
+                else :
+                    layer.changeAttributeValue(feat.id(),2, val6)
+                if val7 == "":
+                    layer.changeAttributeValue(feat.id(),3,"Habitats naturels")
+                else :
+                    layer.changeAttributeValue(feat.id(),3, val7)
+                if val2 == "":
+                    layer.changeAttributeValue(feat.id(),4,"-")
+                else :
+                    layer.changeAttributeValue(feat.id(),4,val2)
+                if val3 == "":
+                    layer.changeAttributeValue(feat.id(),5,"-")
+                else :
+                    layer.changeAttributeValue(feat.id(),5,val3)                
+                if val4 == "":
+                    layer.changeAttributeValue(feat.id(),6,"-")
+                else :
+                    layer.changeAttributeValue(feat.id(),6,val4)
+                if val5 == "":
+                    layer.changeAttributeValue(feat.id(),7,"-")
+                else :
+                    layer.changeAttributeValue(feat.id(),7,val5)
+                if val8 == "":
+                    layer.changeAttributeValue(feat.id(),8,"Annee")
+                else :
+                    layer.changeAttributeValue(feat.id(),8, val8)
+                if val9 == "":
+                    layer.changeAttributeValue(feat.id(),9,"Bilan/compte rendu de suivi")
+                else :
+                    layer.changeAttributeValue(feat.id(),9, val9)
+                if val10 == "":
+                    layer.changeAttributeValue(feat.id(),10,"")
+                else :
+                    layer.changeAttributeValue(feat.id(),10,val10)
+                if val11 == "":
+                    layer.changeAttributeValue(feat.id(),11,"")
+                else :
+                    layer.changeAttributeValue(feat.id(),11,val11)
+                if val12 == "":
+                    layer.changeAttributeValue(feat.id(),12,"")
+                else :
+                    layer.changeAttributeValue(feat.id(),12,val12)
+                if val13 == "":
+                    layer.changeAttributeValue(feat.id(),13,"")
+                else :
+                    layer.changeAttributeValue(feat.id(),13,val13)
+                if val14 == "":
+                    layer.changeAttributeValue(feat.id(),14,"-")
+                else :
+                    layer.changeAttributeValue(feat.id(),14,val14)
+                if self.get_communes()=="":
+                    layer.changeAttributeValue(feat.id(),15, "")
+                else :
+                    layer.changeAttributeValue(feat.id(),15, val15)
+            for feat in kiki.getFeatures():
+                kiki.changeAttributeValue(feat.id(),0,feat.id())
+                if val1 == "":
+                    kiki.changeAttributeValue(feat.id(),1,"-")
+                else :
+                    kiki.changeAttributeValue(feat.id(),1,val1)
+                if val6 == "":
+                    kiki.changeAttributeValue(feat.id(),2,"E")
+                else :
+                    kiki.changeAttributeValue(feat.id(),2, val6)
+                if val7 == "":
+                    kiki.changeAttributeValue(feat.id(),3,"Habitats naturels")
+                else :
+                    kiki.changeAttributeValue(feat.id(),3, val7)
+                if val2 == "":
+                    kiki.changeAttributeValue(feat.id(),4,"-")
+                else :
+                    kiki.changeAttributeValue(feat.id(),4,val2)
+                if val3 == "":
+                    kiki.changeAttributeValue(feat.id(),5,"-")
+                else :
+                    kiki.changeAttributeValue(feat.id(),5,val3)                
+                if val4 == "":
+                    kiki.changeAttributeValue(feat.id(),6,"-")
+                else :
+                    kiki.changeAttributeValue(feat.id(),6,val4)
+                if val5 == "":
+                    kiki.changeAttributeValue(feat.id(),7,"-")
+                else :
+                    kiki.changeAttributeValue(feat.id(),7,val5)
+                if val8 == "":
+                    kiki.changeAttributeValue(feat.id(),8,"Annee")
+                else :
+                    kiki.changeAttributeValue(feat.id(),8, val8)
+                if val9 == "":
+                    kiki.changeAttributeValue(feat.id(),9,"Bilan/compte rendu de suivi")
+                else :
+                    kiki.changeAttributeValue(feat.id(),9, val9)
+                if val10 == "":
+                    kiki.changeAttributeValue(feat.id(),10,"")
+                else :
+                    kiki.changeAttributeValue(feat.id(),10,val10)
+                if val11 == "":
+                    kiki.changeAttributeValue(feat.id(),11,"")
+                else :
+                    kiki.changeAttributeValue(feat.id(),11,val11)
+                if val12 == "":
+                    kiki.changeAttributeValue(feat.id(),12,"")
+                else :
+                    kiki.changeAttributeValue(feat.id(),12,val12)
+                if val13 == "":
+                    kiki.changeAttributeValue(feat.id(),13,"")
+                else :
+                    kiki.changeAttributeValue(feat.id(),13,val13)
+                if val14 == "":
+                    kiki.changeAttributeValue(feat.id(),14,"-")
+                else :
+                    kiki.changeAttributeValue(feat.id(),14,val14)
+                if self.get_communes()=="":
+                    kiki.changeAttributeValue(feat.id(),15, "")
+                else :
+                    kiki.changeAttributeValue(feat.id(),15, val15)
+        else :
+            for feat in layer.getFeatures():
+                layer.changeAttributeValue(feat.id(),0,feat.id())
+                if val1 == "":
+                    layer.changeAttributeValue(feat.id(),1,"-")
+                else :
+                    layer.changeAttributeValue(feat.id(),1,val1)
+                if val6 == "":
+                    layer.changeAttributeValue(feat.id(),2,"E")
+                else :
+                    layer.changeAttributeValue(feat.id(),2, val6)
+                if val7 == "":
+                    layer.changeAttributeValue(feat.id(),3,"Habitats naturels")
+                else :
+                    layer.changeAttributeValue(feat.id(),3, val7)
+                if val2 == "":
+                    layer.changeAttributeValue(feat.id(),4,"-")
+                else :
+                    layer.changeAttributeValue(feat.id(),4,val2)
+                if val3 == "":
+                    layer.changeAttributeValue(feat.id(),5,"-")
+                else :
+                    layer.changeAttributeValue(feat.id(),5,val3)                
+                if val4 == "":
+                    layer.changeAttributeValue(feat.id(),6,"-")
+                else :
+                    layer.changeAttributeValue(feat.id(),6,val4)
+                if val5 == "":
+                    layer.changeAttributeValue(feat.id(),7,"-")
+                else :
+                    layer.changeAttributeValue(feat.id(),7,val5)
+                if val8 == "":
+                    layer.changeAttributeValue(feat.id(),8,"Annee")
+                else :
+                    layer.changeAttributeValue(feat.id(),8, val8)
+                if val9 == "":
+                    layer.changeAttributeValue(feat.id(),9,"Bilan/compte rendu de suivi")
+                else :
+                    layer.changeAttributeValue(feat.id(),9, val9)
+                if val10 == "":
+                    layer.changeAttributeValue(feat.id(),10,"")
+                else :
+                    layer.changeAttributeValue(feat.id(),10,val10)
+                if val11 == "":
+                    layer.changeAttributeValue(feat.id(),11,"")
+                else :
+                    layer.changeAttributeValue(feat.id(),11,val11)
+                if val12 == "":
+                    layer.changeAttributeValue(feat.id(),12,"")
+                else :
+                    layer.changeAttributeValue(feat.id(),12,val12)
+                if val13 == "":
+                    layer.changeAttributeValue(feat.id(),13,"")
+                else :
+                    layer.changeAttributeValue(feat.id(),13,val13)
+                if val14 == "":
+                    layer.changeAttributeValue(feat.id(),14,"-")
+                else :
+                    layer.changeAttributeValue(feat.id(),14,val14)
+                if self.get_communes()=="":
+                    layer.changeAttributeValue(feat.id(),15, "")
+                else :
+                    layer.changeAttributeValue(feat.id(),15, val15)
+        layername = self.dlg.mMapLayerComboBox.currentText()
+        self.iface.messageBar().pushMessage(u'GéoMCE',u'Les nouvelles valeurs ont été écrites dans la couche '+layername, level=Qgis.Info, duration=3)
 
  #sauvegarde des elements saisis dans la table attributaire
     def save_edits(self):
-        self.saved = False
-        layername = self.dlg.mMapLayerComboBox.currentText()
-        for name, selectlayer in QgsProject.instance().mapLayers().items():
-            if selectlayer.name() == layername:
-                if (selectlayer.isEditable()):
-                    selectlayer.commitChanges()
-                    self.saved = True
-                    self.countchange = 0
+        if self.dlg.tampon.isChecked():
+            layer = iface.activeLayer()  
+            layer.commitChanges()
+            self.saved = False
+            layername = self.dlg.mMapLayerComboBox.currentText()
+            for name, selectlayer in QgsProject.instance().mapLayers().items():
+                if selectlayer.name() == layername:
+                    if (selectlayer.isEditable()):
+                        selectlayer.commitChanges()
+                        self.saved = True
+                        self.countchange = 0
+        else :
+            self.saved = False
+            layername = self.dlg.mMapLayerComboBox.currentText()
+            for name, selectlayer in QgsProject.instance().mapLayers().items():
+                if selectlayer.name() == layername:
+                    if (selectlayer.isEditable()):
+                        selectlayer.commitChanges()
+                        self.saved = True
+                        self.countchange = 0
+        self.iface.messageBar().pushMessage(u'GéoMCE',u'Les nouvelles valeurs ont été enregistrées dans la couche '+layername, level=Qgis.Success, duration=5)
         return self.saved
-        
+
  #on deselectionne les entites modifies 
- #   def clearselection(self):
- #       clearlist = []
-  #      for name, selectlayer in QgsProject.instance().mapLayers().items():
-   #         if selectlayer.type() == QgsMapLayer.VectorLayer:
-    #            selectlayer.setSelectedFeatures(clearlist)
+#   def clearselection(self):
+#       clearlist = []
+#       for name, selectlayer in QgsProject.instance().mapLayers().items():
+#           if selectlayer.type() == QgsMapLayer.VectorLayer:
+#                selectlayer.setSelectedFeatures(clearlist)
 
  #permet d afficher la table attributaire de la couche qui a ete traiter
     def show_table(self):
-        #shows attribute table of chosen layer 
-        table_layer=self.dlg.mMapLayerComboBox.currentText()
-        for name, selectlayer in QgsProject.instance().mapLayers().items():
-            if selectlayer.name() == table_layer:
-                show_layer_t = selectlayer
-                self.iface.showAttributeTable(show_layer_t)
+        if self.dlg.tampon.isChecked():
+            self.iface.showAttributeTable(iface.activeLayer())
+        else :
+            table_layer=self.dlg.mMapLayerComboBox.currentText()
+            for name, selectlayer in QgsProject.instance().mapLayers().items():
+                if selectlayer.name() == table_layer:
+                    show_layer_t = selectlayer
+                    self.iface.showAttributeTable(show_layer_t) 
 
+    def show_table_2(self):
+        self.iface.showAttributeTable(iface.activeLayer())
+
+# permet de zipper les fichiers de lacouche de traitement    
+    def archive (self, path):    
+        if self.dlg.tampon.isChecked():
+            chemin_couche = self.iface.activeLayer()
+            source_chemin_couche = chemin_couche.dataProvider().dataSourceUri() 
+            chemin_zip = os.path.dirname(source_chemin_couche)  
+            nom_couche = self.iface.activeLayer().name()
+        else:
+            chemin_couche = self.dlg.mMapLayerComboBox.currentLayer()
+            source_chemin_couche = chemin_couche.dataProvider().dataSourceUri() 
+            chemin_zip = os.path.dirname(source_chemin_couche)  
+            nom_couche= self.dlg.mMapLayerComboBox.currentText()
+        nom_zip = self.get_new_nom()
+        nom_zip_complet = chemin_zip + "/" + nom_zip +'.zip'
+        nom_ok = ''.join((c for c in unicodedata.normalize('NFD', nom_zip_complet) if unicodedata.category(c) != 'Mn'))
+        archive = zipfile.ZipFile(nom_ok, mode='w')
+        f_shp = chemin_zip + "/" + nom_couche + '.shp'
+        f_shx = chemin_zip + "/" + nom_couche + '.shx'
+        f_cpg = chemin_zip + "/" +  nom_couche + '.cpg'
+        f_dbf = chemin_zip + "/" +  nom_couche + '.dbf'
+        f_prj = chemin_zip + "/" +  nom_couche + '.prj'
+        archive.write(f_shp,basename(f_shp))
+        archive.write(f_shx,basename(f_shx))
+        archive.write(f_cpg,basename(f_cpg))
+        archive.write(f_dbf,basename(f_dbf))
+        archive.write(f_prj,basename(f_prj))
+        archive.close()
+        self.iface.messageBar().pushMessage(u'GéoMCE',u'Les fichiers ' + f_shp + ', '+f_cpg+ ', '+f_dbf+ ', '+f_prj+ ' et '+ f_shx +' ont été ajoutés dans l\'archive ' + nom_ok + u' dans le dossier suivant : ' + chemin_zip, level=Qgis.Success, duration=3) 
+
+    def archive_2 (self, path):    
+        chemin_couche = self.dlg.mQgsFileWidget.lineEdit().text()
+        chemin_zip = os.path.dirname(chemin_couche)  
+        nom_couche= self.iface.activeLayer().name()
+        nom_zip_complet = chemin_zip + "/" + nom_couche +'.zip'
+        #nom_ok = ''.join((c for c in unicodedata.normalize('NFD', nom_zip_complet) if unicodedata.category(c) != 'Mn'))
+        archive = zipfile.ZipFile(nom_zip_complet, mode='w')
+        f_shp = chemin_couche + '.shp'
+        f_shx = chemin_couche + '.shx'
+        f_cpg = chemin_couche + '.cpg'
+        f_dbf = chemin_couche + '.dbf'
+        f_prj = chemin_couche + '.prj'
+        archive.write(f_shp,basename(f_shp))
+        archive.write(f_shx,basename(f_shx))
+        archive.write(f_cpg,basename(f_cpg))
+        archive.write(f_dbf,basename(f_dbf))
+        archive.write(f_prj,basename(f_prj))
+        archive.close()
+        self.iface.messageBar().pushMessage(u'GéoMCE',u'Les fichiers ' + f_shp + ', '+f_cpg+ ', '+f_dbf+ ', '+f_prj+ ' et '+ f_shx +' ont été ajoutés dans l\'archive ' + nom_couche + u' dans le dossier suivant : ' + chemin_zip, level=Qgis.Success, duration=3)
+       
+#ouvre le dossier contenant les fichiers
+    def dossier(self):
+        if self.dlg.tampon.isChecked(): 
+            layername = self.iface.activeLayer()
+        else:    
+            layername = self.dlg.mMapLayerComboBox.currentLayer()
+        doudai = layername.dataProvider().dataSourceUri() 
+        path = os.path.dirname(doudai)
+        os.startfile(path)    
+        
+    def dossier_2(self):
+        path = self.dlg.mQgsFileWidget.lineEdit().text()
+        path_fusion = os.path.dirname(path)
+        os.startfile(path_fusion)
+        
  #on ferme le plugin
     def exit(self):
-        #self.clearselection()
         #on nettoie et deconnecte
         self.dlg.nom.clear()
         self.dlg.reject()
@@ -595,7 +930,41 @@ class GeoMCE(object):
         self.dlg.faunes.clear()
         self.dlg.flores.clear()
         self.dlg.echeances.clear()
-        #self.dlg.communes.clear()
+
+    def listWidget(self):
+        self.dlg.mComboBox.clear()
+        layers = [layer for layer in QgsProject.instance().mapLayers().values()]
+        for layer in layers:
+            layerType = layer.type()
+            if layerType == QgsMapLayer.VectorLayer:
+                self.dlg.mComboBox.addItem(layer.name())
+
+    def fusion(self):
+        layers = self.dlg.mComboBox.checkedItems()
+        p = self.dlg.mQgsFileWidget.filePath()
+        path = self.dlg.mQgsFileWidget.lineEdit().text()
+        path_fusion = os.path.dirname(path)
+        shape = path +'.shp'
+        gpkg = path+'.gpkg'
+        nom_fusion = [layers for layers in self.dlg.mComboBox.checkedItems()]
+        merge = processing.run("qgis:mergevectorlayers", 
+                             {'LAYERS':nom_fusion,
+                             'CRS':None,
+                             'OUTPUT':'TEMPORARY_OUTPUT'})
+        vlayer = merge['OUTPUT']
+        processing.run("qgis:refactorfields",{'INPUT':vlayer, 'FIELDS_MAPPING' : [{'expression': '"id"', 'length': 10, 'name': 'id', 'precision': 0, 'type': 2}, {'expression': '"nom"', 'length': 100, 'name': 'nom', 'precision': 0, 'type': 10}, {'expression': '"categorie"', 'length': 7, 'name': 'categorie', 'precision': 0, 'type': 10}, {'expression': '"cible"', 'length': 100, 'name': 'cible', 'precision': 0, 'type': 10}, {'expression': '"descriptio"', 'length': 254, 'name': 'descriptio', 'precision': 0, 'type': 10}, {'expression': '"decision"', 'length': 254, 'name': 'decision', 'precision': 0, 'type': 10}, {'expression': '"refei"', 'length': 254, 'name': 'refei', 'precision': 0, 'type': 10}, {'expression': '"duree"', 'length': 25, 'name': 'duree', 'precision': 0, 'type': 10}, {'expression': '"unite"', 'length': 25, 'name': 'unite', 'precision': 0, 'type': 10}, {'expression': '"modalite"', 'length': 50, 'name': 'modalite', 'precision': 0, 'type': 10}, {'expression': '"cout"', 'length': 10, 'name': 'cout', 'precision': 0, 'type': 10}, {'expression': '"montant_pr"', 'length': 10, 'name': 'montant_pr', 'precision': 0, 'type': 10}, {'expression': '"faunes"', 'length': 254, 'name': 'faunes', 'precision': 0, 'type': 10}, {'expression': '"flores"', 'length': 254, 'name': 'flores', 'precision': 0, 'type': 10}, {'expression': '"echeances"', 'length': 254, 'name': 'echeances', 'precision': 0, 'type': 10}, {'expression': '"communes"', 'length': 220, 'name': 'communes', 'precision': 0, 'type': 10}, {'expression': '"layer"', 'length': 100, 'name': 'layer', 'precision': 0, 'type': 10}, {'expression': '"path"', 'length': 200, 'name': 'path', 'precision': 0, 'type': 10}], 'OUTPUT' :p})
+        if self.dlg.checkBox.isChecked():
+            dede = iface.addVectorLayer(shape, "", "ogr")
+            dede.startEditing()
+            dede.dataProvider().deleteAttributes([16,17])
+            dede.commitChanges()
+        else :
+            popo = QgsVectorLayer(gpkg, "Fusion", "ogr")         
+            zaza = QgsVectorFileWriter.writeAsVectorFormat(popo,path,'UTF-8',vlayer.crs(), "ESRI Shapefile")
+            zaza = iface.addVectorLayer(shape, "", "ogr")
+            zaza.startEditing()
+            zaza.dataProvider().deleteAttributes([0,17,18])
+            zaza.commitChanges()
 
   #ouvre la boite de dialogue Aide/A propos
     def doabout(self):
@@ -648,5 +1017,3 @@ class GeoMCE(object):
             self.dlg.faunes.addItems(faunes)
             vlayer = self.dlg.mMapLayerComboBox_2.currentLayer()                           
             self.dlg.mFieldComboBox.setLayer(vlayer)                                     
-            self.dlg.Exit.clicked.connect(self.exit)
-            self.dlg.Exit_2.clicked.connect(self.exit)

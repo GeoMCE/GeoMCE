@@ -10,7 +10,7 @@
 name=GeoMCE
 qgisMinimumVersion=3.0
 description=Mise en compatibilité des fichiers shape pour les importer dans l'outil GéoMCE
-version=1.1
+version=1.3
 author=DREAL Auvergne-Rhône-Alpes
 email=cedric.claude@developpement-durable.gouv.fr
 
@@ -25,6 +25,17 @@ repository=https://github.com/GeoMCE/GeoMCE/tree/QGIS-3.x
 
 # Uncomment the following line and add your changelog:
 changelog=
+  v1.3 : - depuis le menu configuration, il est possible de paramétrer la transformation des vecteurs "point" et "ligne" en polygone (tampon)
+         - possibilité de fusionner plusieurs couches de même géométries
+         - possibilité de zipper la couche fusionnée directement depuis l'extension
+         - possibilité d'ouvrir le dossier contenant la couche fusionnée directement depuis l'extension
+         - corrections de bugs et refonte graphique des onglets "fonctionnalités supplémentaires" et "configuration"
+  V1.2 : - ajout d'un panneau configuration. Sauvegarde du chemin de la couche COMMUNE.shp et de la prise en compte de la modification de sortie des couches vecteurs en shape
+         - toutes les couches ADMIN-EXPRESS sont compatibles quelque soit le millésime et la projetcion choisie
+         - possibilité de zipper la mesure directement depuis l'extension
+         - possibilité d'ouvrir le dossier contenant la mesure directement depuis l'extension
+         - mineures corrections esthétiques
+  V1.1.1 : gestion des accents dans les zones de textes. Seront remplacés automatiquement par leur équivalants sans accents
   V1.1 : - selection multiple possible pour les champs "cible", "faunes" et "flores"
          - contournement du problème relatif au traitement qui ne gère en sortie que du .gpkg
          - mise à jour du champ "commune" au dernier millésime de l'IGN
