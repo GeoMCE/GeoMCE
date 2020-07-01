@@ -8,6 +8,7 @@
 <li>Plus de renseignement sur la <a href="https://www.ecologique-solidaire.gouv.fr/biodiversite-nouvelle-version-geomce">g&eacute;olocalisation des mesures de compensations et G&eacute;oMCE</a></li>
 <li>Les mesures de compensations visibles sur <a href="https://www.geoportail.gouv.fr/donnees/mesures-compensatoires-des-atteintes-a-la-biodiversite">G&eacute;oportail</a></li>
 <li>Les mesures de compensations t&eacute;l&eacute;chargeables via <a href="https://www.cdata.cerema.fr/geonetwork/srv/fre/catalog.search#/metadata/48ac3589-499d-4f42-9716-73b4eefef35c">CeremaData</a></li>
+<li>La <a href="https://www.ecologique-solidaire.gouv.fr/eviter-reduire-et-compenser-impacts-sur-lenvironnement">s&eacute;quence ERC</a> et le <a title="Ouverture dans une nouvelle fen&ecirc;tre" href="https://www.ecologique-solidaire.gouv.fr/sites/default/files/Th%C3%A9ma%20-%20Guide%20d%E2%80%99aide%20%C3%A0%20la%20d%C3%A9finition%20des%20mesures%20ERC.pdf" target="_blank" rel="external nofollow noopener" data-action="download" data-type="publication" data-label="&Eacute;valuation environnementale : guide d&rsquo;aide &agrave; la d&eacute;finition des mesures ERC_pdf">guide d&rsquo;aide &agrave; la d&eacute;finition des mesures ERC</a></li>
 </ul>
 <h2 style="color: #2e6c80;">Utilisation de l'extension :</h2>
 <p><span style="color: #000000;">L'extension s'articule autour de 3 onglets :</span></p>
