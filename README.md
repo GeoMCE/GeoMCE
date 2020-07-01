@@ -18,7 +18,7 @@
 <li><span style="color: #000000;">Parm&egrave;tres de l'extension</span></li>
 </ol>
 <h2><span style="color: #000000;">1/ Mise en forme des vecteurs existants</span></h2>
-<p><span style="color: #000000;">Module principal de l'extension. Il permet de mettre en conformit&eacute; la table attributaire d'un fichier shape avec le standart attendu pour un import dans G&eacute;OMCE.</span></p>
+<p><span style="color: #000000;">Module principal de l'extension. Il permet de mettre en conformit&eacute; la table attributaire d'un fichier shape avec le standard attendu pour un import dans G&eacute;OMCE.</span></p>
 <p><img src="https://raw.githubusercontent.com/GeoMCE/ressources/master/onglet_principal.png" alt="" width="866" height="727" /></p>
 <h3><span style="color: #000000;">1.1/ Couche &agrave; traiter</span></h3>
 <p><span style="color: #000000;"><img src="https://raw.githubusercontent.com/GeoMCE/ressources/master/onglet_principal_1.png" width="866" height="370" /></span></p>
