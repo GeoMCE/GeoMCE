@@ -193,6 +193,8 @@ class GeoMCE(object):
             parent=self.iface.mainWindow())
         valcom = self.get_communes()
         self.dlg.communes.setText(valcom)
+        valtamponpoint = self.distance_tampon_point_read()
+        valtamponligne = self.distance_tampon_ligne_read()
         self.checkBox_read()
         self.tampon_read()
         self.dlg.fusion.clicked.connect(self.fusion)
@@ -227,6 +229,7 @@ class GeoMCE(object):
         self.dlg.zipbutton_2.clicked.connect(self.archive_2)
         self.dlg.dossier.clicked.connect(self.dossier)
         self.dlg.dossier_2.clicked.connect(self.dossier_2)
+        self.dlg.sauvegarder_tampon.clicked.connect(self.sauv_dist_tampon)
 
     def checkBox_write(self):
         s = QSettings()
@@ -235,7 +238,7 @@ class GeoMCE(object):
             
     def checkBox_read(self):
         s = QSettings()
-        self.dlg.checkBox.setChecked(s.value('/GeoMCE-Sortie_shp', True, type=bool))
+        self.dlg.checkBox.setChecked(s.value('/GeoMCE-Sortie_shp', False, type=bool))
 
     def tampon_write(self):
         s = QSettings()
@@ -244,7 +247,15 @@ class GeoMCE(object):
 
     def tampon_read(self):
         s = QSettings()
-        self.dlg.tampon.setChecked(s.value('/GeoMCE-tampon', True, type=bool))
+        self.dlg.tampon.setChecked(s.value('/GeoMCE-tampon', False, type=bool))
+		
+    def distance_tampon_point_read(self):
+        s = QSettings()
+        self.dlg.distance_tampon_point.setValue(s.value('/GeoMCE-distance_tampon_point', True, type=int))
+
+    def distance_tampon_ligne_read(self):
+        s = QSettings()
+        self.dlg.distance_tampon_ligne.setValue(s.value('/GeoMCE-distance_tampon_ligne', True, type=int))
         
 #fonctions personnalisees-------------------------------------------------------------------------------------------------------------
 #fonctions generale-------------------------------------------------------------------------------------------------------------------
@@ -466,6 +477,21 @@ class GeoMCE(object):
     def get_echeances(self):
         new_val_echeances = ''.join((c for c in unicodedata.normalize('NFD', self.dlg.echeances.text()) if unicodedata.category(c) != 'Mn'))
         return new_val_echeances
+    def distance_tampon_point(self):
+        s= QSettings()
+        new_val_distance_point =  self.dlg.distance_tampon_point.text()
+        s.setValue('/GeoMCE-distance_tampon_point', new_val_distance_point)  
+        return new_val_distance_point		
+    def distance_tampon_ligne(self):
+        s= QSettings()
+        new_val_distance_ligne = self.dlg.distance_tampon_ligne.text()
+        s.setValue('/GeoMCE-distance_tampon_ligne', new_val_distance_ligne)  
+        return new_val_distance_ligne
+
+    def sauv_dist_tampon(self):
+        self.distance_tampon_ligne()
+        self.distance_tampon_point()	
+        self.iface.messageBar().pushMessage(u'GéoMCE',u'Paramètres sauvegardés', level=Qgis.Info, duration=3)
         
  #on va chercher le fichier commune.shp pour recuperer le code insee et on l enregistre dans le fichier de configuration de QGIS
     def select_output_file_store(self, text):
@@ -528,9 +554,74 @@ class GeoMCE(object):
         path = chemin_tampon+"/"+nom_couche+"_TAMPON"
         shape= path+'.shp'
         gpkg= path+'.gpkg'
+        distance_point = self.distance_tampon_point()
+        distance_ligne = self.distance_tampon_ligne()
         if self.dlg.tampon.isChecked() :
-            if kiki.geometryType()==QgsWkbTypes.PointGeometry or kiki.geometryType()== QgsWkbTypes.LineGeometry:
-                tampon = processing.run('qgis:buffer',{'INPUT': kiki,'DISTANCE': 5,'SEGMENTS': 5,'DISSOLVE': True,'END_CAP_STYLE': 0,'JOIN_STYLE': 0,'MITER_LIMIT': 2,'OUTPUT': path})
+            if kiki.geometryType()==QgsWkbTypes.PointGeometry:
+                tampon = processing.run('qgis:buffer',{'INPUT': kiki,'DISTANCE': distance_point,'SEGMENTS': 5,'DISSOLVE': True,'END_CAP_STYLE': 0,'JOIN_STYLE': 0,'MITER_LIMIT': 2,'OUTPUT': path})
+                #layer = tampon['OUTPUT']
+                if self.dlg.checkBox.isChecked():
+                    layer = iface.addVectorLayer(shape, "", "ogr")
+                    layer.startEditing()
+                    prov = layer.dataProvider()
+                    field_names = [field.name() for field in prov.fields()]
+                    for count, f in enumerate(field_names):
+                        jean = range(count, count +1 )
+                        paul = range(count)
+                        jeanpaul = list(range(count, count +1 )) + list (range(count))
+                    layer.dataProvider().deleteAttributes(jeanpaul)
+                    #... et creation des nouveaux champs compatibles avec un import dans GeoMCE 
+                    layer.dataProvider().addAttributes(
+                                [QgsField("id", QVariant.Int,'Integer64',10,0),
+                                QgsField("nom", QVariant.String,'String',100,0),
+                                QgsField("categorie", QVariant.String,'String',7,0),
+                                QgsField("cible", QVariant.String,'String',100,0),
+                                QgsField("descriptio", QVariant.String,'String',254,0),
+                                QgsField("decision", QVariant.String,'String',254,0),
+                                QgsField("refei", QVariant.String,'String',254,0),
+                                QgsField("duree", QVariant.String,'String',25,0),
+                                QgsField("unite", QVariant.String,'String',25,0),
+                                QgsField("modalite", QVariant.String,'String',50,0),
+                                QgsField("cout",QVariant.Int,'Integer64', 10,0),
+                                QgsField("montant_pr",QVariant.Int,'Integer64', 10,0),
+                                QgsField("faunes",QVariant.String, 'String', 254,0),
+                                QgsField("flores",QVariant.String, 'String', 254,0),
+                                QgsField("echeances",QVariant.String, 'String', 254,0),
+                                QgsField("communes", QVariant.String,'String',220,0)])         
+                    layer.updateFields()
+                else :
+                    dede = QgsVectorLayer(gpkg, "", "ogr")         
+                    zaza = QgsVectorFileWriter.writeAsVectorFormat(dede,path,'UTF-8',dede.crs(), "ESRI Shapefile")
+                    layer = iface.addVectorLayer(shape, "", "ogr")
+                    layer.startEditing()
+                    prov = layer.dataProvider()
+                    field_names = [field.name() for field in prov.fields()]
+                    for count, f in enumerate(field_names):
+                        jean = range(count, count +1 )
+                        paul = range(count)
+                        jeanpaul = list(range(count, count +1 )) + list (range(count))
+                    layer.dataProvider().deleteAttributes(jeanpaul)
+                    #... et creation des nouveaux champs compatibles avec un import dans GeoMCE 
+                    layer.dataProvider().addAttributes(
+                                [QgsField("id", QVariant.Int,'Integer64',10,0),
+                                QgsField("nom", QVariant.String,'String',100,0),
+                                QgsField("categorie", QVariant.String,'String',7,0),
+                                QgsField("cible", QVariant.String,'String',100,0),
+                                QgsField("descriptio", QVariant.String,'String',254,0),
+                                QgsField("decision", QVariant.String,'String',254,0),
+                                QgsField("refei", QVariant.String,'String',254,0),
+                                QgsField("duree", QVariant.String,'String',25,0),
+                                QgsField("unite", QVariant.String,'String',25,0),
+                                QgsField("modalite", QVariant.String,'String',50,0),
+                                QgsField("cout",QVariant.Int,'Integer64', 10,0),
+                                QgsField("montant_pr",QVariant.Int,'Integer64', 10,0),
+                                QgsField("faunes",QVariant.String, 'String', 254,0),
+                                QgsField("flores",QVariant.String, 'String', 254,0),
+                                QgsField("echeances",QVariant.String, 'String', 254,0),
+                                QgsField("communes", QVariant.String,'String',220,0)])         
+                    layer.updateFields()
+            elif kiki.geometryType()== QgsWkbTypes.LineGeometry:
+                tampon = processing.run('qgis:buffer',{'INPUT': kiki,'DISTANCE': distance_ligne,'SEGMENTS': 5,'DISSOLVE': True,'END_CAP_STYLE': 0,'JOIN_STYLE': 0,'MITER_LIMIT': 2,'OUTPUT': path})
                 #layer = tampon['OUTPUT']
                 if self.dlg.checkBox.isChecked():
                     layer = iface.addVectorLayer(shape, "", "ogr")
