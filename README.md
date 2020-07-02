@@ -21,9 +21,9 @@
 <p><span style="color: #000000;">Puis cliquer sur <strong>Installer le plugin</strong>.</span></p>
 <p><span style="color: #000000;">5/ Une fois l'extension install&eacute;e, elle est accessible depuis le menu <strong>Vecteur</strong></span></p>
 <p><span style="color: #000000;"><strong><img src="https://raw.githubusercontent.com/GeoMCE/ressources/master/instal_4.png" alt="" width="866" height="187" /></strong></span></p>
-<p><span style="color: #000000;">6/ Vous pouvez cr&eacute;er un lien directement depuisla barre d'outil avec un clic droit puis en cochant GeoMCE. L'icone sera alors disponible depuis l'interface principal</span></p>
+<p><span style="color: #000000;">6/ Vous pouvez cr&eacute;er un lien directement dans la barre d'outil avec un clic droit puis en cochant GeoMCE. L'icone sera alors disponible depuis l'interface principal</span></p>
 <p><span style="color: #000000;"><img src="https://raw.githubusercontent.com/GeoMCE/ressources/master/instal_5a.png" alt="" width="866" height="492" /></span></p>
-<p><img src="https://github.com/GeoMCE/ressources/blob/master/instal_6.png" alt="" /><img src="https://raw.githubusercontent.com/GeoMCE/ressources/master/instal_6.png" alt="" width="284" height="110" /></p>
+<p><img src="https://raw.githubusercontent.com/GeoMCE/ressources/master/instal_6.png" alt="" width="284" height="110" /></p>
 <h2 style="color: #2e6c80;">Utilisation de l'extension :</h2>
 <p><span style="color: #000000;">L'extension s'articule autour de 3 onglets :</span></p>
 <ol>
