@@ -14,7 +14,7 @@
 <p>1/ T&eacute;l&eacute;charger la derni&egrave;re version (GeoMCE.zip) sur <a href="https://github.com/GeoMCE/GeoMCE/releases">Github</a> sur votre ordinateur</p>
 <p>2/ Dans QGIS, Extension --&gt; Installer/G&eacute;rer des extensions&nbsp;</p>
 <p><img src="https://raw.githubusercontent.com/GeoMCE/ressources/master/instal_1.png" alt="" width="866" height="154" /></p>
-<p style="color: #2e6c80;"><span style="color: #000000;">3/ Se rendre ensuite dans param&egrave;tres, puis cocher <strong>Afficher les extensions exp&eacute;rimenatles</strong></span></p>
+<p style="color: #2e6c80;"><span style="color: #000000;">3/ Se rendre ensuite dans param&egrave;tres, puis cocher <strong>Afficher les extensions exp&eacute;rimentales</strong></span></p>
 <p style="color: #2e6c80;"><span style="color: #000000;"><img src="https://raw.githubusercontent.com/GeoMCE/ressources/master/instal_2.png" alt="" width="866" height="243" /></span></p>
 <p style="color: #2e6c80;"><span style="color: #000000;">4/ Dans l'onglet <strong>Installer depuis un ZIP</strong>, chercher l'extension t&eacute;l&eacute;charg&eacute;e&nbsp;</span></p>
 <p style="color: #2e6c80;"><span style="color: #000000;"><img src="https://raw.githubusercontent.com/GeoMCE/ressources/master/instal_3.png" alt="" width="866" height="205" /></span></p>
@@ -117,7 +117,7 @@
 <p>V1.1 :</p>
 <ul>
 <li>Selection multiple possible pour les champs "cible", "faunes" et "flores"</li>
-<li>Les .gpkg sont automatiquement en .shp</li>
+<li>Les .gpkg sont automatiquement enregistrés en .shp</li>
 <li>Mise &agrave; jour du champ "commune" au dernier mill&eacute;sime de l'IGN</li>
 </ul>
 <p>V1.0 :</p>
