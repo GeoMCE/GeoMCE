@@ -35,9 +35,17 @@
 <p><span style="color: #000000;">Module principal de l'extension. Il permet de mettre en conformit&eacute; la table attributaire d'un fichier shape avec le standard attendu pour un import dans G&eacute;OMCE.</span></p>
 <p><img src="https://raw.githubusercontent.com/GeoMCE/ressources/master/onglet_principal.png" alt="" width="866" height="727" /></p>
 <h3><span style="color: #000000;">1.1/ Couche &agrave; traiter</span></h3>
-<p><span style="color: #000000;"><img src="https://raw.githubusercontent.com/GeoMCE/ressources/master/onglet_principal_1.png" width="866" height="370" /></span></p>
+<p><span style="color: #000000;"><img src="https://raw.githubusercontent.com/GeoMCE/ressources/master/onglet_principal_1.png" width="866" height="89" /></span></p>
 <p><span style="color: #000000;"><strong>Couche &agrave; traiter</strong> : Vecteur (shape) qui va &ecirc;tre modifier afin d'&ecirc;tre compatible avec G&eacute;oMCE.</span></p>
+<p><span style="color: #000000;"><img src="https://raw.githubusercontent.com/GeoMCE/ressources/master/bon.png" alt="" width="25" height="25" />&nbsp;: La couche &agrave; traiter est compatible avec un import dans G&eacute;oMCE</span></p>
+<p><span style="color: #000000;"><img src="https://raw.githubusercontent.com/GeoMCE/ressources/master/pasbon.png" alt="" width="25" height="25" />&nbsp;: La couche &agrave; traiter n'est pas compatible avec un import dans G&eacute;oMCE. Avant toute manipulation, elle doit &ecirc;tre convertie en l'un des types suivants :</span></p>
+<ul>
+<li><span style="color: #000000;"> Point</span></li>
+<li><span style="color: #000000;">(Multi)LineString</span></li>
+<li><span style="color: #000000;">(Multi)Polygon</span></li>
+</ul>
 <p><span style="color: #000000;"><strong>Cr&eacute;ation des champs compatibles avec l'outil G&eacute;oMCE :</strong>&nbsp;La table attributaire est effac&eacute;e et remplac&eacute;e par une nouvellle table. Cette op&eacute;ration est <strong>irr&eacute;versible</strong>. Afin de ne pas perdre vos donn&eacute;es, il est pr&eacute;f&eacute;rable de travailler avec des copies de vos shapes.</span></p>
+<p>&nbsp;</p>
 <h3>1.2/ Formulaire de saisie</h3>
 <p>Ensemble des donn&eacute;es qui seront &eacute;crites dans la nouvelle table attributaire.</p>
 <p><span style="color: #000000;"><img src="https://raw.githubusercontent.com/GeoMCE/ressources/master/onglet_principal_2.png" alt="" width="866" height="459" /></span><span style="color: #ff0000;"><span style="color: #000000;">Les champs marqu&eacute;s d'un</span> *&nbsp;<span style="color: #000000;">sont <strong>obligatoires</strong>. Les autres champs peuvent &ecirc;tre laiss&eacute;s vides.</span></span></p>
@@ -45,7 +53,7 @@
 <p><span style="color: #ff0000;"><span style="color: #000000;"><span style="color: #0000ff;"><span style="color: #000000;">L'ensemble des champs textes sont limit&eacute;s &agrave; <strong>254 caract&egrave;res max</strong> (limite due au format shape).</span></span></span></span></p>
 <p><span style="color: #ff0000;"><span style="color: #000000;"><span style="color: #0000ff;"><span style="color: #000000;">La saisie de caract&egrave;res sp&eacute;ciaux (&eacute;, &agrave;, &ccedil;,...) est possible toutefois ils seront convertis dans le fichier shape (e, a, c,...).</span></span></span></span></p>
 <h3><span style="color: #ff0000;"><span style="color: #000000;"><span style="color: #0000ff;"><span style="color: #000000;">1.3/ Applications des modifications&nbsp;</span></span></span></span></h3>
-<p><span style="color: #ff0000;"><span style="color: #000000;"><span style="color: #0000ff;"><span style="color: #000000;"><img src="https://raw.githubusercontent.com/GeoMCE/ressources/master/onglet_principal_3.png" alt="" width="866" height="154" /></span></span></span></span></p>
+<p><span style="color: #ff0000;"><span style="color: #000000;"><span style="color: #0000ff;"><span style="color: #000000;"><img src="https://raw.githubusercontent.com/GeoMCE/ressources/master/onglet_principal_3.png" width="866" height="110" /></span></span></span></span></p>
 <p><strong><span style="color: #000000;">Ecrire les nouvelles valeurs</span></strong><span style="color: #000000;"> : Les valeurs du formulaires sont &eacute;crites dans la nouvelle table attributaire. Les modifications sont encore possible.</span></p>
 <p><span style="color: #000000;"><strong>Sauvegarder les modifications</strong> : Enregistre les valeurs &eacute;crites. Si une modification d'un ou plusieurs champs est n&eacute;cessaire, il convient de reprendre au point 1.1.</span></p>
 <p><span style="color: #000000;"><strong>Afficher la nouvelle table attributaire</strong> : Affiche la table attributaire finale.Permet de v&eacute;rifier si les valeurs sont correctement saisies.</span></p>
@@ -89,9 +97,13 @@
 <p>L'extension prend en compte ce comportement par d&eacute;faut de QGIS et transforme les .gpkg g&eacute;n&eacute;r&eacute; (split vector layer, merge, buffer) en .shp. Toutefois, si l'utilisateur configure par d&eacute;faut une sortie en shape, il convient de cocher cette case pour que l'extenions fonctionne en cons&eacute;quence.</p>
 <p>Ce param&egrave;tre est exp&eacute;riental et peut ne pas fonctionner correctement. <strong>Il est conseill&eacute; de ne pas changer le comportement natif de QGIS concernant les traitements.</strong></p>
 <p><strong>4/ Changelog&nbsp;</strong></p>
+<p>v1.4.1 :</p>
+<ul>
+<li>D&eacute;tection du type de g&eacute;om&eacute;trie de la couche &agrave; traiter et information de l'utilisateur sur sa compatibilit&eacute; avec un import dans G&eacute;oMCE</li>
+</ul>
 <p>v1.4 :</p>
 <ul>
-<li>Refonte et mise &agrave; jour du module d'aide</li>
+<li>Refonte et mise &agrave; jour du module d'aide.</li>
 <li>Possibilit&eacute; de param&eacute;trer la distance des tampons en fonction du type de g&eacute;om&eacute;trie</li>
 </ul>
 <p>v1.3 :</p>
@@ -117,7 +129,7 @@
 <p>V1.1 :</p>
 <ul>
 <li>Selection multiple possible pour les champs "cible", "faunes" et "flores"</li>
-<li>Les .gpkg sont automatiquement enregistrés en .shp</li>
+<li>Les .gpkg sont automatiquement en .shp</li>
 <li>Mise &agrave; jour du champ "commune" au dernier mill&eacute;sime de l'IGN</li>
 </ul>
 <p>V1.0 :</p>
