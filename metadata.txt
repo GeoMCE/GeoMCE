@@ -10,7 +10,7 @@
 name=GeoMCE
 qgisMinimumVersion=3.0
 description=Mise en compatibilité des fichiers shape pour les importer dans l'outil GéoMCE
-version=1.4
+version=1.4.1
 author=DREAL Auvergne-Rhône-Alpes
 email=cedric.claude@developpement-durable.gouv.fr
 
@@ -25,6 +25,8 @@ repository=https://github.com/GeoMCE/GeoMCE/tree/QGIS-3.x
 
 # Uncomment the following line and add your changelog:
 changelog=
+  v1.4.1 : - Détection du type de géométrie de la couche à traiter et information de l'utilisateur sur sa compatibilité avec un import dans GéoMCE
+           - Ajout d'une fonction permettant d'effacer le formulaire sans avoir à relancer l'extension
   v1.4 : - Refonte et mise à jour du module d'aide
          - Possibilité de paramétrer la distance des tampons en fonction du type de géométrie
   v1.3 : - depuis le menu configuration, il est possible de paramétrer la transformation des vecteurs "point" et "ligne" en polygone (tampon)

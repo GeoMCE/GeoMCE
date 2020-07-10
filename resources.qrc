@@ -1,5 +1,8 @@
 <RCC>
   <qresource prefix="/plugins/GeoMCE">
+    <file>Warning.png</file>
+    <file>bon.png</file>
+    <file>pasbon.png</file>
     <file>geomce.png</file>
     <file>icon.png</file>
   </qresource>

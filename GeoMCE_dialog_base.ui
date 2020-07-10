@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>1105</width>
-    <height>893</height>
+    <width>1104</width>
+    <height>890</height>
    </rect>
   </property>
   <property name="sizePolicy">
@@ -28,8 +28,8 @@
   <property name="modal">
    <bool>false</bool>
   </property>
-  <layout class="QVBoxLayout" name="verticalLayout">
-   <item>
+  <layout class="QGridLayout" name="gridLayout">
+   <item row="0" column="0">
     <widget class="QScrollArea" name="scrollArea">
      <property name="widgetResizable">
       <bool>true</bool>
@@ -39,8 +39,8 @@
        <rect>
         <x>0</x>
         <y>0</y>
-        <width>1085</width>
-        <height>873</height>
+        <width>1084</width>
+        <height>870</height>
        </rect>
       </property>
       <widget class="QPushButton" name="about">
@@ -85,8 +85,8 @@ QPushButton#about:pressed {
         <rect>
          <x>0</x>
          <y>130</y>
-         <width>1081</width>
-         <height>781</height>
+         <width>1091</width>
+         <height>741</height>
         </rect>
        </property>
        <property name="sizePolicy">
@@ -153,7 +153,7 @@ border-radius: 5px;</string>
           <rect>
            <x>10</x>
            <y>650</y>
-           <width>200</width>
+           <width>220</width>
            <height>41</height>
           </rect>
          </property>
@@ -200,10 +200,10 @@ table attributaire</string>
         <widget class="QPushButton" name="save">
          <property name="geometry">
           <rect>
-           <x>470</x>
-           <y>590</y>
-           <width>450</width>
-           <height>41</height>
+           <x>370</x>
+           <y>580</y>
+           <width>350</width>
+           <height>51</height>
           </rect>
          </property>
          <property name="font">
@@ -540,7 +540,7 @@ border-radius: 5px;</string>
          <property name="geometry">
           <rect>
            <x>940</x>
-           <y>590</y>
+           <y>650</y>
            <width>121</width>
            <height>41</height>
           </rect>
@@ -575,7 +575,7 @@ QPushButton#Exit:pressed {
           <rect>
            <x>180</x>
            <y>26</y>
-           <width>891</width>
+           <width>861</width>
            <height>25</height>
           </rect>
          </property>
@@ -712,9 +712,9 @@ border-radius: 5px;</string>
          <property name="geometry">
           <rect>
            <x>10</x>
-           <y>590</y>
-           <width>450</width>
-           <height>41</height>
+           <y>580</y>
+           <width>350</width>
+           <height>51</height>
           </rect>
          </property>
          <property name="sizePolicy">
@@ -890,9 +890,9 @@ border-radius: 5px;</string>
         <widget class="QLabel" name="label_17">
          <property name="geometry">
           <rect>
-           <x>710</x>
-           <y>650</y>
-           <width>331</width>
+           <x>780</x>
+           <y>580</y>
+           <width>281</width>
            <height>51</height>
           </rect>
          </property>
@@ -1112,9 +1112,9 @@ border-radius: 5px;</string>
         <widget class="QPushButton" name="zipbutton">
          <property name="geometry">
           <rect>
-           <x>230</x>
+           <x>240</x>
            <y>650</y>
-           <width>200</width>
+           <width>220</width>
            <height>41</height>
           </rect>
          </property>
@@ -1147,9 +1147,9 @@ QPushButton#zipbutton:pressed {
         <widget class="QPushButton" name="dossier">
          <property name="geometry">
           <rect>
-           <x>450</x>
+           <x>470</x>
            <y>650</y>
-           <width>200</width>
+           <width>220</width>
            <height>41</height>
           </rect>
          </property>
@@ -1177,6 +1177,91 @@ QPushButton#dossier:pressed {
          </property>
          <property name="text">
           <string>Ouvrir le dossier</string>
+         </property>
+        </widget>
+        <widget class="QLabel" name="label_27">
+         <property name="geometry">
+          <rect>
+           <x>1050</x>
+           <y>26</y>
+           <width>25</width>
+           <height>25</height>
+          </rect>
+         </property>
+         <property name="toolTip">
+          <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Cette couche est compatible avec un import dans GéoMCE&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+         </property>
+         <property name="inputMethodHints">
+          <set>Qt::ImhNone</set>
+         </property>
+         <property name="text">
+          <string/>
+         </property>
+         <property name="pixmap">
+          <pixmap resource="resources.qrc">:/plugins/GeoMCE/bon.png</pixmap>
+         </property>
+         <property name="scaledContents">
+          <bool>true</bool>
+         </property>
+        </widget>
+        <widget class="QLabel" name="label_28">
+         <property name="geometry">
+          <rect>
+           <x>1050</x>
+           <y>26</y>
+           <width>25</width>
+           <height>25</height>
+          </rect>
+         </property>
+         <property name="toolTip">
+          <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; color:#000000;&quot;&gt;Cette couche &lt;/span&gt;&lt;span style=&quot; font-weight:600; color:#000000;&quot;&gt;n'est pas compatible&lt;/span&gt;&lt;span style=&quot; color:#000000;&quot;&gt; pour un import dans GéoMCE. Assurez-vous de travailler avec un fichier au format &lt;/span&gt;&lt;span style=&quot; font-weight:600; color:#000000;&quot;&gt;shape&lt;/span&gt;&lt;span style=&quot; color:#000000;&quot;&gt; de type POINT ou (MULTI)LINESTRING ou (MULTI)POLYGON.&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+         </property>
+         <property name="inputMethodHints">
+          <set>Qt::ImhNone</set>
+         </property>
+         <property name="text">
+          <string/>
+         </property>
+         <property name="pixmap">
+          <pixmap resource="resources.qrc">:/plugins/GeoMCE/pasbon.png</pixmap>
+         </property>
+         <property name="scaledContents">
+          <bool>true</bool>
+         </property>
+        </widget>
+        <widget class="QPushButton" name="eff_form">
+         <property name="geometry">
+          <rect>
+           <x>700</x>
+           <y>650</y>
+           <width>220</width>
+           <height>41</height>
+          </rect>
+         </property>
+         <property name="font">
+          <font>
+           <pointsize>12</pointsize>
+          </font>
+         </property>
+         <property name="toolTip">
+          <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Efface le formulaire&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+         </property>
+         <property name="styleSheet">
+          <string notr="true">QPushButton#eff_form{
+   background-color: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1, stop: 0 white, stop: 1 rgb(217, 217, 217));
+   border-style: solid;
+   border-width: 1px;
+   border-color: rgb(132, 132, 132);
+   border-radius: 5px;
+}
+
+QPushButton#eff_form:pressed {
+   background-color: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1, stop:1 white, stop: 0 rgb(217, 217, 217));
+  	border-color: rgb(0, 85, 255);
+};</string>
+         </property>
+         <property name="text">
+          <string>Effacer le formulaire</string>
          </property>
         </widget>
        </widget>
@@ -1873,7 +1958,7 @@ p, li { white-space: pre-wrap; }
         <widget class="QSpinBox" name="distance_tampon_point">
          <property name="geometry">
           <rect>
-           <x>205</x>
+           <x>225</x>
            <y>260</y>
            <width>42</width>
            <height>22</height>
@@ -1920,13 +2005,13 @@ border-radius: 5px;</string>
           </font>
          </property>
          <property name="text">
-          <string>Appliquer un tampn de</string>
+          <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;- Appliquer un tampon de&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
          </property>
         </widget>
         <widget class="QLabel" name="label_7">
          <property name="geometry">
           <rect>
-           <x>256</x>
+           <x>276</x>
            <y>260</y>
            <width>271</width>
            <height>21</height>
@@ -1944,7 +2029,7 @@ border-radius: 5px;</string>
         <widget class="QSpinBox" name="distance_tampon_ligne">
          <property name="geometry">
           <rect>
-           <x>205</x>
+           <x>225</x>
            <y>290</y>
            <width>42</width>
            <height>22</height>
@@ -1976,7 +2061,7 @@ border-radius: 5px;</string>
         <widget class="QLabel" name="label_18">
          <property name="geometry">
           <rect>
-           <x>256</x>
+           <x>276</x>
            <y>290</y>
            <width>281</width>
            <height>21</height>
@@ -2006,13 +2091,13 @@ border-radius: 5px;</string>
           </font>
          </property>
          <property name="text">
-          <string>Appliquer un tampn de</string>
+          <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;- Appliquer un tampon de&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
          </property>
         </widget>
         <widget class="QPushButton" name="sauvegarder_tampon">
          <property name="geometry">
           <rect>
-           <x>470</x>
+           <x>480</x>
            <y>260</y>
            <width>201</width>
            <height>51</height>
@@ -2038,7 +2123,41 @@ QPushButton#sauvegarder_tampon:pressed {
 };</string>
          </property>
          <property name="text">
-          <string>Sauvergarder ces valeurs</string>
+          <string>Sauvegarder ces valeurs</string>
+         </property>
+        </widget>
+        <widget class="QPushButton" name="Exit_3">
+         <property name="geometry">
+          <rect>
+           <x>940</x>
+           <y>650</y>
+           <width>121</width>
+           <height>41</height>
+          </rect>
+         </property>
+         <property name="font">
+          <font>
+           <pointsize>12</pointsize>
+           <weight>75</weight>
+           <bold>true</bold>
+          </font>
+         </property>
+         <property name="styleSheet">
+          <string notr="true">QPushButton#Exit_3{
+   background-color: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1, stop: 0 white, stop: 1 rgb(217, 217, 217));
+   border-style: solid;
+   border-width: 1px;
+   border-color: rgb(132, 132, 132);
+   border-radius: 5px;
+}
+
+QPushButton#Exit_3:pressed {
+   background-color: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1, stop:1 white, stop: 0 rgb(217, 217, 217));
+  	border-color: rgb(0, 85, 255);
+};</string>
+         </property>
+         <property name="text">
+          <string>Fermer</string>
          </property>
         </widget>
         <zorder>checkBox</zorder>
@@ -2054,6 +2173,7 @@ QPushButton#sauvegarder_tampon:pressed {
         <zorder>label_23</zorder>
         <zorder>distance_tampon_ligne</zorder>
         <zorder>sauvegarder_tampon</zorder>
+        <zorder>Exit_3</zorder>
        </widget>
       </widget>
       <widget class="QLabel" name="label_3">
@@ -2126,10 +2246,11 @@ QPushButton#sauvegarder_tampon:pressed {
   <tabstop>echeances</tabstop>
   <tabstop>change_another</tabstop>
   <tabstop>save</tabstop>
-  <tabstop>Exit</tabstop>
   <tabstop>show_t</tabstop>
   <tabstop>zipbutton</tabstop>
   <tabstop>dossier</tabstop>
+  <tabstop>eff_form</tabstop>
+  <tabstop>Exit</tabstop>
   <tabstop>mMapLayerComboBox_2</tabstop>
   <tabstop>mFieldComboBox</tabstop>
   <tabstop>enregistrement</tabstop>
