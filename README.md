@@ -10,6 +10,20 @@
 <li>Les mesures de compensations t&eacute;l&eacute;chargeables via <a href="https://www.cdata.cerema.fr/geonetwork/srv/fre/catalog.search#/metadata/48ac3589-499d-4f42-9716-73b4eefef35c">CeremaData</a></li>
 <li>La <a href="https://www.ecologique-solidaire.gouv.fr/eviter-reduire-et-compenser-impacts-sur-lenvironnement">s&eacute;quence ERC</a> et le <a title="Ouverture dans une nouvelle fen&ecirc;tre" href="https://www.ecologique-solidaire.gouv.fr/sites/default/files/Th%C3%A9ma%20-%20Guide%20d%E2%80%99aide%20%C3%A0%20la%20d%C3%A9finition%20des%20mesures%20ERC.pdf" target="_blank" rel="external nofollow noopener" data-action="download" data-type="publication" data-label="&Eacute;valuation environnementale : guide d&rsquo;aide &agrave; la d&eacute;finition des mesures ERC_pdf">guide d&rsquo;aide &agrave; la d&eacute;finition des mesures ERC</a></li>
 </ul>
+<h2 style="color: #2e6c80;">Installation de l'extension dans QGIS 3.x :</h2>
+<p>1/ T&eacute;l&eacute;charger la derni&egrave;re version (GeoMCE.zip) sur <a href="https://github.com/GeoMCE/GeoMCE/releases">Github</a> sur votre ordinateur</p>
+<p>2/ Dans QGIS, Extension --&gt; Installer/G&eacute;rer des extensions&nbsp;</p>
+<p><img src="https://raw.githubusercontent.com/GeoMCE/ressources/master/instal_1.png" alt="" width="866" height="154" /></p>
+<p style="color: #2e6c80;"><span style="color: #000000;">3/ Se rendre ensuite dans param&egrave;tres, puis cocher <strong>Afficher les extensions exp&eacute;rimentales</strong></span></p>
+<p style="color: #2e6c80;"><span style="color: #000000;"><img src="https://raw.githubusercontent.com/GeoMCE/ressources/master/instal_2.png" alt="" width="866" height="243" /></span></p>
+<p style="color: #2e6c80;"><span style="color: #000000;">4/ Dans l'onglet <strong>Installer depuis un ZIP</strong>, chercher l'extension t&eacute;l&eacute;charg&eacute;e&nbsp;</span></p>
+<p style="color: #2e6c80;"><span style="color: #000000;"><img src="https://raw.githubusercontent.com/GeoMCE/ressources/master/instal_3.png" alt="" width="866" height="205" /></span></p>
+<p><span style="color: #000000;">Puis cliquer sur <strong>Installer le plugin</strong>.</span></p>
+<p><span style="color: #000000;">5/ Une fois l'extension install&eacute;e, elle est accessible depuis le menu <strong>Vecteur</strong></span></p>
+<p><span style="color: #000000;"><strong><img src="https://raw.githubusercontent.com/GeoMCE/ressources/master/instal_4.png" alt="" width="866" height="187" /></strong></span></p>
+<p><span style="color: #000000;">6/ Vous pouvez cr&eacute;er un lien directement dans la barre d'outil avec un clic droit puis en cochant GeoMCE. L'icone sera alors disponible depuis l'interface principal</span></p>
+<p><span style="color: #000000;"><img src="https://raw.githubusercontent.com/GeoMCE/ressources/master/instal_5a.png" alt="" width="866" height="492" /></span></p>
+<p><img src="https://raw.githubusercontent.com/GeoMCE/ressources/master/instal_6.png" alt="" width="284" height="110" /></p>
 <h2 style="color: #2e6c80;">Utilisation de l'extension :</h2>
 <p><span style="color: #000000;">L'extension s'articule autour de 3 onglets :</span></p>
 <ol>
