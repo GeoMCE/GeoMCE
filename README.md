@@ -1,7 +1,7 @@
 <h1 style="color: #5e9ca0;">Notice d'utilisation de l'extension G&eacute;oMCE</h1>
 <h2 style="color: #2e6c80;">Utilit&eacute; de l'extension :</h2>
-<p>L'<a href="https://www.legifrance.gouv.fr/affichTexteArticle.do;jsessionid=B260EC079FBEEED07F572858B35C4D0A.tplgfr29s_1?idArticle=JORFARTI000033016416&amp;cidTexte=JORFTEXT000033016237&amp;dateTexte=29990101&amp;categorieLien=id">article 69</a> de loi sur la reconqu&ecirc;te de la biodiversit&eacute;, de la nature et des paysages du 8 a&ocirc;ut 2016 introduit l'obligation de <em>g&eacute;olocaliser les mesures de compensation des atteintes &agrave; la biodiversit&eacute; d&eacute;finies au I de l'article L. 163-1&nbsp;dans un syst&egrave;me national d'information g&eacute;ographique, accessible au public sur internet</em>. Pour cela, <em>l</em><em>es ma&icirc;tres d'ouvrage fournissent aux services comp&eacute;tents de l'Etat toutes les informations n&eacute;cessaires &agrave; la bonne tenue de cet outil par ces services.</em></p>
-<p>Afin de rendre accessible ces donn&eacute;es, le <a href="https://www.ecologique-solidaire.gouv.fr/commissariat-general-au-developpement-durable-cgdd">CGDD</a>, accompagn&eacute; techniquement par le SNUM, est en charge de la mise en place, pour les services de l'Etat, d'un outil capable d'alimenter ce portail : <a href="https://www.ecologique-solidaire.gouv.fr/biodiversite-nouvelle-version-geomce">G&eacute;oMCE</a>.</p>
+<p>L'<a href="https://www.legifrance.gouv.fr/affichTexteArticle.do;jsessionid=B260EC079FBEEED07F572858B35C4D0A.tplgfr29s_1?idArticle=JORFARTI000033016416&amp;cidTexte=JORFTEXT000033016237&amp;dateTexte=29990101&amp;categorieLien=id">article 69</a> de loi sur la reconqu&ecirc;te de la biodiversit&eacute;, de la nature et des paysages du 8 ao&ucirc;t 2016 introduit l'obligation de <em>g&eacute;olocaliser les mesures de compensation des atteintes &agrave; la biodiversit&eacute; d&eacute;finies au I de l'article L. 163-1&nbsp;dans un syst&egrave;me national d'information g&eacute;ographique, accessible au public sur internet</em>. Pour cela, <em>l</em><em>es ma&icirc;tres d'ouvrage fournissent aux services comp&eacute;tents de l'&Eacute;tat toutes les informations n&eacute;cessaires &agrave; la bonne tenue de cet outil par ces services.</em></p>
+<p>Afin de rendre accessible ces donn&eacute;es, le <a href="https://www.ecologique-solidaire.gouv.fr/commissariat-general-au-developpement-durable-cgdd">CGDD</a>, accompagn&eacute; techniquement par le SNUM, est en charge de la mise en place, pour les services de l'&Eacute;tat, d'un outil capable d'alimenter ce portail : <a href="https://www.ecologique-solidaire.gouv.fr/biodiversite-nouvelle-version-geomce">G&eacute;oMCE</a>.</p>
 <p>G&eacute;oMCE peut, sous certaines conditions, importer des fichiers shape (.shp) cr&eacute;&eacute;s depuis un logiciel SIG type Qgis.</p>
 <p>L'objectif de cette extension est de r&eacute;aliser les op&eacute;rations n&eacute;cessaires pour modifier les fichiers shape afin de permettre cet import dans l'outil.</p>
 <ul>
@@ -10,42 +10,27 @@
 <li>Les mesures de compensations t&eacute;l&eacute;chargeables via <a href="https://www.cdata.cerema.fr/geonetwork/srv/fre/catalog.search#/metadata/48ac3589-499d-4f42-9716-73b4eefef35c">CeremaData</a></li>
 <li>La <a href="https://www.ecologique-solidaire.gouv.fr/eviter-reduire-et-compenser-impacts-sur-lenvironnement">s&eacute;quence ERC</a> et le <a title="Ouverture dans une nouvelle fen&ecirc;tre" href="https://www.ecologique-solidaire.gouv.fr/sites/default/files/Th%C3%A9ma%20-%20Guide%20d%E2%80%99aide%20%C3%A0%20la%20d%C3%A9finition%20des%20mesures%20ERC.pdf" target="_blank" rel="external nofollow noopener" data-action="download" data-type="publication" data-label="&Eacute;valuation environnementale : guide d&rsquo;aide &agrave; la d&eacute;finition des mesures ERC_pdf">guide d&rsquo;aide &agrave; la d&eacute;finition des mesures ERC</a></li>
 </ul>
-<h2 style="color: #2e6c80;">Installation de l'extension dans QGIS 3.x :</h2>
-<p>1/ T&eacute;l&eacute;charger la derni&egrave;re version (GeoMCE.zip) sur <a href="https://github.com/GeoMCE/GeoMCE/releases">Github</a> sur votre ordinateur</p>
-<p>2/ Dans QGIS, Extension --&gt; Installer/G&eacute;rer des extensions&nbsp;</p>
-<p><img src="https://raw.githubusercontent.com/GeoMCE/ressources/master/instal_1.png" alt="" width="866" height="154" /></p>
-<p style="color: #2e6c80;"><span style="color: #000000;">3/ Se rendre ensuite dans param&egrave;tres, puis cocher <strong>Afficher les extensions exp&eacute;rimentales</strong></span></p>
-<p style="color: #2e6c80;"><span style="color: #000000;"><img src="https://raw.githubusercontent.com/GeoMCE/ressources/master/instal_2.png" alt="" width="866" height="243" /></span></p>
-<p style="color: #2e6c80;"><span style="color: #000000;">4/ Dans l'onglet <strong>Installer depuis un ZIP</strong>, chercher l'extension t&eacute;l&eacute;charg&eacute;e&nbsp;</span></p>
-<p style="color: #2e6c80;"><span style="color: #000000;"><img src="https://raw.githubusercontent.com/GeoMCE/ressources/master/instal_3.png" alt="" width="866" height="205" /></span></p>
-<p><span style="color: #000000;">Puis cliquer sur <strong>Installer le plugin</strong>.</span></p>
-<p><span style="color: #000000;">5/ Une fois l'extension install&eacute;e, elle est accessible depuis le menu <strong>Vecteur</strong></span></p>
-<p><span style="color: #000000;"><strong><img src="https://raw.githubusercontent.com/GeoMCE/ressources/master/instal_4.png" alt="" width="866" height="187" /></strong></span></p>
-<p><span style="color: #000000;">6/ Vous pouvez cr&eacute;er un lien directement dans la barre d'outil avec un clic droit puis en cochant GeoMCE. L'icone sera alors disponible depuis l'interface principal</span></p>
-<p><span style="color: #000000;"><img src="https://raw.githubusercontent.com/GeoMCE/ressources/master/instal_5a.png" alt="" width="866" height="492" /></span></p>
-<p><img src="https://raw.githubusercontent.com/GeoMCE/ressources/master/instal_6.png" alt="" width="284" height="110" /></p>
 <h2 style="color: #2e6c80;">Utilisation de l'extension :</h2>
 <p><span style="color: #000000;">L'extension s'articule autour de 3 onglets :</span></p>
 <ol>
 <li><span style="color: #000000;">Mise en forme des vecteurs existants</span></li>
 <li><span style="color: #000000;">Fonctionnalit&eacute;s suppl&eacute;mentaires</span></li>
-<li><span style="color: #000000;">Parm&egrave;tres de l'extension</span></li>
+<li><span style="color: #000000;">Param&egrave;tres de l'extension</span></li>
 </ol>
 <h2><span style="color: #000000;">1/ Mise en forme des vecteurs existants</span></h2>
-<p><span style="color: #000000;">Module principal de l'extension. Il permet de mettre en conformit&eacute; la table attributaire d'un fichier shape avec le standard attendu pour un import dans G&eacute;OMCE.</span></p>
-<p><img src="https://raw.githubusercontent.com/GeoMCE/ressources/master/onglet_principal.png" alt="" width="866" height="727" /></p>
+<p><span style="color: #000000;">Module principal de l'extension. Il permet de mettre en conformit&eacute; la table attributaire d'un fichier shape avec le standard attendu pour un import dans G&eacute;oMCE.</span></p>
+<p><img src="https://raw.githubusercontent.com/GeoMCE/ressources/master/onglet_principal.png" alt="" width="866" height="721" /></p>
 <h3><span style="color: #000000;">1.1/ Couche &agrave; traiter</span></h3>
 <p><span style="color: #000000;"><img src="https://raw.githubusercontent.com/GeoMCE/ressources/master/onglet_principal_1.png" width="866" height="89" /></span></p>
 <p><span style="color: #000000;"><strong>Couche &agrave; traiter</strong> : Vecteur (shape) qui va &ecirc;tre modifier afin d'&ecirc;tre compatible avec G&eacute;oMCE.</span></p>
 <p><span style="color: #000000;"><img src="https://raw.githubusercontent.com/GeoMCE/ressources/master/bon.png" alt="" width="25" height="25" />&nbsp;: La couche &agrave; traiter est compatible avec un import dans G&eacute;oMCE</span></p>
-<p><span style="color: #000000;"><img src="https://raw.githubusercontent.com/GeoMCE/ressources/master/pasbon.png" alt="" width="25" height="25" />&nbsp;: La couche &agrave; traiter n'est pas compatible avec un import dans G&eacute;oMCE. Avant toute manipulation, elle doit &ecirc;tre convertie en l'un des types suivants :</span></p>
+<p><span style="color: #000000;"><img src="https://raw.githubusercontent.com/GeoMCE/ressources/master/pasbon.png" alt="" width="25" height="25" />&nbsp;: La couche &agrave; traiter n'est pas compatible avec un import dans G&eacute;oMCE. Avant toute manipulation de cette couche, elle doit &ecirc;tre convertie au format <strong>shape</strong> (si la couche est dans un autre format) ainsi que dans l'un des types de g&eacute;om&eacute;tries suivants :</span></p>
 <ul>
 <li><span style="color: #000000;"> Point</span></li>
 <li><span style="color: #000000;">(Multi)LineString</span></li>
 <li><span style="color: #000000;">(Multi)Polygon</span></li>
 </ul>
-<p><span style="color: #000000;"><strong>Cr&eacute;ation des champs compatibles avec l'outil G&eacute;oMCE :</strong>&nbsp;La table attributaire est effac&eacute;e et remplac&eacute;e par une nouvellle table. Cette op&eacute;ration est <strong>irr&eacute;versible</strong>. Afin de ne pas perdre vos donn&eacute;es, il est pr&eacute;f&eacute;rable de travailler avec des copies de vos shapes.</span></p>
-<p>&nbsp;</p>
+<p><span style="color: #000000;"><strong>Cr&eacute;ation des champs compatibles avec l'outil G&eacute;oMCE :</strong>&nbsp;La table attributaire est effac&eacute;e et remplac&eacute;e par une nouvelle table. Cette op&eacute;ration est <strong>irr&eacute;versible</strong>. Afin de ne pas perdre vos donn&eacute;es, il est pr&eacute;f&eacute;rable de travailler avec des copies de vos shapes.</span>&nbsp;</p>
 <h3>1.2/ Formulaire de saisie</h3>
 <p>Ensemble des donn&eacute;es qui seront &eacute;crites dans la nouvelle table attributaire.</p>
 <p><span style="color: #000000;"><img src="https://raw.githubusercontent.com/GeoMCE/ressources/master/onglet_principal_2.png" alt="" width="866" height="459" /></span><span style="color: #ff0000;"><span style="color: #000000;">Les champs marqu&eacute;s d'un</span> *&nbsp;<span style="color: #000000;">sont <strong>obligatoires</strong>. Les autres champs peuvent &ecirc;tre laiss&eacute;s vides.</span></span></p>
@@ -53,13 +38,14 @@
 <p><span style="color: #ff0000;"><span style="color: #000000;"><span style="color: #0000ff;"><span style="color: #000000;">L'ensemble des champs textes sont limit&eacute;s &agrave; <strong>254 caract&egrave;res max</strong> (limite due au format shape).</span></span></span></span></p>
 <p><span style="color: #ff0000;"><span style="color: #000000;"><span style="color: #0000ff;"><span style="color: #000000;">La saisie de caract&egrave;res sp&eacute;ciaux (&eacute;, &agrave;, &ccedil;,...) est possible toutefois ils seront convertis dans le fichier shape (e, a, c,...).</span></span></span></span></p>
 <h3><span style="color: #ff0000;"><span style="color: #000000;"><span style="color: #0000ff;"><span style="color: #000000;">1.3/ Applications des modifications&nbsp;</span></span></span></span></h3>
-<p><span style="color: #ff0000;"><span style="color: #000000;"><span style="color: #0000ff;"><span style="color: #000000;"><img src="https://raw.githubusercontent.com/GeoMCE/ressources/master/onglet_principal_3.png" width="866" height="110" /></span></span></span></span></p>
-<p><strong><span style="color: #000000;">Ecrire les nouvelles valeurs</span></strong><span style="color: #000000;"> : Les valeurs du formulaires sont &eacute;crites dans la nouvelle table attributaire. Les modifications sont encore possible.</span></p>
+<p><img src="https://raw.githubusercontent.com/GeoMCE/ressources/master/onglet_principal_3.png" alt="" width="866" height="110" /></p>
+<p><strong><span style="color: #000000;">&Eacute;crire&nbsp;</span></strong><strong><span style="color: #000000;">les nouvelles valeurs</span></strong><span style="color: #000000;"> : Les valeurs du formulaires sont &eacute;crites dans la nouvelle table attributaire. Les modifications sont encore possible.</span></p>
 <p><span style="color: #000000;"><strong>Sauvegarder les modifications</strong> : Enregistre les valeurs &eacute;crites. Si une modification d'un ou plusieurs champs est n&eacute;cessaire, il convient de reprendre au point 1.1.</span></p>
 <p><span style="color: #000000;"><strong>Afficher la nouvelle table attributaire</strong> : Affiche la table attributaire finale.Permet de v&eacute;rifier si les valeurs sont correctement saisies.</span></p>
 <p><strong><span style="color: #000000;">Cr&eacute;er une archive .zip&nbsp;</span></strong><span style="color: #000000;">: Permet d'archiver la couche traiter au format .zip. L'archive est cr&eacute;er dans le dossier d'origine de la couche et porte le nom d&eacute;finit dans le champ <em>Nom de la mesure</em>&nbsp;du formulaire de saisie. Remarque : si le nom d&eacute;finit est d&eacute;passe 10 caract&egrave;res, l'import dans G&eacute;oMCE peut ne pas fonctionner</span></p>
 <p><strong><span style="color: #000000;">Ouvrir le dossier </span></strong><span style="color: #000000;">: Ouvre dans l'explorateur Windows le dossier contenant la couche &agrave; traiter.</span></p>
-<h2><span style="color: #000000;">2/ Fonctionnalit&eacute;s suupl&eacute;mentaires</span></h2>
+<p><span style="color: #000000;"><strong>Effacer le formulaire</strong> : R&eacute;initialise le formulaire</span></p>
+<h2><span style="color: #000000;">2/ Fonctionnalit&eacute;s suppl&eacute;mentaires</span></h2>
 <p><span style="color: #000000;">Ensemble des fonctionnalit&eacute;s facultatives de l'extension.</span></p>
 <p><span style="color: #000000;"><img src="https://raw.githubusercontent.com/GeoMCE/ressources/master/Fonc_supp.png" alt="" width="866" height="726" /></span></p>
 <h3><span style="color: #000000;">2.1/ S&eacute;parer une couche vecteur</span></h3>
@@ -90,16 +76,17 @@
 <p>Utilisation du traitement natif de QGIS <strong>Buffer.</strong></p>
 <p><strong>Cette fonctionnalit&eacute; est notamment utile pour fusionner l'ensemble des mesures d'un projet en un seul vecteur quelque soit leur type de g&eacute;om&eacute;trie d'origine.</strong></p>
 <p>Lorsque ce param&egrave;tre est coch&eacute;, les vecteurs de type points et lignes se voient appliquer un tampon. La distance de ce tampon est param&eacute;trable en fonction du type de g&eacute;om&eacute;trie (de 1 &agrave; 10 m&egrave;tres). Les nouveaux vecteurs sont cr&eacute;es dans le m&ecirc;me dossier que la<strong> couche &agrave; traiter.</strong></p>
-<p>La transformation en tampon s'op&egrave;re lorsque l'utilsateur clique sur le bouton <strong>Ecrire les nouvelles valeurs</strong> dans l'onglet <strong>Mise en forme des vecteurs existants</strong>. Le vecteur d'origine est conserv&eacute;. Le vecteur tampon est charg&eacute; automatiquement et est nomm&eacute; <strong>xxx_TAMPON</strong>. L'enregistrement des nouvelles valeurs du formulaire se fait dans la couche &agrave; traiter et dans son tampon.</p>
+<p>La transformation en tampon s'op&egrave;re lorsque l'utilisateur clique sur le bouton&nbsp;<strong><span style="color: #000000;">&Eacute;crire</span></strong><strong>&nbsp;les nouvelles valeurs</strong> dans l'onglet <strong>Mise en forme des vecteurs existants</strong>. Le vecteur d'origine est conserv&eacute;. Le vecteur tampon est charg&eacute; automatiquement et est nomm&eacute; <strong>xxx_TAMPON</strong>. L'enregistrement des nouvelles valeurs du formulaire se fait dans la couche &agrave; traiter et dans son tampon.</p>
 <h3><span style="color: #000000;">3.3/&nbsp;Option "Extension par d&eacute;faut de la couche vectorielle" configur&eacute;e sur shape</span></h3>
 <p><span style="color: #ff0000;"><img src="https://raw.githubusercontent.com/GeoMCE/ressources/master/parametres_3.png" alt="" width="866" height="49" /></span></p>
-<p>Par d&eacute;faut, Qgis3.x privil&eacute;gie le format <strong>Geopackage</strong> (.gpkg) au format <strong>shape</strong> (.shp) mais il est possible de configurer ce param&egrave;tre diff&eacute;rement dans les options de QGIS.</p>
-<p>L'extension prend en compte ce comportement par d&eacute;faut de QGIS et transforme les .gpkg g&eacute;n&eacute;r&eacute; (split vector layer, merge, buffer) en .shp. Toutefois, si l'utilisateur configure par d&eacute;faut une sortie en shape, il convient de cocher cette case pour que l'extenions fonctionne en cons&eacute;quence.</p>
-<p>Ce param&egrave;tre est exp&eacute;riental et peut ne pas fonctionner correctement. <strong>Il est conseill&eacute; de ne pas changer le comportement natif de QGIS concernant les traitements.</strong></p>
+<p>Par d&eacute;faut, Qgis3.x privil&eacute;gie le format <strong>Geopackage</strong> (.gpkg) au format <strong>shape</strong> (.shp) mais il est possible de configurer ce param&egrave;tre diff&eacute;remment dans les options de QGIS.</p>
+<p>L'extension prend en compte ce comportement par d&eacute;faut de QGIS et transforme les .gpkg g&eacute;n&eacute;r&eacute; (split vector layer, merge, buffer) en .shp. Toutefois, si l'utilisateur configure par d&eacute;faut une sortie en shape, il convient de cocher cette case pour que l'extension fonctionne en cons&eacute;quence.</p>
+<p>Ce param&egrave;tre est exp&eacute;rimental et peut ne pas fonctionner correctement. <strong>Il est conseill&eacute; de ne pas changer le comportement natif de QGIS concernant les traitements.</strong></p>
 <p><strong>4/ Changelog&nbsp;</strong></p>
 <p>v1.4.1 :</p>
 <ul>
-<li>D&eacute;tection du type de g&eacute;om&eacute;trie de la couche &agrave; traiter et information de l'utilisateur sur sa compatibilit&eacute; avec un import dans G&eacute;oMCE</li>
+<li>D&eacute;tection automatique du type de g&eacute;om&eacute;trie de la couche &agrave; traiter et information de l'utilisateur sur sa compatibilit&eacute; avec un import dans G&eacute;oMCE</li>
+<li>Ajout d'une fonction permettant d'effacer le formulaire sans avoir &agrave; relancer l'extension</li>
 </ul>
 <p>v1.4 :</p>
 <ul>
@@ -117,19 +104,19 @@
 <p>V1.2 :</p>
 <ul>
 <li>Ajout d'un panneau configuration. Sauvegarde du chemin de la couche COMMUNE.shp et de la prise en compte de la modification de sortie des couches vecteurs en shape</li>
-<li>Toutes les couches ADMIN-EXPRESS sont compatibles quelque soit le mill&eacute;sime et la projetcion choisie</li>
+<li>Toutes les couches ADMIN-EXPRESS sont compatibles quelque soit le mill&eacute;sime et la projection choisie</li>
 <li>Possibilit&eacute; de zipper la mesure directement depuis l'extension</li>
 <li>Possibilit&eacute; d'ouvrir le dossier contenant la mesure directement depuis l'extension</li>
 <li>Mineures corrections esth&eacute;tiques</li>
 </ul>
 <p>V1.1.1 :</p>
 <ul>
-<li>Gestion des accents dans les zones de textes. Seront remplac&eacute;s automatiquement par leur &eacute;quivalants sans accents</li>
+<li>Gestion des accents dans les zones de textes. Seront remplac&eacute;s automatiquement par leur &eacute;quivalants sans accents dans la nouvelle table attributaire</li>
 </ul>
 <p>V1.1 :</p>
 <ul>
-<li>Selection multiple possible pour les champs "cible", "faunes" et "flores"</li>
-<li>Les .gpkg sont automatiquement en .shp</li>
+<li>S&eacute;lection multiple possible pour les champs "cible", "faunes" et "flores"</li>
+<li>Les .gpkg sont automatiquement convertis en .shp</li>
 <li>Mise &agrave; jour du champ "commune" au dernier mill&eacute;sime de l'IGN</li>
 </ul>
 <p>V1.0 :</p>
