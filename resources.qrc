@@ -1,8 +1,13 @@
 <RCC>
   <qresource prefix="/plugins/GeoMCE">
-    <file>Warning.png</file>
+    <file>icons8-chevron-haut-24.png</file>
+    <file>iconfinder_unchecked_checkbox_83064.png</file>
+    <file>iconfinder_checked_checkbox_82543.png</file>
     <file>bon.png</file>
+    <file>icons8-chevron-bas-24.png</file>
     <file>pasbon.png</file>
+    <file>moins.png</file>
+    <file>plus.png</file>
     <file>geomce.png</file>
     <file>icon.png</file>
   </qresource>

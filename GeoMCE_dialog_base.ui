@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>1104</width>
-    <height>890</height>
+    <width>1102</width>
+    <height>1001</height>
    </rect>
   </property>
   <property name="sizePolicy">
@@ -21,6 +21,9 @@
   </property>
   <property name="windowTitle">
    <string>GeoMCE</string>
+  </property>
+  <property name="styleSheet">
+   <string notr="true">background-color: rgb(240, 240, 240);</string>
   </property>
   <property name="sizeGripEnabled">
    <bool>true</bool>
@@ -39,8 +42,8 @@
        <rect>
         <x>0</x>
         <y>0</y>
-        <width>1084</width>
-        <height>870</height>
+        <width>1082</width>
+        <height>981</height>
        </rect>
       </property>
       <widget class="QPushButton" name="about">
@@ -68,7 +71,7 @@
    border-style: solid;
    border-width: 1px;
    border-color: rgb(132, 132, 132);
-   border-radius: 5px;
+   border-radius: 3px;
 }
 
 QPushButton#about:pressed {
@@ -85,8 +88,8 @@ QPushButton#about:pressed {
         <rect>
          <x>0</x>
          <y>130</y>
-         <width>1091</width>
-         <height>741</height>
+         <width>1090</width>
+         <height>1101</height>
         </rect>
        </property>
        <property name="sizePolicy">
@@ -104,55 +107,61 @@ QPushButton#about:pressed {
         <bool>false</bool>
        </property>
        <property name="styleSheet">
-        <string notr="true">background-color: rgb(241, 241, 241);
-border-radius:5px;</string>
+        <string notr="true">QTabWidget::pane { /* The tab widget frame */
+background-color:#f0f0f0;
+}
+
+QTabWidget::tab-bar {
+    left: 0px; /* move to the right by 5px */
+
+}
+
+/* Style the tab using the tab sub-control. Note that
+    it reads QTabBar _not_ QTabWidget */
+QTabBar::tab {
+    background: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1,
+                                stop: 0 #E1E1E1, stop: 0.4 #DDDDDD,
+                                stop: 0.5 #D8D8D8, stop: 1.0 #D3D3D3);
+    border-bottom-color: #C2C7CB; /* same as the pane color */
+    min-width: 8ex;
+    padding: 5px;
+    border-left: 1px solid #C4C4C3;
+    border-right: 1px solid #C4C4C3;
+    border-top: 1px solid #C4C4C3;
+
+}
+
+QTabBar::tab:selected, QTabBar::tab:hover {
+    background: #f0f0f0
+
+}
+
+QTabBar::tab:selected {
+    border-color: #9B9B9B;
+    border-bottom-color: #C2C7CB; /* same as pane color */
+	border-top-color:#00a65a;
+   border-top-width:2px
+}
+
+QTabBar::tab:!selected {
+    margin-top: 2px; /* make non-selected tabs look smaller */
+   font : italic;
+ border-bottom: 1px solid #C4C4C3;
+
+}</string>
        </property>
        <property name="currentIndex">
         <number>0</number>
        </property>
        <widget class="QWidget" name="tab_2">
         <attribute name="title">
-         <string>Mise en forme de vecteurs existants</string>
+         <string> Mise en forme de vecteurs existants   </string>
         </attribute>
-        <widget class="QLineEdit" name="description">
-         <property name="geometry">
-          <rect>
-           <x>180</x>
-           <y>245</y>
-           <width>891</width>
-           <height>25</height>
-          </rect>
-         </property>
-         <property name="font">
-          <font>
-           <pointsize>12</pointsize>
-          </font>
-         </property>
-         <property name="toolTip">
-          <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Description de la mesure.&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; text-decoration: underline;&quot;&gt;Remarque&lt;/span&gt; : champ limité à 254 caractères. Pour une descrpition plus fine, saisir les informations directement dans GéoMCE&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-         </property>
-         <property name="styleSheet">
-          <string notr="true">background-color: rgb(255, 255, 255);
-border-top-color:rgb(132, 132, 132);
-selection-color: rgb(0, 0, 0);
-border-top-width: 1px;
-alternate-background-color: rgb(0, 170, 255);
-selection-background-color: rgb(85, 170, 255);
-border-left-color: rgb(132, 132, 132);
-border-left-width: 1px;
-border-style: solid;
-border-bottom-color: rgb(132, 132, 132);
-border-bottom-width:1px;
-border-right-color : rgb(132, 132, 132);
-border-right-width :1px;
-border-radius: 5px;</string>
-         </property>
-        </widget>
         <widget class="QPushButton" name="show_t">
          <property name="geometry">
           <rect>
            <x>10</x>
-           <y>650</y>
+           <y>760</y>
            <width>220</width>
            <height>41</height>
           </rect>
@@ -174,34 +183,25 @@ border-radius: 5px;</string>
    border-radius: 5px;
 }
 
-QPushButton#show_t:pressed {
+QPushButton#show_t:hover:pressed {
    background-color: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1, stop:1 white, stop: 0 rgb(217, 217, 217));
   	border-color: rgb(0, 85, 255);
-};</string>
+}
+
+QPushButton#show_t::hover{
+   background-color: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1, stop: 0 white, stop: 1 rgb(225, 225, 225))}
+</string>
          </property>
          <property name="text">
           <string>Afficher la nouvelle 
 table attributaire</string>
          </property>
         </widget>
-        <widget class="QLabel" name="label_16">
-         <property name="geometry">
-          <rect>
-           <x>600</x>
-           <y>379</y>
-           <width>101</width>
-           <height>22</height>
-          </rect>
-         </property>
-         <property name="text">
-          <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;right&quot;&gt;&lt;span style=&quot; font-size:12pt;&quot;&gt;Modalité :&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-         </property>
-        </widget>
         <widget class="QPushButton" name="save">
          <property name="geometry">
           <rect>
            <x>370</x>
-           <y>580</y>
+           <y>690</y>
            <width>350</width>
            <height>51</height>
           </rect>
@@ -222,69 +222,20 @@ table attributaire</string>
    border-style: solid;
    border-width: 1px;
    border-color: rgb(132, 132, 132);
-   border-radius: 5px;
+   border-radius: 3px;
 }
 
-QPushButton#save:pressed {
+QPushButton#save:hover:pressed {
    background-color: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1, stop:1 white, stop: 0 rgb(217, 217, 217));
   	border-color: rgb(0, 85, 255);
-};</string>
+}
+
+QPushButton#save::hover{
+   background-color: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1, stop: 0 white, stop: 1 rgb(225, 225, 225))}
+</string>
          </property>
          <property name="text">
           <string>Sauvegarder les modifications</string>
-         </property>
-        </widget>
-        <widget class="QLabel" name="label_14">
-         <property name="geometry">
-          <rect>
-           <x>6</x>
-           <y>203</y>
-           <width>161</width>
-           <height>22</height>
-          </rect>
-         </property>
-         <property name="toolTip">
-          <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:9pt;&quot;&gt;Cible de la mesure&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-         </property>
-         <property name="text">
-          <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;right&quot;&gt;&lt;span style=&quot; font-size:12pt;&quot;&gt;Cible&lt;/span&gt;&lt;span style=&quot; font-size:12pt; color:#ff0000;&quot;&gt;* &lt;/span&gt;&lt;span style=&quot; font-size:12pt; color:#0000ff;&quot;&gt;**&lt;/span&gt;&lt;span style=&quot; font-size:12pt;&quot;&gt; :&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-         </property>
-         <property name="openExternalLinks">
-          <bool>true</bool>
-         </property>
-        </widget>
-        <widget class="QLineEdit" name="decision">
-         <property name="geometry">
-          <rect>
-           <x>180</x>
-           <y>290</y>
-           <width>891</width>
-           <height>25</height>
-          </rect>
-         </property>
-         <property name="font">
-          <font>
-           <pointsize>12</pointsize>
-          </font>
-         </property>
-         <property name="toolTip">
-          <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Référence de l'acte adminsitratif prescrivant cette mesure (Article et annexe)&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-         </property>
-         <property name="styleSheet">
-          <string notr="true">background-color: rgb(255, 255, 255);
-border-top-color:rgb(132, 132, 132);
-selection-color: rgb(0, 0, 0);
-border-top-width: 1px;
-alternate-background-color: rgb(0, 170, 255);
-selection-background-color: rgb(85, 170, 255);
-border-left-color: rgb(132, 132, 132);
-border-left-width: 1px;
-border-style: solid;
-border-bottom-color: rgb(132, 132, 132);
-border-bottom-width:1px;
-border-right-color : rgb(132, 132, 132);
-border-right-width :1px;
-border-radius: 5px;</string>
          </property>
         </widget>
         <widget class="QPushButton" name="create_new_field_2">
@@ -312,13 +263,17 @@ border-radius: 5px;</string>
    border-style: solid;
    border-width: 1px;
    border-color: rgb(132, 132, 132);
-   border-radius: 5px;
+   border-radius: 3px;
 }
 
-QPushButton#create_new_field_2:pressed {
+QPushButton#create_new_field_2:hover:pressed {
    background-color: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1, stop:1 white, stop: 0 rgb(217, 217, 217));
   	border-color: rgb(0, 85, 255);
-};</string>
+}
+
+QPushButton#create_new_field_2::hover{
+   background-color: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1, stop: 0 white, stop: 1 rgb(225, 225, 225))}
+</string>
          </property>
          <property name="text">
           <string>Création des champs compatibles avec l'outil GéoMCE</string>
@@ -330,131 +285,12 @@ QPushButton#create_new_field_2:pressed {
           <bool>false</bool>
          </property>
         </widget>
-        <widget class="QLabel" name="label_4">
-         <property name="geometry">
-          <rect>
-           <x>6</x>
-           <y>119</y>
-           <width>161</width>
-           <height>22</height>
-          </rect>
-         </property>
-         <property name="toolTip">
-          <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:9pt;&quot;&gt;Nom de la couche&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-         </property>
-         <property name="text">
-          <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;right&quot;&gt;&lt;span style=&quot; font-size:12pt;&quot;&gt;Nom de la mesure&lt;/span&gt;&lt;span style=&quot; font-size:12pt; color:#ff0000;&quot;&gt;*&lt;/span&gt;&lt;span style=&quot; font-size:12pt;&quot;&gt; :&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-         </property>
-        </widget>
-        <widget class="QLabel" name="label_8">
-         <property name="geometry">
-          <rect>
-           <x>6</x>
-           <y>245</y>
-           <width>161</width>
-           <height>22</height>
-          </rect>
-         </property>
-         <property name="toolTip">
-          <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:9pt;&quot;&gt;Bref description de la mesure - 254 caractères max&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-         </property>
-         <property name="text">
-          <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;right&quot;&gt;&lt;span style=&quot; font-size:12pt;&quot;&gt;Description :&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-         </property>
-        </widget>
-        <widget class="QLabel" name="label_11">
-         <property name="geometry">
-          <rect>
-           <x>6</x>
-           <y>333</y>
-           <width>161</width>
-           <height>22</height>
-          </rect>
-         </property>
-         <property name="toolTip">
-          <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:9pt;&quot;&gt;Pages du dossier décrivant la mesure&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-         </property>
-         <property name="text">
-          <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;right&quot;&gt;&lt;span style=&quot; font-size:12pt;&quot;&gt;REFEI :&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-         </property>
-        </widget>
-        <widget class="QLineEdit" name="nom">
-         <property name="geometry">
-          <rect>
-           <x>180</x>
-           <y>119</y>
-           <width>891</width>
-           <height>25</height>
-          </rect>
-         </property>
-         <property name="font">
-          <font>
-           <pointsize>12</pointsize>
-          </font>
-         </property>
-         <property name="toolTip">
-          <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Saisir un nom pour la mesure&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-         </property>
-         <property name="styleSheet">
-          <string notr="true">background-color: rgb(255, 255, 255);
-border-top-color:rgb(132, 132, 132);
-selection-color: rgb(0, 0, 0);
-border-top-width: 1px;
-alternate-background-color: rgb(0, 170, 255);
-selection-background-color: rgb(85, 170, 255);
-border-left-color: rgb(132, 132, 132);
-border-left-width: 1px;
-border-style: solid;
-border-bottom-color: rgb(132, 132, 132);
-border-bottom-width:1px;
-border-right-color : rgb(132, 132, 132);
-border-right-width :1px;
-border-radius: 5px;</string>
-         </property>
-         <property name="text">
-          <string/>
-         </property>
-        </widget>
-        <widget class="QLineEdit" name="refei">
-         <property name="geometry">
-          <rect>
-           <x>180</x>
-           <y>332</y>
-           <width>891</width>
-           <height>25</height>
-          </rect>
-         </property>
-         <property name="font">
-          <font>
-           <pointsize>12</pointsize>
-          </font>
-         </property>
-         <property name="toolTip">
-          <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Pages du dossier du projet décrivant la mesure&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-         </property>
-         <property name="styleSheet">
-          <string notr="true">background-color: rgb(255, 255, 255);
-border-top-color:rgb(132, 132, 132);
-selection-color: rgb(0, 0, 0);
-border-top-width: 1px;
-alternate-background-color: rgb(0, 170, 255);
-selection-background-color: rgb(85, 170, 255);
-border-left-color: rgb(132, 132, 132);
-border-left-width: 1px;
-border-style: solid;
-border-bottom-color: rgb(132, 132, 132);
-border-bottom-width:1px;
-border-right-color : rgb(132, 132, 132);
-border-right-width :1px;
-border-radius: 5px;</string>
-         </property>
-        </widget>
         <widget class="QLabel" name="label_9">
          <property name="geometry">
           <rect>
-           <x>6</x>
-           <y>26</y>
-           <width>151</width>
+           <x>20</x>
+           <y>28</y>
+           <width>141</width>
            <height>22</height>
           </rect>
          </property>
@@ -462,85 +298,14 @@ border-radius: 5px;</string>
           <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;La couche qui va etre mise en forme en vue d'êtreimporter dans GéoMCE&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
          </property>
          <property name="text">
-          <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;right&quot;&gt;&lt;span style=&quot; font-size:12pt;&quot;&gt;Couche à traiter :&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-         </property>
-        </widget>
-        <widget class="QComboBox" name="comboBox_4">
-         <property name="geometry">
-          <rect>
-           <x>724</x>
-           <y>377</y>
-           <width>346</width>
-           <height>25</height>
-          </rect>
-         </property>
-         <property name="font">
-          <font>
-           <pointsize>12</pointsize>
-          </font>
-         </property>
-         <property name="toolTip">
-          <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Modalité de suivi de la mesure&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-         </property>
-         <property name="styleSheet">
-          <string notr="true">background-color: rgb(255, 255, 255);
-border-top-color:rgb(132, 132, 132);
-selection-color: rgb(0, 0, 0);
-border-top-width: 1px;
-alternate-background-color: rgb(0, 170, 255);
-selection-background-color: rgb(85, 170, 255);
-border-left-color: rgb(132, 132, 132);
-border-left-width: 1px;
-border-style: solid;
-border-bottom-color: rgb(132, 132, 132);
-border-bottom-width:1px;
-border-right-color : rgb(132, 132, 132);
-border-right-width :1px;
-border-radius: 5px;</string>
-         </property>
-        </widget>
-        <widget class="QgsSpinBox" name="duree">
-         <property name="geometry">
-          <rect>
-           <x>180</x>
-           <y>377</y>
-           <width>101</width>
-           <height>25</height>
-          </rect>
-         </property>
-         <property name="font">
-          <font>
-           <pointsize>12</pointsize>
-          </font>
-         </property>
-         <property name="toolTip">
-          <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Durée d'application de la mesure&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-         </property>
-         <property name="styleSheet">
-          <string notr="true">background-color: rgb(255, 255, 255);
-border-top-color:rgb(132, 132, 132);
-selection-color: rgb(0, 0, 0);
-border-top-width: 1px;
-alternate-background-color: rgb(0, 170, 255);
-selection-background-color: rgb(85, 170, 255);
-border-left-color: rgb(132, 132, 132);
-border-left-width: 1px;
-border-style: solid;
-border-bottom-color: rgb(132, 132, 132);
-border-bottom-width:1px;
-border-right-color : rgb(132, 132, 132);
-border-right-width :1px;
-border-radius: 5px;</string>
-         </property>
-         <property name="alignment">
-          <set>Qt::AlignCenter</set>
+          <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:12pt; font-weight:600;&quot;&gt;Couche à traiter&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;&lt;br/&gt;&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
          </property>
         </widget>
         <widget class="QPushButton" name="Exit">
          <property name="geometry">
           <rect>
            <x>940</x>
-           <y>650</y>
+           <y>760</y>
            <width>121</width>
            <height>41</height>
           </rect>
@@ -561,10 +326,14 @@ border-radius: 5px;</string>
    border-radius: 5px;
 }
 
-QPushButton#Exit:pressed {
+QPushButton#Exit:hover:pressed {
    background-color: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1, stop:1 white, stop: 0 rgb(217, 217, 217));
   	border-color: rgb(0, 85, 255);
-};</string>
+}
+
+QPushButton#Exit::hover{
+   background-color: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1, stop: 0 white, stop: 1 rgb(225, 225, 225))}
+</string>
          </property>
          <property name="text">
           <string>Fermer</string>
@@ -573,9 +342,9 @@ QPushButton#Exit:pressed {
         <widget class="QgsMapLayerComboBox" name="mMapLayerComboBox">
          <property name="geometry">
           <rect>
-           <x>180</x>
+           <x>170</x>
            <y>26</y>
-           <width>861</width>
+           <width>871</width>
            <height>25</height>
           </rect>
          </property>
@@ -588,131 +357,44 @@ QPushButton#Exit:pressed {
           <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Couche qui va être modifier en vue d'être importer danns GéoMCE&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
          </property>
          <property name="styleSheet">
-          <string notr="true">background-color: rgb(255, 255, 255);
-border-top-color:rgb(132, 132, 132);
-selection-color: rgb(0, 0, 0);
-border-top-width: 1px;
-alternate-background-color: rgb(0, 170, 255);
-selection-background-color: rgb(85, 170, 255);
-border-left-color: rgb(132, 132, 132);
-border-left-width: 1px;
-border-style: solid;
-border-bottom-color: rgb(132, 132, 132);
-border-bottom-width:1px;
-border-right-color : rgb(132, 132, 132);
-border-right-width :1px;
-border-radius: 5px;</string>
-         </property>
-        </widget>
-        <widget class="QLabel" name="label_15">
-         <property name="geometry">
-          <rect>
-           <x>320</x>
-           <y>378</y>
-           <width>61</width>
-           <height>22</height>
-          </rect>
-         </property>
-         <property name="text">
-          <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;right&quot;&gt;&lt;span style=&quot; font-size:12pt;&quot;&gt;Unité :&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-         </property>
-        </widget>
-        <widget class="QLabel" name="label_13">
-         <property name="geometry">
-          <rect>
-           <x>6</x>
-           <y>161</y>
-           <width>161</width>
-           <height>22</height>
-          </rect>
-         </property>
-         <property name="toolTip">
-          <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:9pt;&quot;&gt;Catégorie selon la typologie du guide ERC&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-         </property>
-         <property name="text">
-          <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;right&quot;&gt;&lt;span style=&quot; font-size:12pt;&quot;&gt;Catégorie&lt;/span&gt;&lt;span style=&quot; font-size:12pt; color:#ff0000;&quot;&gt;*&lt;/span&gt;&lt;span style=&quot; font-size:12pt;&quot;&gt; :&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-         </property>
-         <property name="openExternalLinks">
-          <bool>true</bool>
-         </property>
-        </widget>
-        <widget class="QLabel" name="label_10">
-         <property name="geometry">
-          <rect>
-           <x>6</x>
-           <y>290</y>
-           <width>161</width>
-           <height>22</height>
-          </rect>
-         </property>
-         <property name="toolTip">
-          <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:9pt;&quot;&gt;Article et annexe décrivant la mesure - 254 caractères max&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-         </property>
-         <property name="text">
-          <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;right&quot;&gt;&lt;span style=&quot; font-size:12pt;&quot;&gt;Decision :&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-         </property>
-        </widget>
-        <widget class="QComboBox" name="comboBox">
-         <property name="geometry">
-          <rect>
-           <x>180</x>
-           <y>161</y>
-           <width>891</width>
-           <height>25</height>
-          </rect>
-         </property>
-         <property name="font">
-          <font>
-           <pointsize>12</pointsize>
-          </font>
-         </property>
-         <property name="contextMenuPolicy">
-          <enum>Qt::CustomContextMenu</enum>
-         </property>
-         <property name="toolTip">
-          <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Catégorie de la mesure selon la &lt;a href=&quot;https://www.cerema.fr/fr/actualites/guide-aide-definition-mesures-eviter-reduire-compenser&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;classification ERC&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-         </property>
-         <property name="styleSheet">
-          <string notr="true">background-color: rgb(255, 255, 255);
-border-top-color:rgb(132, 132, 132);
-selection-color: rgb(0, 0, 0);
-border-top-width: 1px;
-alternate-background-color: rgb(0, 170, 255);
-selection-background-color: rgb(85, 170, 255);
-border-left-color: rgb(132, 132, 132);
-border-left-width: 1px;
-border-style: solid;
-border-bottom-color: rgb(132, 132, 132);
-border-bottom-width:1px;
-border-right-color : rgb(132, 132, 132);
-border-right-width :1px;
-border-radius: 5px;</string>
-         </property>
-         <property name="maxVisibleItems">
-          <number>10</number>
-         </property>
-         <property name="frame">
-          <bool>true</bool>
-         </property>
-        </widget>
-        <widget class="QLabel" name="label_12">
-         <property name="geometry">
-          <rect>
-           <x>0</x>
-           <y>378</y>
-           <width>171</width>
-           <height>22</height>
-          </rect>
-         </property>
-         <property name="text">
-          <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;right&quot;&gt;&lt;span style=&quot; font-size:12pt;&quot;&gt;Durée :&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+          <string notr="true">QComboBox {
+	border: 1px solid #333333;
+	border-radius: 3px;
+	background:white;
+	padding: 1px 23px 1px 3px;
+	min-width: 6em;
+   background-color: rgb(255, 255, 255);
+	selection-background-color: rgb(0, 170, 255);
+}
+
+QComboBox::drop-down {
+    subcontrol-origin: padding;
+    subcontrol-position: top right;
+    width: 15px;
+    border-left-width: 1px;
+    border-left-color: darkgray;
+    border-left-style: solid; /* just a single line */
+    border-top-right-radius: 3px; /* same radius as the QComboBox */
+    border-bottom-right-radius: 3px;
+  
+}
+QComboBox::down-arrow {
+     image: url(:/plugins/GeoMCE/icons8-chevron-bas-24.png);}
+
+QComboBox::focus{
+border-color: rgb(0, 85, 255);}
+
+QComboBox QAbstractItemView{
+background-color: rgb(255, 255, 255);}
+QComboBox:hover{
+   background-color: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1, stop: 0 white, stop: 1 rgb(245, 245, 245))}</string>
          </property>
         </widget>
         <widget class="QPushButton" name="change_another">
          <property name="geometry">
           <rect>
            <x>10</x>
-           <y>580</y>
+           <y>690</y>
            <width>350</width>
            <height>51</height>
           </rect>
@@ -739,381 +421,46 @@ border-radius: 5px;</string>
    border-style: solid;
    border-width: 1px;
    border-color: rgb(132, 132, 132);
-   border-radius: 5px;
+   border-radius: 3px;
 }
 
-QPushButton#change_another:pressed {
+QPushButton#change_another::hover:pressed {
    background-color: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1, stop:1 white, stop: 0 rgb(217, 217, 217));
   	border-color: rgb(0, 85, 255);
-};</string>
+}
+
+QPushButton#change_another::hover{
+   background-color: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1, stop: 0 white, stop: 1 rgb(225, 225, 225))}
+</string>
          </property>
          <property name="text">
           <string>Ecrire les nouvelles valeurs</string>
-         </property>
-        </widget>
-        <widget class="QComboBox" name="comboBox_3">
-         <property name="geometry">
-          <rect>
-           <x>400</x>
-           <y>378</y>
-           <width>171</width>
-           <height>25</height>
-          </rect>
-         </property>
-         <property name="font">
-          <font>
-           <pointsize>12</pointsize>
-          </font>
-         </property>
-         <property name="toolTip">
-          <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Modalité temporelle d'application de la mesure&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-         </property>
-         <property name="layoutDirection">
-          <enum>Qt::LeftToRight</enum>
-         </property>
-         <property name="styleSheet">
-          <string notr="true">background-color: rgb(255, 255, 255);
-border-top-color:rgb(132, 132, 132);
-selection-color: rgb(0, 0, 0);
-border-top-width: 1px;
-alternate-background-color: rgb(0, 170, 255);
-selection-background-color: rgb(85, 170, 255);
-border-left-color: rgb(132, 132, 132);
-border-left-width: 1px;
-border-style: solid;
-border-bottom-color: rgb(132, 132, 132);
-border-bottom-width:1px;
-border-right-color : rgb(132, 132, 132);
-border-right-width :1px;
-border-radius: 5px;</string>
-         </property>
-        </widget>
-        <widget class="QLabel" name="label_36">
-         <property name="geometry">
-          <rect>
-           <x>590</x>
-           <y>421</y>
-           <width>331</width>
-           <height>22</height>
-          </rect>
-         </property>
-         <property name="text">
-          <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;right&quot;&gt;&lt;span style=&quot; font-size:12pt;&quot;&gt;Coût prévisionnel du suivi de la mesure (&lt;/span&gt;&lt;span style=&quot; font-size:12pt; font-weight:600;&quot;&gt;€&lt;/span&gt;&lt;span style=&quot; font-size:12pt;&quot;&gt;) :&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-         </property>
-        </widget>
-        <widget class="QLabel" name="label_37">
-         <property name="geometry">
-          <rect>
-           <x>40</x>
-           <y>421</y>
-           <width>341</width>
-           <height>22</height>
-          </rect>
-         </property>
-         <property name="text">
-          <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;right&quot;&gt;&lt;span style=&quot; font-size:12pt;&quot;&gt;Montant prévisionnel de la mesure (&lt;/span&gt;&lt;span style=&quot; font-size:12pt; font-weight:600;&quot;&gt;k€&lt;/span&gt;&lt;span style=&quot; font-size:12pt;&quot;&gt;) :&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-         </property>
-        </widget>
-        <widget class="QLabel" name="label_38">
-         <property name="geometry">
-          <rect>
-           <x>0</x>
-           <y>458</y>
-           <width>171</width>
-           <height>22</height>
-          </rect>
-         </property>
-         <property name="text">
-          <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;right&quot;&gt;&lt;span style=&quot; font-size:12pt;&quot;&gt;Faunes&lt;/span&gt;&lt;span style=&quot; font-size:12pt; color:#5500ff;&quot;&gt;**&lt;/span&gt;&lt;span style=&quot; font-size:12pt;&quot;&gt; :&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-         </property>
-        </widget>
-        <widget class="QLabel" name="label_39">
-         <property name="geometry">
-          <rect>
-           <x>0</x>
-           <y>498</y>
-           <width>171</width>
-           <height>22</height>
-          </rect>
-         </property>
-         <property name="text">
-          <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;right&quot;&gt;&lt;span style=&quot; font-size:12pt;&quot;&gt;Flores&lt;/span&gt;&lt;span style=&quot; font-size:12pt; color:#5500ff;&quot;&gt;**&lt;/span&gt;&lt;span style=&quot; font-size:12pt;&quot;&gt; :&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-         </property>
-        </widget>
-        <widget class="QLineEdit" name="echeances">
-         <property name="geometry">
-          <rect>
-           <x>260</x>
-           <y>538</y>
-           <width>811</width>
-           <height>25</height>
-          </rect>
-         </property>
-         <property name="font">
-          <font>
-           <pointsize>12</pointsize>
-          </font>
-         </property>
-         <property name="toolTip">
-          <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Echéances du suivi&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-         </property>
-         <property name="styleSheet">
-          <string notr="true">background-color: rgb(255, 255, 255);
-border-top-color:rgb(132, 132, 132);
-selection-color: rgb(0, 0, 0);
-border-top-width: 1px;
-alternate-background-color: rgb(0, 170, 255);
-selection-background-color: rgb(85, 170, 255);
-border-left-color: rgb(132, 132, 132);
-border-left-width: 1px;
-border-style: solid;
-border-bottom-color: rgb(132, 132, 132);
-border-bottom-width:1px;
-border-right-color : rgb(132, 132, 132);
-border-right-width :1px;
-border-radius: 5px;</string>
-         </property>
-        </widget>
-        <widget class="QLabel" name="label_40">
-         <property name="geometry">
-          <rect>
-           <x>0</x>
-           <y>540</y>
-           <width>251</width>
-           <height>22</height>
-          </rect>
-         </property>
-         <property name="text">
-          <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;right&quot;&gt;&lt;span style=&quot; font-size:12pt;&quot;&gt;Référence de la mesure de suivi :&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
          </property>
         </widget>
         <widget class="QLabel" name="label_17">
          <property name="geometry">
           <rect>
            <x>780</x>
-           <y>580</y>
+           <y>690</y>
            <width>281</width>
            <height>51</height>
           </rect>
          </property>
+         <property name="frameShape">
+          <enum>QFrame::NoFrame</enum>
+         </property>
+         <property name="lineWidth">
+          <number>6</number>
+         </property>
          <property name="text">
           <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:10pt; color:#ff0000;&quot;&gt;* &lt;/span&gt;&lt;span style=&quot; font-size:10pt; color:#000000;&quot;&gt;Champs obligatoires &lt;/span&gt;&lt;br/&gt;&lt;span style=&quot; font-size:10pt; color:#5500ff;&quot;&gt;** &lt;/span&gt;&lt;span style=&quot; font-size:10pt; color:#000000;&quot;&gt;Sélection multiple possible &lt;br/&gt;Limite de 254 caractères pour les champs textes&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-         </property>
-        </widget>
-        <widget class="QgsSpinBox" name="cout">
-         <property name="geometry">
-          <rect>
-           <x>929</x>
-           <y>420</y>
-           <width>141</width>
-           <height>25</height>
-          </rect>
-         </property>
-         <property name="font">
-          <font>
-           <pointsize>12</pointsize>
-          </font>
-         </property>
-         <property name="toolTip">
-          <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Montant prévisionnel du suivi de la mesure en €&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-         </property>
-         <property name="styleSheet">
-          <string notr="true">background-color: rgb(255, 255, 255);
-border-top-color:rgb(132, 132, 132);
-selection-color: rgb(0, 0, 0);
-border-top-width: 1px;
-alternate-background-color: rgb(0, 170, 255);
-selection-background-color: rgb(85, 170, 255);
-border-left-color: rgb(132, 132, 132);
-border-left-width: 1px;
-border-style: solid;
-border-bottom-color: rgb(132, 132, 132);
-border-bottom-width:1px;
-border-right-color : rgb(132, 132, 132);
-border-right-width :1px;
-border-radius: 5px;</string>
-         </property>
-         <property name="alignment">
-          <set>Qt::AlignCenter</set>
-         </property>
-         <property name="maximum">
-          <number>1000000</number>
-         </property>
-        </widget>
-        <widget class="QgsSpinBox" name="montant">
-         <property name="geometry">
-          <rect>
-           <x>400</x>
-           <y>420</y>
-           <width>171</width>
-           <height>25</height>
-          </rect>
-         </property>
-         <property name="font">
-          <font>
-           <pointsize>12</pointsize>
-          </font>
-         </property>
-         <property name="toolTip">
-          <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Montant prévisionnel de la mise en palce de la mesure en k€&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-         </property>
-         <property name="styleSheet">
-          <string notr="true">background-color: rgb(255, 255, 255);
-border-top-color:rgb(132, 132, 132);
-selection-color: rgb(0, 0, 0);
-border-top-width: 1px;
-alternate-background-color: rgb(0, 170, 255);
-selection-background-color: rgb(85, 170, 255);
-border-left-color: rgb(132, 132, 132);
-border-left-width: 1px;
-border-style: solid;
-border-bottom-color: rgb(132, 132, 132);
-border-bottom-width:1px;
-border-right-color : rgb(132, 132, 132);
-border-right-width :1px;
-border-radius: 5px;</string>
-         </property>
-         <property name="alignment">
-          <set>Qt::AlignCenter</set>
-         </property>
-        </widget>
-        <widget class="QgsCheckableComboBox" name="comboBox_2">
-         <property name="geometry">
-          <rect>
-           <x>180</x>
-           <y>203</y>
-           <width>891</width>
-           <height>25</height>
-          </rect>
-         </property>
-         <property name="font">
-          <font>
-           <pointsize>12</pointsize>
-          </font>
-         </property>
-         <property name="toolTip">
-          <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Cible de la mesure&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-         </property>
-         <property name="styleSheet">
-          <string notr="true">background-color: rgb(255, 255, 255);
-border-top-color:rgb(132, 132, 132);
-selection-color: rgb(0, 0, 0);
-border-top-width: 1px;
-alternate-background-color: rgb(0, 170, 255);
-selection-background-color: rgb(85, 170, 255);
-border-left-color: rgb(132, 132, 132);
-border-left-width: 1px;
-border-style: solid;
-border-bottom-color: rgb(132, 132, 132);
-border-bottom-width:1px;
-border-right-color : rgb(132, 132, 132);
-border-right-width :1px;
-border-radius: 5px;</string>
-         </property>
-         <property name="currentText">
-          <string/>
-         </property>
-         <property name="maxVisibleItems">
-          <number>13</number>
-         </property>
-         <property name="separator">
-          <string>|</string>
-         </property>
-         <property name="defaultText">
-          <string/>
-         </property>
-        </widget>
-        <widget class="QgsCheckableComboBox" name="faunes">
-         <property name="geometry">
-          <rect>
-           <x>180</x>
-           <y>458</y>
-           <width>891</width>
-           <height>25</height>
-          </rect>
-         </property>
-         <property name="font">
-          <font>
-           <pointsize>12</pointsize>
-          </font>
-         </property>
-         <property name="toolTip">
-          <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Espèces animales ciblées par la mesure&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-         </property>
-         <property name="styleSheet">
-          <string notr="true">background-color: rgb(255, 255, 255);
-border-top-color:rgb(132, 132, 132);
-selection-color: rgb(0, 0, 0);
-border-top-width: 1px;
-alternate-background-color: rgb(0, 170, 255);
-selection-background-color: rgb(85, 170, 255);
-border-left-color: rgb(132, 132, 132);
-border-left-width: 1px;
-border-style: solid;
-border-bottom-color: rgb(132, 132, 132);
-border-bottom-width:1px;
-border-right-color : rgb(132, 132, 132);
-border-right-width :1px;
-border-radius: 5px;</string>
-         </property>
-         <property name="editable">
-          <bool>true</bool>
-         </property>
-         <property name="maxVisibleItems">
-          <number>25</number>
-         </property>
-         <property name="separator">
-          <string>|</string>
-         </property>
-        </widget>
-        <widget class="QgsCheckableComboBox" name="flores">
-         <property name="geometry">
-          <rect>
-           <x>180</x>
-           <y>498</y>
-           <width>891</width>
-           <height>25</height>
-          </rect>
-         </property>
-         <property name="font">
-          <font>
-           <pointsize>12</pointsize>
-          </font>
-         </property>
-         <property name="toolTip">
-          <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Espèces végétales ciblées par la mesure&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-         </property>
-         <property name="styleSheet">
-          <string notr="true">background-color: rgb(255, 255, 255);
-border-top-color:rgb(132, 132, 132);
-selection-color: rgb(0, 0, 0);
-border-top-width: 1px;
-alternate-background-color: rgb(0, 170, 255);
-selection-background-color: rgb(85, 170, 255);
-border-left-color: rgb(132, 132, 132);
-border-left-width: 1px;
-border-style: solid;
-border-bottom-color: rgb(132, 132, 132);
-border-bottom-width:1px;
-border-right-color : rgb(132, 132, 132);
-border-right-width :1px;
-border-radius: 5px;</string>
-         </property>
-         <property name="editable">
-          <bool>true</bool>
-         </property>
-         <property name="maxVisibleItems">
-          <number>25</number>
-         </property>
-         <property name="separator">
-          <string>|</string>
          </property>
         </widget>
         <widget class="QPushButton" name="zipbutton">
          <property name="geometry">
           <rect>
            <x>240</x>
-           <y>650</y>
+           <y>760</y>
            <width>220</width>
            <height>41</height>
           </rect>
@@ -1135,10 +482,14 @@ border-radius: 5px;</string>
    border-radius: 5px;
 }
 
-QPushButton#zipbutton:pressed {
+QPushButton#zipbutton:hover:pressed {
    background-color: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1, stop:1 white, stop: 0 rgb(217, 217, 217));
   	border-color: rgb(0, 85, 255);
-};</string>
+}
+
+QPushButton#zipbutton::hover{
+   background-color: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1, stop: 0 white, stop: 1 rgb(225, 225, 225))}
+</string>
          </property>
          <property name="text">
           <string>Créer une archive .zip</string>
@@ -1148,7 +499,7 @@ QPushButton#zipbutton:pressed {
          <property name="geometry">
           <rect>
            <x>470</x>
-           <y>650</y>
+           <y>760</y>
            <width>220</width>
            <height>41</height>
           </rect>
@@ -1170,10 +521,14 @@ QPushButton#zipbutton:pressed {
    border-radius: 5px;
 }
 
-QPushButton#dossier:pressed {
+QPushButton#dossie:hover:pressed {
    background-color: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1, stop:1 white, stop: 0 rgb(217, 217, 217));
   	border-color: rgb(0, 85, 255);
-};</string>
+}
+
+QPushButton#dossier::hover{
+   background-color: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1, stop: 0 white, stop: 1 rgb(225, 225, 225))}
+</string>
          </property>
          <property name="text">
           <string>Ouvrir le dossier</string>
@@ -1233,7 +588,7 @@ QPushButton#dossier:pressed {
          <property name="geometry">
           <rect>
            <x>700</x>
-           <y>650</y>
+           <y>760</y>
            <width>220</width>
            <height>41</height>
           </rect>
@@ -1255,227 +610,1963 @@ QPushButton#dossier:pressed {
    border-radius: 5px;
 }
 
-QPushButton#eff_form:pressed {
+QPushButton#eff_form:hover:pressed {
    background-color: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1, stop:1 white, stop: 0 rgb(217, 217, 217));
   	border-color: rgb(0, 85, 255);
-};</string>
+}
+
+QPushButton#eff_form::hover{
+   background-color: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1, stop: 0 white, stop: 1 rgb(225, 225, 225))}
+</string>
          </property>
          <property name="text">
           <string>Effacer le formulaire</string>
          </property>
         </widget>
+        <widget class="QToolBox" name="toolBox">
+         <property name="geometry">
+          <rect>
+           <x>0</x>
+           <y>120</y>
+           <width>1081</width>
+           <height>551</height>
+          </rect>
+         </property>
+         <property name="font">
+          <font>
+           <pointsize>12</pointsize>
+          </font>
+         </property>
+         <property name="autoFillBackground">
+          <bool>false</bool>
+         </property>
+         <property name="styleSheet">
+          <string notr="true">QToolBox::tab {
+    background: rgb(0, 166, 90);
+    color: rgb(218, 218, 218);
+    border: 1px solid #C4C4C3;
+    border-right : 7775 px;
+    font: italic;
+    image:url(:/plugins/GeoMCE/plus.png);
+   image-position: right;
+}
+
+QToolBox::tab:selected { /* italicize selected tabs */
+   	image: url(:/plugins/GeoMCE/moins.png);
+    font:bold;
+    color: white;
+   }
+
+</string>
+         </property>
+         <property name="currentIndex">
+          <number>0</number>
+         </property>
+         <widget class="QWidget" name="page">
+          <property name="geometry">
+           <rect>
+            <x>0</x>
+            <y>0</y>
+            <width>1081</width>
+            <height>452</height>
+           </rect>
+          </property>
+          <attribute name="label">
+           <string>   Données générales</string>
+          </attribute>
+          <widget class="QLabel" name="label_8">
+           <property name="geometry">
+            <rect>
+             <x>550</x>
+             <y>0</y>
+             <width>121</width>
+             <height>22</height>
+            </rect>
+           </property>
+           <property name="toolTip">
+            <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:9pt;&quot;&gt;Bref description de la mesure - 254 caractères max&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+           </property>
+           <property name="text">
+            <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:12pt;&quot;&gt;Description&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+           </property>
+          </widget>
+          <widget class="QLineEdit" name="nom">
+           <property name="geometry">
+            <rect>
+             <x>20</x>
+             <y>31</y>
+             <width>501</width>
+             <height>25</height>
+            </rect>
+           </property>
+           <property name="font">
+            <font>
+             <pointsize>12</pointsize>
+            </font>
+           </property>
+           <property name="toolTip">
+            <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Saisir un nom pour la mesure&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+           </property>
+           <property name="styleSheet">
+            <string notr="true">QLineEdit {
+    border: 1px solid gray;
+    border-radius: 3px;
+    padding: 0 8px;   
+	background-color: rgb(255, 255, 255);
+}
+QLineEdit::focus {
+	border-color: rgb(0, 85, 255);
+   background-color: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1, stop: 0 white, stop: 1 rgb(245, 245, 245));
+}
+
+QLineEdit:hover{
+   background-color: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1, stop: 0 white, stop: 1 rgb(245, 245, 245))}
+</string>
+           </property>
+           <property name="text">
+            <string/>
+           </property>
+           <property name="maxLength">
+            <number>254</number>
+           </property>
+           <property name="dragEnabled">
+            <bool>true</bool>
+           </property>
+           <property name="clearButtonEnabled">
+            <bool>true</bool>
+           </property>
+          </widget>
+          <widget class="QComboBox" name="comboBox">
+           <property name="geometry">
+            <rect>
+             <x>20</x>
+             <y>101</y>
+             <width>501</width>
+             <height>25</height>
+            </rect>
+           </property>
+           <property name="font">
+            <font>
+             <pointsize>12</pointsize>
+            </font>
+           </property>
+           <property name="contextMenuPolicy">
+            <enum>Qt::CustomContextMenu</enum>
+           </property>
+           <property name="toolTip">
+            <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Catégorie de la mesure selon la &lt;a href=&quot;https://www.cerema.fr/fr/actualites/guide-aide-definition-mesures-eviter-reduire-compenser&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;classification ERC&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+           </property>
+           <property name="styleSheet">
+            <string notr="true">QComboBox {
+	border: 1px solid #333333;
+	border-radius: 3px;
+	background:white;
+	padding: 1px 23px 1px 3px;
+	min-width: 6em;
+   background-color: rgb(255, 255, 255);
+	selection-background-color: rgb(0, 170, 255);
+}
+
+QComboBox::drop-down {
+    subcontrol-origin: padding;
+    subcontrol-position: top right;
+    width: 15px;
+    border-left-width: 1px;
+    border-left-color: darkgray;
+    border-left-style: solid; /* just a single line */
+    border-top-right-radius: 3px; /* same radius as the QComboBox */
+    border-bottom-right-radius: 3px;
+  
+}
+QComboBox::down-arrow {
+     image: url(:/plugins/GeoMCE/icons8-chevron-bas-24.png);}
+
+QComboBox::focus{
+border-color: rgb(0, 85, 255);
+   background-color: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1, stop: 0 white, stop: 1 rgb(245, 245, 245));
+}
+
+QComboBox QAbstractItemView{
+background-color: rgb(255, 255, 255);}
+
+QComboBox:hover{
+   background-color: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1, stop: 0 white, stop: 1 rgb(245, 245, 245))}</string>
+           </property>
+           <property name="editable">
+            <bool>false</bool>
+           </property>
+           <property name="maxVisibleItems">
+            <number>15</number>
+           </property>
+           <property name="frame">
+            <bool>true</bool>
+           </property>
+          </widget>
+          <widget class="QLabel" name="label_10">
+           <property name="geometry">
+            <rect>
+             <x>20</x>
+             <y>210</y>
+             <width>471</width>
+             <height>22</height>
+            </rect>
+           </property>
+           <property name="toolTip">
+            <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:9pt;&quot;&gt;Article et annexe décrivant la mesure - 254 caractères max&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+           </property>
+           <property name="text">
+            <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:12pt;&quot;&gt;Référence de la décision adminstrative prescrivant la mesure&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+           </property>
+          </widget>
+          <widget class="QLabel" name="label_13">
+           <property name="geometry">
+            <rect>
+             <x>20</x>
+             <y>71</y>
+             <width>391</width>
+             <height>22</height>
+            </rect>
+           </property>
+           <property name="toolTip">
+            <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:9pt;&quot;&gt;Catégorie selon la typologie du guide ERC&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+           </property>
+           <property name="text">
+            <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:12pt;&quot;&gt;Catégorie de la mesure selon la classification ERC&lt;/span&gt;&lt;span style=&quot; font-size:12pt; color:#ff0000;&quot;&gt;*&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+           </property>
+           <property name="openExternalLinks">
+            <bool>true</bool>
+           </property>
+          </widget>
+          <widget class="QgsCheckableComboBox" name="comboBox_2">
+           <property name="geometry">
+            <rect>
+             <x>20</x>
+             <y>171</y>
+             <width>501</width>
+             <height>25</height>
+            </rect>
+           </property>
+           <property name="font">
+            <font>
+             <pointsize>12</pointsize>
+            </font>
+           </property>
+           <property name="contextMenuPolicy">
+            <enum>Qt::CustomContextMenu</enum>
+           </property>
+           <property name="toolTip">
+            <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Cible de la mesure&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+           </property>
+           <property name="styleSheet">
+            <string notr="true">QComboBox {
+	border: 1px solid #333333;
+	border-radius: 3px;
+	background:white;
+	padding: 1px 23px 1px 3px;
+	min-width: 6em;
+   background-color: rgb(255, 255, 255);
+	selection-background-color: rgb(0, 170, 255);
+}
+
+QComboBox::drop-down {
+    subcontrol-origin: padding;
+    subcontrol-position: top right;
+    width: 15px;
+    border-left-width: 1px;
+    border-left-color: darkgray;
+    border-left-style: solid; /* just a single line */
+    border-top-right-radius: 3px; /* same radius as the QComboBox */
+    border-bottom-right-radius: 3px;
+  
+}
+QComboBox::down-arrow {
+     image: url(:/plugins/GeoMCE/icons8-chevron-bas-24.png);}
+
+QComboBox::focus{
+border-color: rgb(0, 85, 255);}
+
+QComboBox QAbstractItemView{
+background-color: rgb(255, 255, 255);}
+
+QComboBox:hover{
+   background-color: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1, stop: 0 white, stop: 1 rgb(245, 245, 245))}
+
+</string>
+           </property>
+           <property name="currentText">
+            <string/>
+           </property>
+           <property name="maxVisibleItems">
+            <number>13</number>
+           </property>
+           <property name="separator">
+            <string>|</string>
+           </property>
+           <property name="defaultText">
+            <string/>
+           </property>
+          </widget>
+          <widget class="QLabel" name="label_14">
+           <property name="geometry">
+            <rect>
+             <x>20</x>
+             <y>141</y>
+             <width>101</width>
+             <height>22</height>
+            </rect>
+           </property>
+           <property name="toolTip">
+            <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:9pt;&quot;&gt;Cible de la mesure&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+           </property>
+           <property name="text">
+            <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:12pt;&quot;&gt;Cible&lt;/span&gt;&lt;span style=&quot; font-size:12pt; color:#ff0000;&quot;&gt;* &lt;/span&gt;&lt;span style=&quot; font-size:12pt; color:#0000ff;&quot;&gt;**&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+           </property>
+           <property name="openExternalLinks">
+            <bool>true</bool>
+           </property>
+          </widget>
+          <widget class="QLabel" name="label_4">
+           <property name="geometry">
+            <rect>
+             <x>20</x>
+             <y>0</y>
+             <width>161</width>
+             <height>22</height>
+            </rect>
+           </property>
+           <property name="font">
+            <font>
+             <family>MS Reference Sans Serif</family>
+            </font>
+           </property>
+           <property name="toolTip">
+            <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:9pt;&quot;&gt;Nom de la couche&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+           </property>
+           <property name="text">
+            <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;right&quot;&gt;&lt;span style=&quot; font-size:12pt;&quot;&gt;Nom de la mesure&lt;/span&gt;&lt;span style=&quot; font-size:12pt; color:#ff0000;&quot;&gt;*&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+           </property>
+          </widget>
+          <widget class="QLineEdit" name="decision">
+           <property name="geometry">
+            <rect>
+             <x>20</x>
+             <y>240</y>
+             <width>501</width>
+             <height>25</height>
+            </rect>
+           </property>
+           <property name="font">
+            <font>
+             <pointsize>12</pointsize>
+            </font>
+           </property>
+           <property name="toolTip">
+            <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Référence de l'acte adminsitratif prescrivant cette mesure (Article et annexe)&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+           </property>
+           <property name="styleSheet">
+            <string notr="true">QLineEdit {
+    border: 1px solid gray;
+    border-radius: 3px;
+    padding: 0 8px;   
+	background-color: rgb(255, 255, 255);
+}
+QLineEdit::focus {
+	border-color: rgb(0, 85, 255);
+   background-color: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1, stop: 0 white, stop: 1 rgb(245, 245, 245));
+
+}
+QLineEdit:hover{
+   background-color: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1, stop: 0 white, stop: 1 rgb(245, 245, 245))}</string>
+           </property>
+           <property name="maxLength">
+            <number>254</number>
+           </property>
+           <property name="dragEnabled">
+            <bool>true</bool>
+           </property>
+           <property name="clearButtonEnabled">
+            <bool>true</bool>
+           </property>
+          </widget>
+          <widget class="QLineEdit" name="refei">
+           <property name="geometry">
+            <rect>
+             <x>20</x>
+             <y>310</y>
+             <width>501</width>
+             <height>25</height>
+            </rect>
+           </property>
+           <property name="font">
+            <font>
+             <pointsize>12</pointsize>
+            </font>
+           </property>
+           <property name="toolTip">
+            <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Pages du dossier du projet décrivant la mesure&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+           </property>
+           <property name="styleSheet">
+            <string notr="true">QLineEdit {
+    border: 1px solid gray;
+    border-radius: 3px;
+    padding: 0 8px;   
+	background-color: rgb(255, 255, 255);
+}
+QLineEdit::focus {
+	border-color: rgb(0, 85, 255);
+   background-color: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1, stop: 0 white, stop: 1 rgb(245, 245, 245));
+
+}
+QLineEdit:hover{
+   background-color: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1, stop: 0 white, stop: 1 rgb(245, 245, 245))}</string>
+           </property>
+           <property name="maxLength">
+            <number>254</number>
+           </property>
+           <property name="dragEnabled">
+            <bool>true</bool>
+           </property>
+           <property name="clearButtonEnabled">
+            <bool>true</bool>
+           </property>
+          </widget>
+          <widget class="QLabel" name="label_11">
+           <property name="geometry">
+            <rect>
+             <x>20</x>
+             <y>280</y>
+             <width>241</width>
+             <height>22</height>
+            </rect>
+           </property>
+           <property name="toolTip">
+            <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:9pt;&quot;&gt;Pages du dossier décrivant la mesure&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+           </property>
+           <property name="text">
+            <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:12pt;&quot;&gt;Référence de l'étude d'impact&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+           </property>
+          </widget>
+          <widget class="QgsSpinBox" name="nb_point_prescrit">
+           <property name="enabled">
+            <bool>false</bool>
+           </property>
+           <property name="geometry">
+            <rect>
+             <x>750</x>
+             <y>380</y>
+             <width>121</width>
+             <height>24</height>
+            </rect>
+           </property>
+           <property name="font">
+            <font>
+             <pointsize>12</pointsize>
+            </font>
+           </property>
+           <property name="toolTip">
+            <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Fonctionnalité à venir&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+           </property>
+           <property name="styleSheet">
+            <string notr="true">QSpinBox {
+    padding-right: 15px; /* make room for the arrows */
+    border-width: 3;
+   	border: 1px solid #333333;
+	border-radius: 3px;
+	background:white;
+	padding: 1px 23px 1px 3px;
+    background-color: rgb(255, 255, 255);
+	selection-background-color: rgb(0, 170, 255);}
+QSpinBox::up-button {
+    subcontrol-origin: border;
+    subcontrol-position: top right; /* position at the top right corner */
+
+    width: 16px; /* 16 + 2*1px border-width = 15px padding + 3px parent border */
+    border-left-width: 1px;
+    border-left-color: darkgray;
+    border-left-style: solid; /* just a single line */
+    border-bottom-width: 0px;
+    border-bottom-color: darkgray;
+    border-bottom-style: solid; /* just a single line */ 
+}
+
+
+QSpinBox::up-button:hover {
+    border-image: url(:/images/spinup_hover.png) 1;
+}
+
+QSpinBox::up-button:pressed {
+    border-image: url(:/images/spinup_pressed.png) 1;
+}
+
+QSpinBox::up-arrow {
+   	image: url(:/plugins/GeoMCE/icons8-chevron-haut-24.png);
+    width: 24px;
+    height: 24px;
+}
+
+
+QSpinBox::down-button {
+    subcontrol-origin: border;
+    subcontrol-position: bottom right; /* position at bottom right corner */
+
+    width: 16px;
+    border-left-width: 1px;
+    border-left-color: darkgray;
+    border-left-style: solid; /* just a single line */
+    border-top-width: 0px;
+    border-top-color: darkgray;
+    border-top-style: solid; /* just a single line */ 
+}
+
+QSpinBox::down-button:hover {
+    border-image: url(:/images/spindown_hover.png) 1;
+}
+
+QSpinBox::down-button:pressed {
+    border-image: url(:/images/spindown_pressed.png) 1;
+}
+
+QSpinBox::down-arrow {
+image: url(:/plugins/GeoMCE/icons8-chevron-bas-24.png);
+    width: 24px;
+    height: 24px;
+}
+QSpinBox:hover{
+   background-color: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1, stop: 0 white, stop: 1 rgb(245, 245, 245))}
+QSpinBox::disabled 
+{ 
+background-color: #f0f0f0; 
+}
+QSpinBox::focus{
+border-color: rgb(0, 85, 255);}</string>
+           </property>
+           <property name="alignment">
+            <set>Qt::AlignCenter</set>
+           </property>
+           <property name="buttonSymbols">
+            <enum>QAbstractSpinBox::PlusMinus</enum>
+           </property>
+           <property name="maximum">
+            <number>100</number>
+           </property>
+          </widget>
+          <widget class="QDoubleSpinBox" name="lin_prescrit">
+           <property name="enabled">
+            <bool>false</bool>
+           </property>
+           <property name="geometry">
+            <rect>
+             <x>400</x>
+             <y>380</y>
+             <width>121</width>
+             <height>24</height>
+            </rect>
+           </property>
+           <property name="font">
+            <font>
+             <pointsize>12</pointsize>
+            </font>
+           </property>
+           <property name="toolTip">
+            <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Fonctionnalité à venir&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+           </property>
+           <property name="layoutDirection">
+            <enum>Qt::LeftToRight</enum>
+           </property>
+           <property name="styleSheet">
+            <string notr="true">QDoubleSpinBox {
+    padding-right: 15px; /* make room for the arrows */
+    border-width: 3;
+   	border: 1px solid #333333;
+	border-radius: 3px;
+	background:white;
+	padding: 1px 23px 1px 3px;
+	min-width: 6em;
+    background-color: rgb(255, 255, 255);
+	selection-background-color: rgb(0, 170, 255);
+}
+QDoubleSpinBox::up-button {
+    subcontrol-origin: border;
+    subcontrol-position: top right; /* position at the top right corner */
+
+    width: 16px; /* 16 + 2*1px border-width = 15px padding + 3px parent border */
+    border-left-width: 1px;
+    border-left-color: darkgray;
+    border-left-style: solid; /* just a single line */
+    border-bottom-width: 0px;
+    border-bottom-color: darkgray;
+    border-bottom-style: solid; /* just a single line */ 
+}
+
+
+QDoubleSpinBox::up-button:hover {
+    border-image: url(:/images/spinup_hover.png) 1;
+}
+
+QDoubleSpinBox::up-button:pressed {
+    border-image: url(:/images/spinup_pressed.png) 1;
+}
+
+QDoubleSpinBox::up-arrow {
+   	image: url(:/plugins/GeoMCE/icons8-chevron-haut-24.png);
+    width: 24px;
+    height: 24px;
+}
+
+
+QDoubleSpinBox::down-button {
+    subcontrol-origin: border;
+    subcontrol-position: bottom right; /* position at bottom right corner */
+
+    width: 16px;
+    border-left-width: 1px;
+    border-left-color: darkgray;
+    border-left-style: solid; /* just a single line */
+    border-top-width: 0px;
+    border-top-color: darkgray;
+    border-top-style: solid; /* just a single line */ 
+}
+
+QDoubleSpinBox::down-button:hover {
+    border-image: url(:/images/spindown_hover.png) 1;
+}
+
+QSpinBox::down-button:pressed {
+    border-image: url(:/images/spindown_pressed.png) 1;
+}
+
+QDoubleSpinBox::down-arrow {
+image: url(:/plugins/GeoMCE/icons8-chevron-bas-24.png);
+    width: 24px;
+    height: 24px;
+}
+QDoubleSpinBox::disabled 
+{ 
+background-color: #f0f0f0; 
+}
+QDoubleSpinBox:hover{
+   background-color: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1, stop: 0 white, stop: 1 rgb(245, 245, 245))}
+QDoubleSpinBox::focus{
+border-color: rgb(0, 85, 255);}</string>
+           </property>
+           <property name="locale">
+            <locale language="French" country="France"/>
+           </property>
+           <property name="buttonSymbols">
+            <enum>QAbstractSpinBox::PlusMinus</enum>
+           </property>
+           <property name="maximum">
+            <double>999.990000000000009</double>
+           </property>
+           <property name="singleStep">
+            <double>0.500000000000000</double>
+           </property>
+          </widget>
+          <widget class="QDoubleSpinBox" name="surf_prescrite">
+           <property name="enabled">
+            <bool>false</bool>
+           </property>
+           <property name="geometry">
+            <rect>
+             <x>20</x>
+             <y>380</y>
+             <width>121</width>
+             <height>24</height>
+            </rect>
+           </property>
+           <property name="font">
+            <font>
+             <pointsize>12</pointsize>
+             <stylestrategy>PreferDefault</stylestrategy>
+            </font>
+           </property>
+           <property name="toolTip">
+            <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Fonctionnalité à venir&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+           </property>
+           <property name="styleSheet">
+            <string notr="true">QDoubleSpinBox {
+    padding-right: 15px; /* make room for the arrows */
+    border-width: 3;
+   	border: 1px solid #333333;
+	border-radius: 3px;
+	background:white;
+	padding: 1px 23px 1px 3px;
+	min-width: 6em;
+    background-color: rgb(255, 255, 255);
+	selection-background-color: rgb(0, 170, 255);
+}
+QDoubleSpinBox::up-button {
+    subcontrol-origin: border;
+    subcontrol-position: top right; /* position at the top right corner */
+
+    width: 16px; /* 16 + 2*1px border-width = 15px padding + 3px parent border */
+    border-left-width: 1px;
+    border-left-color: darkgray;
+    border-left-style: solid; /* just a single line */
+    border-bottom-width: 0px;
+    border-bottom-color: darkgray;
+    border-bottom-style: solid; /* just a single line */ 
+}
+
+
+QDoubleSpinBox::up-button:hover {
+    border-image: url(:/images/spinup_hover.png) 1;
+}
+
+QDoubleSpinBox::up-button:pressed {
+    border-image: url(:/images/spinup_pressed.png) 1;
+}
+
+QDoubleSpinBox::up-arrow {
+   	image: url(:/plugins/GeoMCE/icons8-chevron-haut-24.png);
+    width: 24px;
+    height: 24px;
+}
+
+
+QDoubleSpinBox::down-button {
+    subcontrol-origin: border;
+    subcontrol-position: bottom right; /* position at bottom right corner */
+
+    width: 16px;
+    border-left-width: 1px;
+    border-left-color: darkgray;
+    border-left-style: solid; /* just a single line */
+    border-top-width: 0px;
+    border-top-color: darkgray;
+    border-top-style: solid; /* just a single line */ 
+}
+
+QDoubleSpinBox::down-button:hover {
+    border-image: url(:/images/spindown_hover.png) 1;
+}
+
+QSpinBox::down-button:pressed {
+    border-image: url(:/images/spindown_pressed.png) 1;
+}
+
+QDoubleSpinBox::down-arrow {
+image: url(:/plugins/GeoMCE/icons8-chevron-bas-24.png);
+    width: 24px;
+    height: 24px;
+}
+
+
+QDoubleSpinBox::focus{
+border-color: rgb(0, 85, 255);}
+
+QDoubleSpinBox::disabled 
+{ 
+background-color: #f0f0f0; 
+}
+QDoubleSpinBox:hover{
+   background-color: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1, stop: 0 white, stop: 1 rgb(245, 245, 245))}</string>
+           </property>
+           <property name="locale">
+            <locale language="French" country="France"/>
+           </property>
+           <property name="buttonSymbols">
+            <enum>QAbstractSpinBox::PlusMinus</enum>
+           </property>
+           <property name="maximum">
+            <double>999.990000000000009</double>
+           </property>
+           <property name="singleStep">
+            <double>0.500000000000000</double>
+           </property>
+          </widget>
+          <widget class="QLabel" name="label_29">
+           <property name="enabled">
+            <bool>false</bool>
+           </property>
+           <property name="geometry">
+            <rect>
+             <x>20</x>
+             <y>350</y>
+             <width>151</width>
+             <height>21</height>
+            </rect>
+           </property>
+           <property name="font">
+            <font>
+             <pointsize>12</pointsize>
+            </font>
+           </property>
+           <property name="toolTip">
+            <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Fonctionnalité à venir&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+           </property>
+           <property name="text">
+            <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Surface prescrite&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+           </property>
+          </widget>
+          <widget class="QComboBox" name="surf_unite">
+           <property name="enabled">
+            <bool>false</bool>
+           </property>
+           <property name="geometry">
+            <rect>
+             <x>170</x>
+             <y>380</y>
+             <width>121</width>
+             <height>24</height>
+            </rect>
+           </property>
+           <property name="font">
+            <font>
+             <pointsize>12</pointsize>
+            </font>
+           </property>
+           <property name="toolTip">
+            <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Fonctionnalité à venir&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+           </property>
+           <property name="layoutDirection">
+            <enum>Qt::LeftToRight</enum>
+           </property>
+           <property name="styleSheet">
+            <string notr="true">QComboBox {
+	border: 1px solid #333333;
+	border-radius: 3px;
+	background:white;
+	padding: 1px 23px 1px 3px;
+	min-width: 6em;
+   background-color: rgb(255, 255, 255);
+	selection-background-color: rgb(0, 170, 255);
+}
+
+QComboBox::drop-down {
+    subcontrol-origin: padding;
+    subcontrol-position: top right;
+    width: 15px;
+    border-left-width: 1px;
+    border-left-color: darkgray;
+    border-left-style: solid; /* just a single line */
+    border-top-right-radius: 3px; /* same radius as the QComboBox */
+    border-bottom-right-radius: 3px;
+  
+}
+QComboBox::down-arrow {
+     image: url(:/plugins/GeoMCE/icons8-chevron-bas-24.png);}
+
+QComboBox::focus{
+border-color: rgb(0, 85, 255);}
+
+QComboBox::disabled 
+{ 
+background-color: #f0f0f0; 
+}
+
+QComboBox QAbstractItemView{
+background-color: rgb(255, 255, 255);}
+
+QComboBox:hover{
+   background-color: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1, stop: 0 white, stop: 1 rgb(245, 245, 245))}</string>
+           </property>
+          </widget>
+          <widget class="QLabel" name="label_30">
+           <property name="enabled">
+            <bool>false</bool>
+           </property>
+           <property name="geometry">
+            <rect>
+             <x>400</x>
+             <y>350</y>
+             <width>161</width>
+             <height>21</height>
+            </rect>
+           </property>
+           <property name="font">
+            <font>
+             <pointsize>12</pointsize>
+            </font>
+           </property>
+           <property name="toolTip">
+            <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Fonctionnalité à venir&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+           </property>
+           <property name="text">
+            <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Linéaire prescrit&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+           </property>
+          </widget>
+          <widget class="QComboBox" name="line_unite">
+           <property name="enabled">
+            <bool>false</bool>
+           </property>
+           <property name="geometry">
+            <rect>
+             <x>550</x>
+             <y>380</y>
+             <width>121</width>
+             <height>24</height>
+            </rect>
+           </property>
+           <property name="font">
+            <font>
+             <pointsize>12</pointsize>
+            </font>
+           </property>
+           <property name="toolTip">
+            <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Fonctionnalité à venir&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+           </property>
+           <property name="layoutDirection">
+            <enum>Qt::LeftToRight</enum>
+           </property>
+           <property name="styleSheet">
+            <string notr="true">QComboBox {
+	border: 1px solid #333333;
+	border-radius: 3px;
+	background:white;
+	padding: 1px 23px 1px 3px;
+	min-width: 6em;
+   background-color: rgb(255, 255, 255);
+	selection-background-color: rgb(0, 170, 255);
+}
+
+QComboBox::drop-down {
+    subcontrol-origin: padding;
+    subcontrol-position: top right;
+    width: 15px;
+    border-left-width: 1px;
+    border-left-color: darkgray;
+    border-left-style: solid; /* just a single line */
+    border-top-right-radius: 3px; /* same radius as the QComboBox */
+    border-bottom-right-radius: 3px;
+  
+}
+QComboBox::down-arrow {
+     image: url(:/plugins/GeoMCE/icons8-chevron-bas-24.png);}
+
+QComboBox::focus{
+border-color: rgb(0, 85, 255);}
+
+QComboBox::disabled 
+{ 
+background-color: #f0f0f0; 
+}
+QComboBox QAbstractItemView{
+background-color: rgb(255, 255, 255);}
+
+QComboBox:hover{
+   background-color: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1, stop: 0 white, stop: 1 rgb(245, 245, 245))}</string>
+           </property>
+          </widget>
+          <widget class="QLabel" name="label_32">
+           <property name="enabled">
+            <bool>false</bool>
+           </property>
+           <property name="geometry">
+            <rect>
+             <x>750</x>
+             <y>350</y>
+             <width>221</width>
+             <height>21</height>
+            </rect>
+           </property>
+           <property name="font">
+            <font>
+             <pointsize>12</pointsize>
+            </font>
+           </property>
+           <property name="toolTip">
+            <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Fonctionnalité à venir&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+           </property>
+           <property name="text">
+            <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Nombre de points prescrits&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+           </property>
+          </widget>
+          <widget class="QCheckBox" name="ORE">
+           <property name="enabled">
+            <bool>false</bool>
+           </property>
+           <property name="geometry">
+            <rect>
+             <x>20</x>
+             <y>420</y>
+             <width>551</width>
+             <height>20</height>
+            </rect>
+           </property>
+           <property name="font">
+            <font>
+             <pointsize>12</pointsize>
+            </font>
+           </property>
+           <property name="toolTip">
+            <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Fonctionnalité à venir&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+           </property>
+           <property name="styleSheet">
+            <string notr="true">QCheckBox {
+    spacing: 5px;
+}
+
+QCheckBox::indicator {
+    width: 13px;
+    height: 13px;
+	background-color: rgb();
+	color: rgb(197, 197, 197);
+}
+
+QCheckBox::indicator:unchecked {
+image: url(:/plugins/GeoMCE/iconfinder_unchecked_checkbox_83064.png);
+}
+
+QCheckBox::indicator:unchecked:hover {
+image: url(:/plugins/GeoMCE/iconfinder_unchecked_checkbox_83064.png);
+	border-color: 2px,rgb(0, 85, 255);
+}
+
+QCheckBox::indicator:checked {
+image: url(:/plugins/GeoMCE/iconfinder_checked_checkbox_82543.png);
+}
+
+QCheckBox::indicator:checked:hover {
+image: url(:/plugins/GeoMCE/iconfinder_checked_checkbox_82543.png);
+	border-color: 2px,rgb(0, 85, 255);
+}
+
+</string>
+           </property>
+           <property name="text">
+            <string>Cette mesure fait l'objet d'une Obligation Réelle Environnementale (ORE)</string>
+           </property>
+          </widget>
+          <widget class="QPlainTextEdit" name="description">
+           <property name="geometry">
+            <rect>
+             <x>550</x>
+             <y>30</y>
+             <width>510</width>
+             <height>304</height>
+            </rect>
+           </property>
+           <property name="font">
+            <font>
+             <pointsize>12</pointsize>
+            </font>
+           </property>
+           <property name="styleSheet">
+            <string notr="true">QPlainTextEdit{
+    border: 1px solid gray;
+    border-radius: 3px;
+    padding: 0 8px;   
+	background-color: rgb(255, 255, 255);
+}
+QPlainTextEdit::focus {
+	border-color: rgb(0, 85, 255);
+   background-color: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1, stop: 0 white, stop: 1 rgb(245, 245, 245));
+
+}
+
+QPlainTextEdit:hover{
+   background-color: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1, stop: 0 white, stop: 1 rgb(250, 250, 250))}</string>
+           </property>
+           <property name="maximumBlockCount">
+            <number>0</number>
+           </property>
+           <property name="placeholderText">
+            <string>Champ limité à 254 caractères - Glisser/déposer autorisé</string>
+           </property>
+          </widget>
+          <zorder>label_8</zorder>
+          <zorder>nom</zorder>
+          <zorder>label_10</zorder>
+          <zorder>label_13</zorder>
+          <zorder>comboBox_2</zorder>
+          <zorder>label_14</zorder>
+          <zorder>label_4</zorder>
+          <zorder>decision</zorder>
+          <zorder>refei</zorder>
+          <zorder>label_11</zorder>
+          <zorder>nb_point_prescrit</zorder>
+          <zorder>lin_prescrit</zorder>
+          <zorder>surf_prescrite</zorder>
+          <zorder>label_29</zorder>
+          <zorder>surf_unite</zorder>
+          <zorder>label_30</zorder>
+          <zorder>line_unite</zorder>
+          <zorder>label_32</zorder>
+          <zorder>ORE</zorder>
+          <zorder>description</zorder>
+          <zorder>comboBox</zorder>
+         </widget>
+         <widget class="QWidget" name="page_2">
+          <property name="geometry">
+           <rect>
+            <x>0</x>
+            <y>0</y>
+            <width>1081</width>
+            <height>452</height>
+           </rect>
+          </property>
+          <attribute name="label">
+           <string>   Suivi prévisionnel</string>
+          </attribute>
+          <widget class="QLabel" name="label_12">
+           <property name="geometry">
+            <rect>
+             <x>580</x>
+             <y>100</y>
+             <width>211</width>
+             <height>22</height>
+            </rect>
+           </property>
+           <property name="text">
+            <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:12pt;&quot;&gt;Durée de prescription&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+           </property>
+          </widget>
+          <widget class="QLabel" name="label_40">
+           <property name="geometry">
+            <rect>
+             <x>20</x>
+             <y>170</y>
+             <width>301</width>
+             <height>22</height>
+            </rect>
+           </property>
+           <property name="text">
+            <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:12pt;&quot;&gt;Libellé de la mesure de suivi&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+           </property>
+          </widget>
+          <widget class="QgsSpinBox" name="duree">
+           <property name="geometry">
+            <rect>
+             <x>580</x>
+             <y>130</y>
+             <width>171</width>
+             <height>25</height>
+            </rect>
+           </property>
+           <property name="font">
+            <font>
+             <pointsize>12</pointsize>
+            </font>
+           </property>
+           <property name="toolTip">
+            <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Durée d'application de la mesure&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+           </property>
+           <property name="styleSheet">
+            <string notr="true">QSpinBox {
+    padding-right: 15px; /* make room for the arrows */
+    border-width: 3;
+   	border: 1px solid #333333;
+	border-radius: 3px;
+	background:white;
+	padding: 1px 23px 1px 3px;
+	min-width: 6em;
+    background-color: rgb(255, 255, 255);
+	selection-background-color: rgb(0, 170, 255);
+}
+QSpinBox::up-button {
+    subcontrol-origin: border;
+    subcontrol-position: top right; /* position at the top right corner */
+
+    width: 16px; /* 16 + 2*1px border-width = 15px padding + 3px parent border */
+    border-left-width: 1px;
+    border-left-color: darkgray;
+    border-left-style: solid; /* just a single line */
+    border-bottom-width: 0px;
+    border-bottom-color: darkgray;
+    border-bottom-style: solid; /* just a single line */ 
+}
+
+
+QSpinBox::up-button:hover {
+    border-image: url(:/images/spinup_hover.png) 1;
+}
+
+QSpinBox::up-button:pressed {
+    border-image: url(:/images/spinup_pressed.png) 1;
+}
+
+QSpinBox::up-arrow {
+   	image: url(:/plugins/GeoMCE/icons8-chevron-haut-24.png);
+    width: 24px;
+    height: 24px;
+}
+
+
+QSpinBox::down-button {
+    subcontrol-origin: border;
+    subcontrol-position: bottom right; /* position at bottom right corner */
+
+    width: 16px;
+    border-left-width: 1px;
+    border-left-color: darkgray;
+    border-left-style: solid; /* just a single line */
+    border-top-width: 0px;
+    border-top-color: darkgray;
+    border-top-style: solid; /* just a single line */ 
+}
+
+QSpinBox::down-button:hover {
+    border-image: url(:/images/spindown_hover.png) 1;
+}
+
+QSpinBox::down-button:pressed {
+    border-image: url(:/images/spindown_pressed.png) 1;
+}
+
+QSpinBox::down-arrow {
+image: url(:/plugins/GeoMCE/icons8-chevron-bas-24.png);
+    width: 24px;
+    height: 24px;
+}
+
+
+QSpinBox::focus{
+border-color: rgb(0, 85, 255);}
+
+QSpinBox:hover{
+   background-color: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1, stop: 0 white, stop: 1 rgb(245, 245, 245))}</string>
+           </property>
+           <property name="alignment">
+            <set>Qt::AlignCenter</set>
+           </property>
+           <property name="buttonSymbols">
+            <enum>QAbstractSpinBox::PlusMinus</enum>
+           </property>
+          </widget>
+          <widget class="QLineEdit" name="echeances">
+           <property name="geometry">
+            <rect>
+             <x>20</x>
+             <y>200</y>
+             <width>481</width>
+             <height>25</height>
+            </rect>
+           </property>
+           <property name="font">
+            <font>
+             <pointsize>12</pointsize>
+            </font>
+           </property>
+           <property name="toolTip">
+            <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Echéances du suivi&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+           </property>
+           <property name="styleSheet">
+            <string notr="true">QLineEdit {
+    border: 1px solid gray;
+    border-radius: 3px;
+    padding: 0 8px;   
+	background-color: rgb(255, 255, 255);
+}
+QLineEdit::focus {
+	border-color: rgb(0, 85, 255);
+   background-color: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1, stop: 0 white, stop: 1 rgb(245, 245, 245));
+
+}
+QLineEdit:hover{
+   background-color: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1, stop: 0 white, stop: 1 rgb(245, 245, 245))}</string>
+           </property>
+           <property name="maxLength">
+            <number>254</number>
+           </property>
+           <property name="clearButtonEnabled">
+            <bool>true</bool>
+           </property>
+          </widget>
+          <widget class="QgsSpinBox" name="montant">
+           <property name="geometry">
+            <rect>
+             <x>20</x>
+             <y>270</y>
+             <width>181</width>
+             <height>25</height>
+            </rect>
+           </property>
+           <property name="font">
+            <font>
+             <pointsize>12</pointsize>
+            </font>
+           </property>
+           <property name="toolTip">
+            <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Montant prévisionnel de la mise en palce de la mesure en k€&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+           </property>
+           <property name="styleSheet">
+            <string notr="true">QSpinBox {
+    padding-right: 15px; /* make room for the arrows */
+    border-width: 3;
+   	border: 1px solid #333333;
+	border-radius: 3px;
+	background:white;
+	padding: 1px 23px 1px 3px;
+	min-width: 6em;
+    background-color: rgb(255, 255, 255);
+	selection-background-color: rgb(0, 170, 255);
+}
+QSpinBox::up-button {
+    subcontrol-origin: border;
+    subcontrol-position: top right; /* position at the top right corner */
+
+    width: 16px; /* 16 + 2*1px border-width = 15px padding + 3px parent border */
+    border-left-width: 1px;
+    border-left-color: darkgray;
+    border-left-style: solid; /* just a single line */
+    border-bottom-width: 0px;
+    border-bottom-color: darkgray;
+    border-bottom-style: solid; /* just a single line */ 
+}
+
+
+QSpinBox::up-button:hover {
+    border-image: url(:/images/spinup_hover.png) 1;
+}
+
+QSpinBox::up-button:pressed {
+    border-image: url(:/images/spinup_pressed.png) 1;
+}
+
+QSpinBox::up-arrow {
+   	image: url(:/plugins/GeoMCE/icons8-chevron-haut-24.png);
+    width: 24px;
+    height: 24px;
+}
+
+
+QSpinBox::down-button {
+    subcontrol-origin: border;
+    subcontrol-position: bottom right; /* position at bottom right corner */
+
+    width: 16px;
+    border-left-width: 1px;
+    border-left-color: darkgray;
+    border-left-style: solid; /* just a single line */
+    border-top-width: 0px;
+    border-top-color: darkgray;
+    border-top-style: solid; /* just a single line */ 
+}
+
+QSpinBox::down-button:hover {
+    border-image: url(:/images/spindown_hover.png) 1;
+}
+
+QSpinBox::down-button:pressed {
+    border-image: url(:/images/spindown_pressed.png) 1;
+}
+
+QSpinBox::down-arrow {
+image: url(:/plugins/GeoMCE/icons8-chevron-bas-24.png);
+    width: 24px;
+    height: 24px;
+}
+
+
+QSpinBox::focus{
+border-color: rgb(0, 85, 255);}
+QSpinBox:hover{
+   background-color: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1, stop: 0 white, stop: 1 rgb(245, 245, 245))}</string>
+           </property>
+           <property name="alignment">
+            <set>Qt::AlignCenter</set>
+           </property>
+           <property name="buttonSymbols">
+            <enum>QAbstractSpinBox::PlusMinus</enum>
+           </property>
+          </widget>
+          <widget class="QgsSpinBox" name="cout">
+           <property name="geometry">
+            <rect>
+             <x>20</x>
+             <y>340</y>
+             <width>181</width>
+             <height>25</height>
+            </rect>
+           </property>
+           <property name="font">
+            <font>
+             <pointsize>12</pointsize>
+            </font>
+           </property>
+           <property name="toolTip">
+            <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Montant prévisionnel du suivi de la mesure en €&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+           </property>
+           <property name="styleSheet">
+            <string notr="true">QSpinBox {
+    padding-right: 15px; /* make room for the arrows */
+    border-width: 3;
+   	border: 1px solid #333333;
+	border-radius: 3px;
+	background:white;
+	padding: 1px 23px 1px 3px;
+	min-width: 6em;
+    background-color: rgb(255, 255, 255);
+	selection-background-color: rgb(0, 170, 255);
+}
+QSpinBox::up-button {
+    subcontrol-origin: border;
+    subcontrol-position: top right; /* position at the top right corner */
+
+    width: 16px; /* 16 + 2*1px border-width = 15px padding + 3px parent border */
+    border-left-width: 1px;
+    border-left-color: darkgray;
+    border-left-style: solid; /* just a single line */
+    border-bottom-width: 0px;
+    border-bottom-color: darkgray;
+    border-bottom-style: solid; /* just a single line */ 
+}
+
+
+QSpinBox::up-button:hover {
+    border-image: url(:/images/spinup_hover.png) 1;
+}
+
+QSpinBox::up-button:pressed {
+    border-image: url(:/images/spinup_pressed.png) 1;
+}
+
+QSpinBox::up-arrow {
+   	image: url(:/plugins/GeoMCE/icons8-chevron-haut-24.png);
+    width: 24px;
+    height: 24px;
+}
+
+
+QSpinBox::down-button {
+    subcontrol-origin: border;
+    subcontrol-position: bottom right; /* position at bottom right corner */
+
+    width: 16px;
+    border-left-width: 1px;
+    border-left-color: darkgray;
+    border-left-style: solid; /* just a single line */
+    border-top-width: 0px;
+    border-top-color: darkgray;
+    border-top-style: solid; /* just a single line */ 
+}
+
+QSpinBox::down-button:hover {
+    border-image: url(:/images/spindown_hover.png) 1;
+}
+
+QSpinBox::down-button:pressed {
+    border-image: url(:/images/spindown_pressed.png) 1;
+}
+
+QSpinBox::down-arrow {
+image: url(:/plugins/GeoMCE/icons8-chevron-bas-24.png);
+    width: 24px;
+    height: 24px;
+}
+QSpinBox:hover{
+   background-color: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1, stop: 0 white, stop: 1 rgb(245, 245, 245))}
+
+QSpinBox::focus{
+border-color: rgb(0, 85, 255);}</string>
+           </property>
+           <property name="alignment">
+            <set>Qt::AlignCenter</set>
+           </property>
+           <property name="buttonSymbols">
+            <enum>QAbstractSpinBox::PlusMinus</enum>
+           </property>
+           <property name="maximum">
+            <number>1000000</number>
+           </property>
+          </widget>
+          <widget class="QLabel" name="label_37">
+           <property name="geometry">
+            <rect>
+             <x>20</x>
+             <y>240</y>
+             <width>501</width>
+             <height>21</height>
+            </rect>
+           </property>
+           <property name="text">
+            <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:12pt;&quot;&gt;Montant prévisionnel de la mesure (&lt;/span&gt;&lt;span style=&quot; font-size:12pt; font-weight:600;&quot;&gt;k€&lt;/span&gt;&lt;span style=&quot; font-size:12pt;&quot;&gt;)&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+           </property>
+          </widget>
+          <widget class="QComboBox" name="comboBox_3">
+           <property name="geometry">
+            <rect>
+             <x>820</x>
+             <y>130</y>
+             <width>241</width>
+             <height>25</height>
+            </rect>
+           </property>
+           <property name="font">
+            <font>
+             <pointsize>12</pointsize>
+            </font>
+           </property>
+           <property name="toolTip">
+            <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Modalité temporelle d'application de la mesure&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+           </property>
+           <property name="layoutDirection">
+            <enum>Qt::LeftToRight</enum>
+           </property>
+           <property name="styleSheet">
+            <string notr="true">QComboBox {
+	border: 1px solid #333333;
+	border-radius: 3px;
+	background:white;
+	padding: 1px 23px 1px 3px;
+	min-width: 6em;
+    background-color: rgb(255, 255, 255);
+	selection-background-color: rgb(0, 170, 255);
+}
+
+QComboBox::drop-down {
+    subcontrol-origin: padding;
+    subcontrol-position: top right;
+    width: 15px;
+    border-left-width: 1px;
+    border-left-color: darkgray;
+    border-left-style: solid; /* just a single line */
+    border-top-right-radius: 3px; /* same radius as the QComboBox */
+    border-bottom-right-radius: 3px;
+  
+}
+QComboBox::down-arrow {
+     image: url(:/plugins/GeoMCE/icons8-chevron-bas-24.png);}
+
+QComboBox::focus{
+border-color: rgb(0, 85, 255);}
+
+QComboBox QAbstractItemView{
+background-color: rgb(255, 255, 255);}
+QComboBox:hover{
+   background-color: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1, stop: 0 white, stop: 1 rgb(245, 245, 245))}</string>
+           </property>
+          </widget>
+          <widget class="QLabel" name="label_36">
+           <property name="geometry">
+            <rect>
+             <x>20</x>
+             <y>310</y>
+             <width>421</width>
+             <height>21</height>
+            </rect>
+           </property>
+           <property name="text">
+            <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:12pt;&quot;&gt;Coût prévisionnel du suivi de la mesure (&lt;/span&gt;&lt;span style=&quot; font-size:12pt; font-weight:600;&quot;&gt;€&lt;/span&gt;&lt;span style=&quot; font-size:12pt;&quot;&gt;)&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+           </property>
+          </widget>
+          <widget class="QLabel" name="label_19">
+           <property name="enabled">
+            <bool>false</bool>
+           </property>
+           <property name="geometry">
+            <rect>
+             <x>20</x>
+             <y>100</y>
+             <width>491</width>
+             <height>22</height>
+            </rect>
+           </property>
+           <property name="text">
+            <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:12pt;&quot;&gt;Date de délivrance de l'acte administrative prescrivant la mesure&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+           </property>
+          </widget>
+          <widget class="QComboBox" name="comboBox_4">
+           <property name="geometry">
+            <rect>
+             <x>580</x>
+             <y>270</y>
+             <width>481</width>
+             <height>25</height>
+            </rect>
+           </property>
+           <property name="font">
+            <font>
+             <pointsize>12</pointsize>
+            </font>
+           </property>
+           <property name="toolTip">
+            <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Modalité de suivi de la mesure&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+           </property>
+           <property name="styleSheet">
+            <string notr="true">QComboBox {
+	border: 1px solid #333333;
+	border-radius: 3px;
+	background:white;
+	padding: 1px 23px 1px 3px;
+	min-width: 6em;
+   background-color: rgb(255, 255, 255);
+	selection-background-color: rgb(0, 170, 255);
+}
+
+QComboBox::drop-down {
+    subcontrol-origin: padding;
+    subcontrol-position: top right;
+    width: 15px;
+    border-left-width: 1px;
+    border-left-color: darkgray;
+    border-left-style: solid; /* just a single line */
+    border-top-right-radius: 3px; /* same radius as the QComboBox */
+    border-bottom-right-radius: 3px;
+  
+}
+QComboBox::down-arrow {
+     image: url(:/plugins/GeoMCE/icons8-chevron-bas-24.png);}
+
+QComboBox::focus{
+border-color: rgb(0, 85, 255);}
+QComboBox QAbstractItemView{
+background-color: rgb(255, 255, 255);}
+
+
+QComboBox:hover{
+   background-color: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1, stop: 0 white, stop: 1 rgb(245, 245, 245))}</string>
+           </property>
+          </widget>
+          <widget class="QLabel" name="label_16">
+           <property name="geometry">
+            <rect>
+             <x>580</x>
+             <y>240</y>
+             <width>171</width>
+             <height>22</height>
+            </rect>
+           </property>
+           <property name="text">
+            <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:12pt;&quot;&gt;Modalité de suivi&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+           </property>
+          </widget>
+          <widget class="QLabel" name="label_41">
+           <property name="enabled">
+            <bool>false</bool>
+           </property>
+           <property name="geometry">
+            <rect>
+             <x>580</x>
+             <y>170</y>
+             <width>421</width>
+             <height>22</height>
+            </rect>
+           </property>
+           <property name="text">
+            <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:12pt;&quot;&gt;Echéances du suivi (0 étant l'année de délivrance de l'acte)&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+           </property>
+          </widget>
+          <widget class="QDateEdit" name="delivrance">
+           <property name="enabled">
+            <bool>false</bool>
+           </property>
+           <property name="geometry">
+            <rect>
+             <x>20</x>
+             <y>130</y>
+             <width>271</width>
+             <height>25</height>
+            </rect>
+           </property>
+           <property name="font">
+            <font>
+             <pointsize>12</pointsize>
+            </font>
+           </property>
+           <property name="styleSheet">
+            <string notr="true">QCalendarWidget QToolButton {
+  	background-color:  rgb(0, 166, 90);
+  	font-size:16px;  
+  }
+  QCalendarWidget QMenu {
+  	width: 150px;
+  	left: 20px;
+  	color: white;
+  	font-size: 18px;
+   color:black;
+    selection-color:white;
+  	selection-background-color: rgb(0,85 ,255 );
+
+  }
+  QCalendarWidget QSpinBox { 
+  	width: 150px; 
+  	font-size:24px; 
+  	color: white; 
+  	background-color: qlineargradient(x1:0, y1:0, x2:0, y2:1, stop: 0 #cccccc, stop: 1 #333333); 
+  	selection-background-color: rgb(0,85 ,255 );
+  	selection-color: rgb(255, 255, 255);
+  }
+   
+  /* header row */
+  QCalendarWidget QWidget { alternate-background-color: rgb(128, 128, 128); }
+   
+  /* normal days */
+  QCalendarWidget QAbstractItemView:enabled 
+  {
+  	color:black;
+  	selection-background-color:  rgb(0, 170, 255);
+  	selection-color: white, bold; 
+  }
+   
+QCalendarWidget QWidget#qt_calendar_navigationbar
+{ 
+  background-color:  rgb(0, 166, 90); 
+}
+
+QDateEdit {
+	border: 1px solid #333333;
+	border-radius: 3px;
+	background:white;
+	padding: 1px 23px 1px 3px;
+	min-width: 6em;
+    background-color: rgb(255, 255, 255);
+	selection-background-color: rgb(0, 170, 255);
+}
+
+QDateEdit::drop-down {
+    subcontrol-origin: padding;
+    subcontrol-position: top right;
+    width: 15px;
+    border-left-width: 1px;
+    border-left-color: darkgray;
+    border-left-style: solid; /* just a single line */
+    border-top-right-radius: 3px; /* same radius as the QComboBox */
+    border-bottom-right-radius: 3px;
+  
+}
+QDateEdit::down-arrow {
+     image: url(:/plugins/GeoMCE/icons8-chevron-bas-24.png);}
+
+QDateEdit::focus{
+border-color: rgb(0, 85, 255);}
+
+QDateEdit::disabled 
+{ 
+background-color: #f0f0f0; 
+}</string>
+           </property>
+           <property name="alignment">
+            <set>Qt::AlignCenter</set>
+           </property>
+           <property name="calendarPopup">
+            <bool>true</bool>
+           </property>
+           <property name="date">
+            <date>
+             <year>2020</year>
+             <month>1</month>
+             <day>1</day>
+            </date>
+           </property>
+          </widget>
+          <widget class="QgsCheckableComboBox" name="date_echeance">
+           <property name="enabled">
+            <bool>false</bool>
+           </property>
+           <property name="geometry">
+            <rect>
+             <x>580</x>
+             <y>200</y>
+             <width>481</width>
+             <height>25</height>
+            </rect>
+           </property>
+           <property name="font">
+            <font>
+             <pointsize>12</pointsize>
+            </font>
+           </property>
+           <property name="styleSheet">
+            <string notr="true">QComboBox {
+	border: 1px solid #333333;
+	border-radius: 3px;
+	background:white;
+	padding: 1px 23px 1px 3px;
+	min-width: 6em;
+   background-color: rgb(255, 255, 255);
+	selection-background-color: rgb(0, 170, 255);
+}
+
+QComboBox::drop-down {
+    subcontrol-origin: padding;
+    subcontrol-position: top right;
+    width: 15px;
+    border-left-width: 1px;
+    border-left-color: darkgray;
+    border-left-style: solid; /* just a single line */
+    border-top-right-radius: 3px; /* same radius as the QComboBox */
+    border-bottom-right-radius: 3px;
+  
+}
+QComboBox::down-arrow {
+     image: url(:/plugins/GeoMCE/icons8-chevron-bas-24.png);}
+
+QComboBox::focus{
+border-color: rgb(0, 85, 255);}
+
+QComboBox::disabled 
+{ 
+background-color: #f0f0f0; 
+}
+QComboBox QAbstractItemView{
+background-color: rgb(255, 255, 255);}
+
+
+QComboBox:hover{
+   background-color: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1, stop: 0 white, stop: 1 rgb(245, 245, 245))}</string>
+           </property>
+           <property name="separator">
+            <string>, n+</string>
+           </property>
+          </widget>
+         </widget>
+         <widget class="QWidget" name="page_3">
+          <attribute name="label">
+           <string>   Espèces concernées par la mesure</string>
+          </attribute>
+          <widget class="QLabel" name="label_39">
+           <property name="geometry">
+            <rect>
+             <x>20</x>
+             <y>160</y>
+             <width>361</width>
+             <height>22</height>
+            </rect>
+           </property>
+           <property name="text">
+            <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:12pt;&quot;&gt;Espèces végétales concernées par la mesure &lt;/span&gt;&lt;span style=&quot; font-size:12pt; color:#5500ff;&quot;&gt;**&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+           </property>
+          </widget>
+          <widget class="QgsCheckableComboBox" name="flores">
+           <property name="geometry">
+            <rect>
+             <x>20</x>
+             <y>190</y>
+             <width>1040</width>
+             <height>25</height>
+            </rect>
+           </property>
+           <property name="font">
+            <font>
+             <pointsize>12</pointsize>
+            </font>
+           </property>
+           <property name="toolTip">
+            <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Espèces végétales ciblées par la mesure&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+           </property>
+           <property name="styleSheet">
+            <string notr="true">QComboBox {
+	border: 1px solid #333333;
+	border-radius: 3px;
+	background:white;
+	padding: 1px 23px 1px 3px;
+	min-width: 6em;
+   background-color: rgb(255, 255, 255);
+	selection-background-color: rgb(0, 170, 255);
+}
+
+QComboBox::drop-down {
+    subcontrol-origin: padding;
+    subcontrol-position: top right;
+    width: 15px;
+    border-left-width: 1px;
+    border-left-color: darkgray;
+    border-left-style: solid; /* just a single line */
+    border-top-right-radius: 3px; /* same radius as the QComboBox */
+    border-bottom-right-radius: 3px;
+  
+}
+QComboBox::down-arrow {
+     image: url(:/plugins/GeoMCE/icons8-chevron-bas-24.png);}
+
+QComboBox::focus{
+border-color: rgb(0, 85, 255);}
+
+QComboBox QAbstractItemView{
+background-color: rgb(255, 255, 255);}
+
+QComboBox:hover{
+   background-color: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1, stop: 0 white, stop: 1 rgb(245, 245, 245))}</string>
+           </property>
+           <property name="editable">
+            <bool>true</bool>
+           </property>
+           <property name="maxVisibleItems">
+            <number>25</number>
+           </property>
+           <property name="separator">
+            <string>|</string>
+           </property>
+          </widget>
+          <widget class="QLabel" name="label_38">
+           <property name="geometry">
+            <rect>
+             <x>20</x>
+             <y>90</y>
+             <width>401</width>
+             <height>22</height>
+            </rect>
+           </property>
+           <property name="text">
+            <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:12pt;&quot;&gt;Espèces animales concernées par la mesure &lt;/span&gt;&lt;span style=&quot; font-size:12pt; color:#5500ff;&quot;&gt;**&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+           </property>
+          </widget>
+          <widget class="QgsCheckableComboBox" name="faunes">
+           <property name="geometry">
+            <rect>
+             <x>20</x>
+             <y>120</y>
+             <width>1040</width>
+             <height>25</height>
+            </rect>
+           </property>
+           <property name="font">
+            <font>
+             <pointsize>12</pointsize>
+            </font>
+           </property>
+           <property name="toolTip">
+            <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Espèces animales ciblées par la mesure&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+           </property>
+           <property name="styleSheet">
+            <string notr="true">QComboBox {
+	border: 1px solid #333333;
+	border-radius: 3px;
+	background:white;
+	padding: 1px 23px 1px 3px;
+	min-width: 6em;
+   background-color: rgb(255, 255, 255);
+	selection-background-color: rgb(0, 170, 255);
+}
+
+QComboBox::drop-down {
+    subcontrol-origin: padding;
+    subcontrol-position: top right;
+    width: 15px;
+    border-left-width: 1px;
+    border-left-color: darkgray;
+    border-left-style: solid; /* just a single line */
+    border-top-right-radius: 3px; /* same radius as the QComboBox */
+    border-bottom-right-radius: 3px;
+  
+}
+QComboBox::down-arrow {
+     image: url(:/plugins/GeoMCE/icons8-chevron-bas-24.png);}
+
+QComboBox::focus{
+border-color: rgb(0, 85, 255);}
+
+QComboBox QAbstractItemView{
+background-color: rgb(255, 255, 255);}
+
+
+QComboBox:hover{
+   background-color: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1, stop: 0 white, stop: 1 rgb(245, 245, 245))}</string>
+           </property>
+           <property name="editable">
+            <bool>true</bool>
+           </property>
+           <property name="maxVisibleItems">
+            <number>25</number>
+           </property>
+           <property name="separator">
+            <string>|</string>
+           </property>
+          </widget>
+         </widget>
+        </widget>
        </widget>
        <widget class="QWidget" name="tab">
         <attribute name="title">
-         <string>Fonctionnalités supplémentaires</string>
+         <string> Fonctionnalités supplémentaires   </string>
         </attribute>
-        <widget class="QgsFieldComboBox" name="mFieldComboBox">
-         <property name="geometry">
-          <rect>
-           <x>174</x>
-           <y>176</y>
-           <width>891</width>
-           <height>25</height>
-          </rect>
-         </property>
-         <property name="font">
-          <font>
-           <pointsize>12</pointsize>
-          </font>
-         </property>
-         <property name="styleSheet">
-          <string notr="true">background-color: rgb(255, 255, 255);
-border-top-color:rgb(132, 132, 132);
-selection-color: rgb(0, 0, 0);
-border-top-width: 1px;
-alternate-background-color: rgb(0, 170, 255);
-selection-background-color: rgb(85, 170, 255);
-border-left-color: rgb(132, 132, 132);
-border-left-width: 1px;
-border-style: solid;
-border-bottom-color: rgb(132, 132, 132);
-border-bottom-width:1px;
-border-right-color : rgb(132, 132, 132);
-border-right-width :1px;
-border-radius: 5px;</string>
-         </property>
-        </widget>
-        <widget class="QLabel" name="label_2">
-         <property name="geometry">
-          <rect>
-           <x>0</x>
-           <y>178</y>
-           <width>161</width>
-           <height>21</height>
-          </rect>
-         </property>
-         <property name="text">
-          <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;right&quot;&gt;&lt;span style=&quot; font-size:12pt;&quot;&gt;Champ séparateur :&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-         </property>
-        </widget>
-        <widget class="QPushButton" name="create_new_field">
-         <property name="geometry">
-          <rect>
-           <x>10</x>
-           <y>250</y>
-           <width>1061</width>
-           <height>31</height>
-          </rect>
-         </property>
-         <property name="font">
-          <font>
-           <pointsize>12</pointsize>
-           <weight>75</weight>
-           <bold>true</bold>
-          </font>
-         </property>
-         <property name="toolTip">
-          <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:9pt;&quot;&gt;Couche contenant les différentes mesures. Le champ séparateur va créer autant de couche qu'il y a de nom différent. Les nouvelles couches sont créées dans C:/GeoMCE&lt;/span&gt;&lt;/p&gt;&lt;p align=&quot;justify&quot;&gt;&lt;span style=&quot; font-size:9pt;&quot;&gt;ex : une couche nommée &amp;quot;ligne.shp&amp;quot; ayant un champ &amp;quot;mesures&amp;quot; avec les mesures MC1 et MC2. La fonction va créer 2 couches (MC1.shp et MC2.shp) dans le dossier C:/GeoMCE/date_ligne_mesures&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-         </property>
-         <property name="styleSheet">
-          <string notr="true">QPushButton#create_new_field {
-   background-color: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1, stop: 0 white, stop: 1 rgb(217, 217, 217));
-   border-style: solid;
-   border-width: 1px;
-   border-color: rgb(132, 132, 132);
-   border-radius: 5px;
-}
-
-QPushButton#create_new_field:pressed {
-   background-color: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1, stop:1 white, stop: 0 rgb(217, 217, 217));
-  	border-color: rgb(0, 85, 255);
-};</string>
-         </property>
-         <property name="text">
-          <string>Création des nouvelles couches à partir du champ séparateur</string>
-         </property>
-        </widget>
-        <widget class="QgsMapLayerComboBox" name="mMapLayerComboBox_2">
-         <property name="geometry">
-          <rect>
-           <x>174</x>
-           <y>141</y>
-           <width>891</width>
-           <height>25</height>
-          </rect>
-         </property>
-         <property name="font">
-          <font>
-           <pointsize>12</pointsize>
-          </font>
-         </property>
-         <property name="styleSheet">
-          <string notr="true">background-color: rgb(255, 255, 255);
-border-top-color:rgb(132, 132, 132);
-selection-color: rgb(0, 0, 0);
-border-top-width: 1px;
-alternate-background-color: rgb(0, 170, 255);
-selection-background-color: rgb(85, 170, 255);
-border-left-color: rgb(132, 132, 132);
-border-left-width: 1px;
-border-style: solid;
-border-bottom-color: rgb(132, 132, 132);
-border-bottom-width:1px;
-border-right-color : rgb(132, 132, 132);
-border-right-width :1px;
-border-radius: 5px;</string>
-         </property>
-        </widget>
-        <widget class="QLabel" name="label">
-         <property name="geometry">
-          <rect>
-           <x>0</x>
-           <y>143</y>
-           <width>161</width>
-           <height>21</height>
-          </rect>
-         </property>
-         <property name="toolTip">
-          <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;justify&quot;&gt;&lt;br/&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-         </property>
-         <property name="whatsThis">
-          <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;justify&quot;&gt;Si une couche contient éventuellement plusieurs mesures, cette partiedu plugin va permettre de les séparer en fonction du champ défini ci-dessous.&lt;/p&gt;&lt;p align=&quot;justify&quot;&gt;Les couches créées sont présentes dans un dossier spécifique sous C:/GeomCE/&amp;quot;nom de la couche d'origine&amp;quot; et seront importées ensuite dans l'interface &lt;/p&gt;&lt;p align=&quot;justify&quot;&gt;&lt;br/&gt;&lt;/p&gt;&lt;p align=&quot;justify&quot;&gt;ex : un fichier polygone.shp avec un champ &amp;quot;nom&amp;quot; contient 3 entités (2 MC1 et 1 MC2). 2 couches shapes (MC1.shp et MC2.shpà) seront créées dans le dossier C:/GeoMCE/polygone &lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-         </property>
-         <property name="text">
-          <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;right&quot;&gt;&lt;span style=&quot; font-size:12pt;&quot;&gt;Couche d'origine :&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-         </property>
-        </widget>
-        <widget class="QLabel" name="label_31">
-         <property name="geometry">
-          <rect>
-           <x>10</x>
-           <y>213</y>
-           <width>551</width>
-           <height>21</height>
-          </rect>
-         </property>
-         <property name="text">
-          <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;right&quot;&gt;&lt;span style=&quot; font-size:12pt;&quot;&gt;Dossier d'enregistrement (dans le dossier de la couche d'origine par défaut) :&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-         </property>
-        </widget>
-        <widget class="QPushButton" name="pushButton_3">
-         <property name="geometry">
-          <rect>
-           <x>1030</x>
-           <y>211</y>
-           <width>35</width>
-           <height>25</height>
-          </rect>
-         </property>
-         <property name="styleSheet">
-          <string notr="true">QPushButton#pushButton_3 {
-   background-color: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1, stop: 0 white, stop: 1 rgb(217, 217, 217));
-   border-style: solid;
-   border-width: 1px;
-   border-color: rgb(132, 132, 132);
-   border-radius: 5px;
-}
-
-QPushButton#pushButton_3:pressed {
-   background-color: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1, stop:1 white, stop: 0 rgb(217, 217, 217));
-  	border-color: rgb(0, 85, 255);
-};</string>
-         </property>
-         <property name="text">
-          <string>...</string>
-         </property>
-        </widget>
-        <widget class="QLineEdit" name="enregistrement">
-         <property name="geometry">
-          <rect>
-           <x>572</x>
-           <y>211</y>
-           <width>451</width>
-           <height>25</height>
-          </rect>
-         </property>
-         <property name="font">
-          <font>
-           <pointsize>12</pointsize>
-          </font>
-         </property>
-         <property name="styleSheet">
-          <string notr="true">background-color: rgb(255, 255, 255);
-border-top-color:rgb(132, 132, 132);
-selection-color: rgb(0, 0, 0);
-border-top-width: 1px;
-alternate-background-color: rgb(0, 170, 255);
-selection-background-color: rgb(85, 170, 255);
-border-left-color: rgb(132, 132, 132);
-border-left-width: 1px;
-border-style: solid;
-border-bottom-color: rgb(132, 132, 132);
-border-bottom-width:1px;
-border-right-color : rgb(132, 132, 132);
-border-right-width :1px;
-border-radius: 5px;</string>
-         </property>
-        </widget>
         <widget class="QPushButton" name="Exit_2">
          <property name="geometry">
           <rect>
            <x>940</x>
-           <y>650</y>
+           <y>760</y>
            <width>121</width>
            <height>41</height>
           </rect>
@@ -1493,199 +2584,29 @@ border-radius: 5px;</string>
    border-style: solid;
    border-width: 1px;
    border-color: rgb(132, 132, 132);
-   border-radius: 5px;
+   border-radius: 2px;
 }
 
-QPushButton#Exit_2:pressed {
+QPushButton#Exit_2:hover:pressed {
    background-color: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1, stop:1 white, stop: 0 rgb(217, 217, 217));
   	border-color: rgb(0, 85, 255);
-};</string>
+}
+
+QPushButton#Exit_2::hover{
+   background-color: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1, stop: 0 white, stop: 1 rgb(225, 225, 225))}
+</string>
          </property>
          <property name="text">
           <string>Fermer</string>
          </property>
         </widget>
-        <widget class="QPushButton" name="fusion">
-         <property name="geometry">
-          <rect>
-           <x>10</x>
-           <y>490</y>
-           <width>1061</width>
-           <height>31</height>
-          </rect>
-         </property>
-         <property name="font">
-          <font>
-           <pointsize>12</pointsize>
-           <weight>75</weight>
-           <bold>true</bold>
-          </font>
-         </property>
-         <property name="styleSheet">
-          <string notr="true">QPushButton#fusion{
-   background-color: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1, stop: 0 white, stop: 1 rgb(217, 217, 217));
-   border-style: solid;
-   border-width: 1px;
-   border-color: rgb(132, 132, 132);
-   border-radius: 5px;
-}
-
-QPushButton#fusion:pressed {
-   background-color: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1, stop:1 white, stop: 0 rgb(217, 217, 217));
-  	border-color: rgb(0, 85, 255);
-};</string>
-         </property>
-         <property name="text">
-          <string>Fusionner les couches vecteurs</string>
-         </property>
-        </widget>
-        <widget class="QgsCheckableComboBox" name="mComboBox">
-         <property name="geometry">
-          <rect>
-           <x>174</x>
-           <y>410</y>
-           <width>891</width>
-           <height>25</height>
-          </rect>
-         </property>
-         <property name="styleSheet">
-          <string notr="true">background-color: rgb(255, 255, 255);
-border-top-color:rgb(132, 132, 132);
-selection-color: rgb(0, 0, 0);
-border-top-width: 1px;
-alternate-background-color: rgb(0, 170, 255);
-selection-background-color: rgb(85, 170, 255);
-border-left-color: rgb(132, 132, 132);
-border-left-width: 1px;
-border-style: solid;
-border-bottom-color: rgb(132, 132, 132);
-border-bottom-width:1px;
-border-right-color : rgb(132, 132, 132);
-border-right-width :1px;
-border-radius: 5px;
-</string>
-         </property>
-        </widget>
-        <widget class="QgsFileWidget" name="mQgsFileWidget">
-         <property name="geometry">
-          <rect>
-           <x>174</x>
-           <y>450</y>
-           <width>891</width>
-           <height>25</height>
-          </rect>
-         </property>
-         <property name="styleSheet">
-          <string notr="true">background-color: rgb(255, 255, 255);
-border-top-color:rgb(132, 132, 132);
-selection-color: rgb(0, 0, 0);
-border-top-width: 1px;
-alternate-background-color: rgb(0, 170, 255);
-selection-background-color: rgb(85, 170, 255);
-border-left-color: rgb(132, 132, 132);
-border-left-width: 1px;
-border-style: solid;
-border-bottom-color: rgb(132, 132, 132);
-border-bottom-width:1px;
-border-right-color : rgb(132, 132, 132);
-border-right-width :1px;
-border-radius: 5px;
-</string>
-         </property>
-         <property name="storageMode">
-          <enum>QgsFileWidget::SaveFile</enum>
-         </property>
-         <property name="relativeStorage">
-          <enum>QgsFileWidget::Absolute</enum>
-         </property>
-        </widget>
-        <widget class="QLabel" name="label_19">
-         <property name="geometry">
-          <rect>
-           <x>10</x>
-           <y>56</y>
-           <width>251</width>
-           <height>20</height>
-          </rect>
-         </property>
-         <property name="font">
-          <font>
-           <pointsize>12</pointsize>
-           <weight>75</weight>
-           <bold>true</bold>
-           <underline>true</underline>
-          </font>
-         </property>
-         <property name="text">
-          <string>Séparer une couche vecteur :</string>
-         </property>
-        </widget>
-        <widget class="QLabel" name="label_20">
-         <property name="geometry">
-          <rect>
-           <x>10</x>
-           <y>330</y>
-           <width>651</width>
-           <height>20</height>
-          </rect>
-         </property>
-         <property name="font">
-          <font>
-           <pointsize>12</pointsize>
-           <weight>75</weight>
-           <bold>true</bold>
-           <underline>true</underline>
-          </font>
-         </property>
-         <property name="text">
-          <string>Fusionner des couches vecteurs de mêmes géométries :</string>
-         </property>
-        </widget>
-        <widget class="QLabel" name="label_21">
+        <widget class="QToolBox" name="toolBox_2">
          <property name="geometry">
           <rect>
            <x>0</x>
-           <y>410</y>
-           <width>161</width>
-           <height>21</height>
-          </rect>
-         </property>
-         <property name="toolTip">
-          <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;justify&quot;&gt;&lt;br/&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-         </property>
-         <property name="whatsThis">
-          <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;justify&quot;&gt;Si une couche contient éventuellement plusieurs mesures, cette partiedu plugin va permettre de les séparer en fonction du champ défini ci-dessous.&lt;/p&gt;&lt;p align=&quot;justify&quot;&gt;Les couches créées sont présentes dans un dossier spécifique sous C:/GeomCE/&amp;quot;nom de la couche d'origine&amp;quot; et seront importées ensuite dans l'interface &lt;/p&gt;&lt;p align=&quot;justify&quot;&gt;&lt;br/&gt;&lt;/p&gt;&lt;p align=&quot;justify&quot;&gt;ex : un fichier polygone.shp avec un champ &amp;quot;nom&amp;quot; contient 3 entités (2 MC1 et 1 MC2). 2 couches shapes (MC1.shp et MC2.shpà) seront créées dans le dossier C:/GeoMCE/polygone &lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-         </property>
-         <property name="text">
-          <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;right&quot;&gt;&lt;span style=&quot; font-size:12pt;&quot;&gt;Couches à fusionner :&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-         </property>
-        </widget>
-        <widget class="QLabel" name="label_22">
-         <property name="geometry">
-          <rect>
-           <x>0</x>
-           <y>450</y>
-           <width>161</width>
-           <height>21</height>
-          </rect>
-         </property>
-         <property name="toolTip">
-          <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;justify&quot;&gt;Donner un nom à la couche fusionnée (sans extension)&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-         </property>
-         <property name="whatsThis">
-          <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;justify&quot;&gt;Si une couche contient éventuellement plusieurs mesures, cette partiedu plugin va permettre de les séparer en fonction du champ défini ci-dessous.&lt;/p&gt;&lt;p align=&quot;justify&quot;&gt;Les couches créées sont présentes dans un dossier spécifique sous C:/GeomCE/&amp;quot;nom de la couche d'origine&amp;quot; et seront importées ensuite dans l'interface &lt;/p&gt;&lt;p align=&quot;justify&quot;&gt;&lt;br/&gt;&lt;/p&gt;&lt;p align=&quot;justify&quot;&gt;ex : un fichier polygone.shp avec un champ &amp;quot;nom&amp;quot; contient 3 entités (2 MC1 et 1 MC2). 2 couches shapes (MC1.shp et MC2.shpà) seront créées dans le dossier C:/GeoMCE/polygone &lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-         </property>
-         <property name="text">
-          <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;right&quot;&gt;&lt;span style=&quot; font-size:12pt;&quot;&gt;Enregistrer sous :&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-         </property>
-        </widget>
-        <widget class="QPushButton" name="zipbutton_2">
-         <property name="geometry">
-          <rect>
-           <x>450</x>
-           <y>540</y>
-           <width>200</width>
-           <height>41</height>
+           <y>20</y>
+           <width>1081</width>
+           <height>641</height>
           </rect>
          </property>
          <property name="font">
@@ -1693,11 +2614,465 @@ border-radius: 5px;
            <pointsize>12</pointsize>
           </font>
          </property>
-         <property name="toolTip">
-          <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;/!\ Fonctionnalité expérimentale/!\ &lt;/p&gt;&lt;p&gt;L'import ne fonctionnera pas si le nom du champ &amp;quot;Couche à traiter&amp;quot; fait plus de 10 caractères&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-         </property>
          <property name="styleSheet">
-          <string notr="true">QPushButton#zipbutton_2{
+          <string notr="true">QToolBox::tab {
+    background: rgb(0, 166, 90);
+    color: rgb(218, 218, 218);
+    border: 1px solid #C4C4C3;
+    border-right : 7775 px;
+    font: italic;
+    image:url(:/plugins/GeoMCE/plus.png);
+   image-position: right;
+}
+
+QToolBox::tab:selected { /* italicize selected tabs */
+   	image: url(:/plugins/GeoMCE/moins.png);
+    font:bold;
+    color: white;
+}</string>
+         </property>
+         <property name="currentIndex">
+          <number>0</number>
+         </property>
+         <widget class="QWidget" name="page_4">
+          <property name="geometry">
+           <rect>
+            <x>0</x>
+            <y>0</y>
+            <width>1081</width>
+            <height>542</height>
+           </rect>
+          </property>
+          <attribute name="label">
+           <string>   Charger les mesures compensatoires existantes</string>
+          </attribute>
+          <widget class="QLabel" name="label_15">
+           <property name="geometry">
+            <rect>
+             <x>20</x>
+             <y>340</y>
+             <width>1061</width>
+             <height>21</height>
+            </rect>
+           </property>
+           <property name="font">
+            <font>
+             <pointsize>10</pointsize>
+            </font>
+           </property>
+           <property name="text">
+            <string>Les couches pouvant prendre un certain temps à se charger, l'extension sera inutilisable durant la procédure. Plusieurs tentatives peuvent être nécessaires.</string>
+           </property>
+          </widget>
+          <widget class="QPushButton" name="geoportail">
+           <property name="geometry">
+            <rect>
+             <x>20</x>
+             <y>280</y>
+             <width>431</width>
+             <height>51</height>
+            </rect>
+           </property>
+           <property name="font">
+            <font>
+             <pointsize>12</pointsize>
+            </font>
+           </property>
+           <property name="toolTip">
+            <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Permet de charger les mesures compensatoires déjà saisies et visibles dans Géoportail&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+           </property>
+           <property name="styleSheet">
+            <string notr="true">QPushButton#geoportail {
+   background-color: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1, stop: 0 white, stop: 1 rgb(217, 217, 217));
+   border-style: solid;
+   border-width: 1px;
+   border-color: rgb(132, 132, 132);
+   border-radius: 3px;
+}
+
+QPushButton#geoportail:hover:pressed {
+   background-color: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1, stop:1 white, stop: 0 rgb(217, 217, 217));
+  	border-color: rgb(0, 85, 255);
+}
+
+QPushButton#geoportail::hover{
+   background-color: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1, stop: 0 white, stop: 1 rgb(225, 225, 225))}
+</string>
+           </property>
+           <property name="text">
+            <string>Charger les mesures compensatoires existantes</string>
+           </property>
+          </widget>
+          <widget class="QCheckBox" name="g_pt">
+           <property name="geometry">
+            <rect>
+             <x>20</x>
+             <y>160</y>
+             <width>991</width>
+             <height>21</height>
+            </rect>
+           </property>
+           <property name="font">
+            <font>
+             <pointsize>12</pointsize>
+            </font>
+           </property>
+           <property name="styleSheet">
+            <string notr="true">QCheckBox {
+    spacing: 5px;
+}
+
+QCheckBox::indicator {
+    width: 13px;
+    height: 13px;
+	background-color: rgb(255, 255, 255);
+}
+
+QCheckBox::indicator:unchecked {
+image: url(:/plugins/GeoMCE/iconfinder_unchecked_checkbox_83064.png);
+}
+
+QCheckBox::indicator:unchecked:hover {
+image: url(:/plugins/GeoMCE/iconfinder_unchecked_checkbox_83064.png);
+	border-color: 2px,rgb(0, 85, 255);
+}
+
+QCheckBox::indicator:checked {
+image: url(:/plugins/GeoMCE/iconfinder_checked_checkbox_82543.png);
+}
+
+QCheckBox::indicator:checked:hover {
+image: url(:/plugins/GeoMCE/iconfinder_checked_checkbox_82543.png);
+	border-color: 2px,rgb(0, 85, 255);
+}
+
+</string>
+           </property>
+           <property name="text">
+            <string>Mesures compensatoires géolocalisées en point</string>
+           </property>
+           <property name="checked">
+            <bool>true</bool>
+           </property>
+          </widget>
+          <widget class="QCheckBox" name="g_poly">
+           <property name="geometry">
+            <rect>
+             <x>20</x>
+             <y>200</y>
+             <width>1011</width>
+             <height>21</height>
+            </rect>
+           </property>
+           <property name="font">
+            <font>
+             <pointsize>12</pointsize>
+            </font>
+           </property>
+           <property name="styleSheet">
+            <string notr="true">QCheckBox {
+    spacing: 5px;
+}
+
+QCheckBox::indicator {
+    width: 13px;
+    height: 13px;
+	background-color: rgb(255, 255, 255);
+}
+
+QCheckBox::indicator:unchecked {
+image: url(:/plugins/GeoMCE/iconfinder_unchecked_checkbox_83064.png);
+}
+
+QCheckBox::indicator:unchecked:hover {
+image: url(:/plugins/GeoMCE/iconfinder_unchecked_checkbox_83064.png);
+	border-color: 2px,rgb(0, 85, 255);
+}
+
+QCheckBox::indicator:checked {
+image: url(:/plugins/GeoMCE/iconfinder_checked_checkbox_82543.png);
+}
+
+QCheckBox::indicator:checked:hover {
+image: url(:/plugins/GeoMCE/iconfinder_checked_checkbox_82543.png);
+	border-color: 2px,rgb(0, 85, 255);
+}
+
+</string>
+           </property>
+           <property name="text">
+            <string>Mesures compensatoires géolocalisées en polygone</string>
+           </property>
+           <property name="checked">
+            <bool>true</bool>
+           </property>
+          </widget>
+          <widget class="QCheckBox" name="g_c">
+           <property name="geometry">
+            <rect>
+             <x>20</x>
+             <y>240</y>
+             <width>1001</width>
+             <height>21</height>
+            </rect>
+           </property>
+           <property name="font">
+            <font>
+             <pointsize>12</pointsize>
+            </font>
+           </property>
+           <property name="styleSheet">
+            <string notr="true">QCheckBox {
+    spacing: 5px;
+}
+
+QCheckBox::indicator {
+    width: 13px;
+    height: 13px;
+	background-color: rgb(255, 255, 255);
+}
+
+QCheckBox::indicator:unchecked {
+image: url(:/plugins/GeoMCE/iconfinder_unchecked_checkbox_83064.png);
+}
+
+QCheckBox::indicator:unchecked:hover {
+image: url(:/plugins/GeoMCE/iconfinder_unchecked_checkbox_83064.png);
+	border-color: 2px,rgb(0, 85, 255);
+}
+
+QCheckBox::indicator:checked {
+image: url(:/plugins/GeoMCE/iconfinder_checked_checkbox_82543.png);
+}
+
+QCheckBox::indicator:checked:hover {
+image: url(:/plugins/GeoMCE/iconfinder_checked_checkbox_82543.png);
+	border-color: 2px,rgb(0, 85, 255);
+}
+
+</string>
+           </property>
+           <property name="text">
+            <string>Communes ayant au moins une mesure compensatoire non géolocalisée</string>
+           </property>
+          </widget>
+          <widget class="QCheckBox" name="g_l">
+           <property name="geometry">
+            <rect>
+             <x>20</x>
+             <y>120</y>
+             <width>961</width>
+             <height>21</height>
+            </rect>
+           </property>
+           <property name="font">
+            <font>
+             <pointsize>12</pointsize>
+            </font>
+           </property>
+           <property name="styleSheet">
+            <string notr="true">QCheckBox {
+    spacing: 5px;
+}
+
+QCheckBox::indicator {
+    width: 13px;
+    height: 13px;
+	background-color: rgb(255, 255, 255);
+}
+
+QCheckBox::indicator:unchecked {
+image: url(:/plugins/GeoMCE/iconfinder_unchecked_checkbox_83064.png);
+}
+
+QCheckBox::indicator:unchecked:hover {
+image: url(:/plugins/GeoMCE/iconfinder_unchecked_checkbox_83064.png);
+	border-color: 2px,rgb(0, 85, 255);
+}
+
+QCheckBox::indicator:checked {
+image: url(:/plugins/GeoMCE/iconfinder_checked_checkbox_82543.png);
+}
+
+QCheckBox::indicator:checked:hover {
+image: url(:/plugins/GeoMCE/iconfinder_checked_checkbox_82543.png);
+	border-color: 2px,rgb(0, 85, 255);
+}
+
+</string>
+           </property>
+           <property name="text">
+            <string>Mesures compensatoires géolocalisées en linéaire</string>
+           </property>
+           <property name="checked">
+            <bool>true</bool>
+           </property>
+          </widget>
+         </widget>
+         <widget class="QWidget" name="page_5">
+          <property name="geometry">
+           <rect>
+            <x>0</x>
+            <y>0</y>
+            <width>1081</width>
+            <height>542</height>
+           </rect>
+          </property>
+          <attribute name="label">
+           <string>   Séparer une couche vecteur</string>
+          </attribute>
+          <widget class="QgsMapLayerComboBox" name="mMapLayerComboBox_2">
+           <property name="geometry">
+            <rect>
+             <x>20</x>
+             <y>150</y>
+             <width>1040</width>
+             <height>25</height>
+            </rect>
+           </property>
+           <property name="font">
+            <font>
+             <pointsize>12</pointsize>
+            </font>
+           </property>
+           <property name="styleSheet">
+            <string notr="true">QComboBox {
+	border: 1px solid #333333;
+	border-radius: 3px;
+	background:white;
+	padding: 1px 23px 1px 3px;
+	min-width: 6em;
+   background-color: rgb(255, 255, 255);
+	selection-background-color: rgb(0, 170, 255);
+}
+
+QComboBox::drop-down {
+    subcontrol-origin: padding;
+    subcontrol-position: top right;
+    width: 15px;
+    border-left-width: 1px;
+    border-left-color: darkgray;
+    border-left-style: solid; /* just a single line */
+    border-top-right-radius: 3px; /* same radius as the QComboBox */
+    border-bottom-right-radius: 3px;
+  
+}
+QComboBox::down-arrow {
+     image: url(:/plugins/GeoMCE/icons8-chevron-bas-24.png);}
+
+QComboBox::focus{
+border-color: rgb(0, 85, 255);}
+
+QComboBox QAbstractItemView{
+background-color: rgb(255, 255, 255);}
+
+QComboBox:hover{
+   background-color: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1, stop: 0 white, stop: 1 rgb(245, 245, 245))}</string>
+           </property>
+          </widget>
+          <widget class="QLineEdit" name="enregistrement">
+           <property name="geometry">
+            <rect>
+             <x>22</x>
+             <y>280</y>
+             <width>991</width>
+             <height>25</height>
+            </rect>
+           </property>
+           <property name="font">
+            <font>
+             <pointsize>12</pointsize>
+            </font>
+           </property>
+           <property name="styleSheet">
+            <string notr="true">QLineEdit {
+    border: 1px solid gray;
+    border-radius: 3px;
+    padding: 0 8px;   
+	background-color: rgb(255, 255, 255);
+}
+QLineEdit::focus {
+	border-color: rgb(0, 85, 255);
+   background-color: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1, stop: 0 white, stop: 1 rgb(245, 245, 245));
+
+}
+QLineEdit:hover{
+   background-color: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1, stop: 0 white, stop: 1 rgb(245, 245, 245))}</string>
+           </property>
+          </widget>
+          <widget class="QgsFieldComboBox" name="mFieldComboBox">
+           <property name="geometry">
+            <rect>
+             <x>20</x>
+             <y>210</y>
+             <width>1040</width>
+             <height>25</height>
+            </rect>
+           </property>
+           <property name="font">
+            <font>
+             <pointsize>12</pointsize>
+            </font>
+           </property>
+           <property name="styleSheet">
+            <string notr="true">QComboBox {
+	border: 1px solid #333333;
+	border-radius: 3px;
+	background:white;
+	padding: 1px 23px 1px 3px;
+	min-width: 6em;
+   background-color: rgb(255, 255, 255);
+	selection-background-color: rgb(0, 170, 255);
+}
+
+QComboBox::drop-down {
+    subcontrol-origin: padding;
+    subcontrol-position: top right;
+    width: 15px;
+    border-left-width: 1px;
+    border-left-color: darkgray;
+    border-left-style: solid; /* just a single line */
+    border-top-right-radius: 3px; /* same radius as the QComboBox */
+    border-bottom-right-radius: 3px;
+  
+}
+QComboBox::down-arrow {
+     image: url(:/plugins/GeoMCE/icons8-chevron-bas-24.png);}
+
+QComboBox::focus{
+border-color: rgb(0, 85, 255);}
+
+QComboBox QAbstractItemView{
+background-color: rgb(255, 255, 255);}
+
+QComboBox:hover{
+   background-color: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1, stop: 0 white, stop: 1 rgb(245, 245, 245))}</string>
+           </property>
+          </widget>
+          <widget class="QLabel" name="label_2">
+           <property name="geometry">
+            <rect>
+             <x>20</x>
+             <y>180</y>
+             <width>211</width>
+             <height>21</height>
+            </rect>
+           </property>
+           <property name="text">
+            <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:12pt;&quot;&gt;Champ séparateur&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+           </property>
+          </widget>
+          <widget class="QPushButton" name="pushButton_3">
+           <property name="geometry">
+            <rect>
+             <x>1020</x>
+             <y>280</y>
+             <width>35</width>
+             <height>25</height>
+            </rect>
+           </property>
+           <property name="styleSheet">
+            <string notr="true">QPushButton#pushButton_3 {
    background-color: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1, stop: 0 white, stop: 1 rgb(217, 217, 217));
    border-style: solid;
    border-width: 1px;
@@ -1705,132 +3080,396 @@ border-radius: 5px;
    border-radius: 5px;
 }
 
-QPushButton#zipbutton_2:pressed {
+QPushButton#pushButton_3:hover:pressed {
    background-color: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1, stop:1 white, stop: 0 rgb(217, 217, 217));
   	border-color: rgb(0, 85, 255);
-};</string>
-         </property>
-         <property name="text">
-          <string>Créer une archive .zip</string>
-         </property>
-        </widget>
-        <widget class="QPushButton" name="show_t_2">
-         <property name="geometry">
-          <rect>
-           <x>230</x>
-           <y>540</y>
-           <width>200</width>
-           <height>41</height>
-          </rect>
-         </property>
-         <property name="font">
-          <font>
-           <pointsize>11</pointsize>
-          </font>
-         </property>
-         <property name="toolTip">
-          <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;FACULTATIF - Afficher la table attributaire&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-         </property>
-         <property name="styleSheet">
-          <string notr="true">QPushButton#show_t_2 {
+}
+
+QPushButton#pushButton_3::hover{
+   background-color: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1, stop: 0 white, stop: 1 rgb(225, 225, 225))}
+</string>
+           </property>
+           <property name="text">
+            <string>...</string>
+           </property>
+          </widget>
+          <widget class="QLabel" name="label">
+           <property name="geometry">
+            <rect>
+             <x>20</x>
+             <y>123</y>
+             <width>171</width>
+             <height>21</height>
+            </rect>
+           </property>
+           <property name="toolTip">
+            <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;justify&quot;&gt;&lt;br/&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+           </property>
+           <property name="whatsThis">
+            <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;justify&quot;&gt;Si une couche contient éventuellement plusieurs mesures, cette partiedu plugin va permettre de les séparer en fonction du champ défini ci-dessous.&lt;/p&gt;&lt;p align=&quot;justify&quot;&gt;Les couches créées sont présentes dans un dossier spécifique sous C:/GeomCE/&amp;quot;nom de la couche d'origine&amp;quot; et seront importées ensuite dans l'interface &lt;/p&gt;&lt;p align=&quot;justify&quot;&gt;&lt;br/&gt;&lt;/p&gt;&lt;p align=&quot;justify&quot;&gt;ex : un fichier polygone.shp avec un champ &amp;quot;nom&amp;quot; contient 3 entités (2 MC1 et 1 MC2). 2 couches shapes (MC1.shp et MC2.shpà) seront créées dans le dossier C:/GeoMCE/polygone &lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+           </property>
+           <property name="text">
+            <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:12pt;&quot;&gt;Couche d'origine&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+           </property>
+          </widget>
+          <widget class="QPushButton" name="create_new_field">
+           <property name="geometry">
+            <rect>
+             <x>10</x>
+             <y>330</y>
+             <width>1061</width>
+             <height>31</height>
+            </rect>
+           </property>
+           <property name="font">
+            <font>
+             <pointsize>12</pointsize>
+             <weight>75</weight>
+             <bold>true</bold>
+            </font>
+           </property>
+           <property name="toolTip">
+            <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:9pt;&quot;&gt;Couche contenant les différentes mesures. Le champ séparateur va créer autant de couche qu'il y a de nom différent. Les nouvelles couches sont créées dans C:/GeoMCE&lt;/span&gt;&lt;/p&gt;&lt;p align=&quot;justify&quot;&gt;&lt;span style=&quot; font-size:9pt;&quot;&gt;ex : une couche nommée &amp;quot;ligne.shp&amp;quot; ayant un champ &amp;quot;mesures&amp;quot; avec les mesures MC1 et MC2. La fonction va créer 2 couches (MC1.shp et MC2.shp) dans le dossier C:/GeoMCE/date_ligne_mesures&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+           </property>
+           <property name="styleSheet">
+            <string notr="true">QPushButton#create_new_field {
    background-color: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1, stop: 0 white, stop: 1 rgb(217, 217, 217));
    border-style: solid;
    border-width: 1px;
    border-color: rgb(132, 132, 132);
-   border-radius: 5px;
+   border-radius: 3px;
 }
 
-QPushButton#show_t_2:pressed {
+QPushButton#create_new_field:hover:pressed {
    background-color: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1, stop:1 white, stop: 0 rgb(217, 217, 217));
   	border-color: rgb(0, 85, 255);
-};</string>
-         </property>
-         <property name="text">
-          <string>Afficher la nouvelle 
+}
+
+QPushButton#create_new_field::hover{
+   background-color: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1, stop: 0 white, stop: 1 rgb(225, 225, 225))}
+</string>
+           </property>
+           <property name="text">
+            <string>Création des nouvelles couches à partir du champ séparateur</string>
+           </property>
+          </widget>
+          <widget class="QLabel" name="label_31">
+           <property name="geometry">
+            <rect>
+             <x>20</x>
+             <y>250</y>
+             <width>681</width>
+             <height>21</height>
+            </rect>
+           </property>
+           <property name="text">
+            <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:12pt;&quot;&gt;Dossier d'enregistrement (dans le dossier de la couche d'origine par défaut)&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+           </property>
+          </widget>
+         </widget>
+         <widget class="QWidget" name="page_6">
+          <attribute name="label">
+           <string>   Fusionner des couches vecteurs de mêmes géométries</string>
+          </attribute>
+          <widget class="QgsFileWidget" name="mQgsFileWidget">
+           <property name="geometry">
+            <rect>
+             <x>20</x>
+             <y>220</y>
+             <width>1040</width>
+             <height>25</height>
+            </rect>
+           </property>
+           <property name="sizePolicy">
+            <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+             <horstretch>0</horstretch>
+             <verstretch>25</verstretch>
+            </sizepolicy>
+           </property>
+           <property name="baseSize">
+            <size>
+             <width>0</width>
+             <height>0</height>
+            </size>
+           </property>
+           <property name="font">
+            <font>
+             <pointsize>12</pointsize>
+            </font>
+           </property>
+           <property name="styleSheet">
+            <string notr="true">QLineEdit {
+    border: 1px solid gray;
+    border-radius: 3px;
+    padding: 0 8px;   
+	background-color: rgb(255, 255, 255);
+}
+QLineEdit::focus {
+	border-color: rgb(0, 85, 255);
+}</string>
+           </property>
+           <property name="dialogTitle">
+            <string>Créer un fichier (ne pas mettre .shp)</string>
+           </property>
+           <property name="storageMode">
+            <enum>QgsFileWidget::SaveFile</enum>
+           </property>
+           <property name="relativeStorage">
+            <enum>QgsFileWidget::Absolute</enum>
+           </property>
+          </widget>
+          <widget class="QPushButton" name="show_t_2">
+           <property name="geometry">
+            <rect>
+             <x>230</x>
+             <y>310</y>
+             <width>200</width>
+             <height>41</height>
+            </rect>
+           </property>
+           <property name="font">
+            <font>
+             <pointsize>11</pointsize>
+            </font>
+           </property>
+           <property name="toolTip">
+            <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;FACULTATIF - Afficher la table attributaire&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+           </property>
+           <property name="styleSheet">
+            <string notr="true">QPushButton#show_t_2 {
+   background-color: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1, stop: 0 white, stop: 1 rgb(217, 217, 217));
+   border-style: solid;
+   border-width: 1px;
+   border-color: rgb(132, 132, 132);
+   border-radius: 3px;
+}
+
+QPushButton#show_t_2:hover:pressed {
+   background-color: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1, stop:1 white, stop: 0 rgb(217, 217, 217));
+  	border-color: rgb(0, 85, 255);
+}
+
+QPushButton#show_t_2::hover{
+   background-color: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1, stop: 0 white, stop: 1 rgb(225, 225, 225))}
+</string>
+           </property>
+           <property name="text">
+            <string>Afficher la nouvelle 
 table attributaire</string>
-         </property>
-        </widget>
-        <widget class="QPushButton" name="dossier_2">
-         <property name="geometry">
-          <rect>
-           <x>670</x>
-           <y>540</y>
-           <width>200</width>
-           <height>41</height>
-          </rect>
-         </property>
-         <property name="font">
-          <font>
-           <pointsize>12</pointsize>
-          </font>
-         </property>
-         <property name="toolTip">
-          <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Ouvre le dossier contenant la mesure&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-         </property>
-         <property name="styleSheet">
-          <string notr="true">QPushButton#dossier_2{
+           </property>
+          </widget>
+          <widget class="QLabel" name="label_21">
+           <property name="geometry">
+            <rect>
+             <x>20</x>
+             <y>120</y>
+             <width>291</width>
+             <height>21</height>
+            </rect>
+           </property>
+           <property name="toolTip">
+            <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;justify&quot;&gt;&lt;br/&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+           </property>
+           <property name="whatsThis">
+            <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;justify&quot;&gt;Si une couche contient éventuellement plusieurs mesures, cette partiedu plugin va permettre de les séparer en fonction du champ défini ci-dessous.&lt;/p&gt;&lt;p align=&quot;justify&quot;&gt;Les couches créées sont présentes dans un dossier spécifique sous C:/GeomCE/&amp;quot;nom de la couche d'origine&amp;quot; et seront importées ensuite dans l'interface &lt;/p&gt;&lt;p align=&quot;justify&quot;&gt;&lt;br/&gt;&lt;/p&gt;&lt;p align=&quot;justify&quot;&gt;ex : un fichier polygone.shp avec un champ &amp;quot;nom&amp;quot; contient 3 entités (2 MC1 et 1 MC2). 2 couches shapes (MC1.shp et MC2.shpà) seront créées dans le dossier C:/GeoMCE/polygone &lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+           </property>
+           <property name="text">
+            <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:12pt;&quot;&gt;Couches à fusionner&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+           </property>
+          </widget>
+          <widget class="QgsCheckableComboBox" name="mComboBox">
+           <property name="geometry">
+            <rect>
+             <x>20</x>
+             <y>150</y>
+             <width>1040</width>
+             <height>25</height>
+            </rect>
+           </property>
+           <property name="styleSheet">
+            <string notr="true">QComboBox {
+	border: 1px solid #333333;
+	border-radius: 3px;
+	background:white;
+	padding: 1px 23px 1px 3px;
+	min-width: 6em;
+   background-color: rgb(255, 255, 255);
+	selection-background-color: rgb(0, 170, 255);
+}
+
+QComboBox::drop-down {
+    subcontrol-origin: padding;
+    subcontrol-position: top right;
+    width: 15px;
+    border-left-width: 1px;
+    border-left-color: darkgray;
+    border-left-style: solid; /* just a single line */
+    border-top-right-radius: 3px; /* same radius as the QComboBox */
+    border-bottom-right-radius: 3px;
+  
+}
+QComboBox::down-arrow {
+     image: url(:/plugins/GeoMCE/icons8-chevron-bas-24.png);}
+
+QComboBox::focus{
+border-color: rgb(0, 85, 255);}
+QComboBox QAbstractItemView{
+background-color: rgb(255, 255, 255);}
+
+QComboBox:hover{
+   background-color: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1, stop: 0 white, stop: 1 rgb(245, 245, 245))}</string>
+           </property>
+           <property name="editable">
+            <bool>true</bool>
+           </property>
+          </widget>
+          <widget class="QPushButton" name="zipbutton_2">
+           <property name="geometry">
+            <rect>
+             <x>450</x>
+             <y>310</y>
+             <width>200</width>
+             <height>41</height>
+            </rect>
+           </property>
+           <property name="font">
+            <font>
+             <pointsize>12</pointsize>
+            </font>
+           </property>
+           <property name="toolTip">
+            <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;/!\ Fonctionnalité expérimentale/!\ &lt;/p&gt;&lt;p&gt;L'import ne fonctionnera pas si le nom du champ &amp;quot;Couche à traiter&amp;quot; fait plus de 10 caractères&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+           </property>
+           <property name="styleSheet">
+            <string notr="true">QPushButton#zipbutton_2{
    background-color: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1, stop: 0 white, stop: 1 rgb(217, 217, 217));
    border-style: solid;
    border-width: 1px;
    border-color: rgb(132, 132, 132);
-   border-radius: 5px;
+   border-radius: 3px;
 }
 
-QPushButton#dossier:pressed_2 {
+QPushButton#zipbutton_2:hover:pressed {
    background-color: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1, stop:1 white, stop: 0 rgb(217, 217, 217));
   	border-color: rgb(0, 85, 255);
-};</string>
-         </property>
-         <property name="text">
-          <string>Ouvrir le dossier</string>
-         </property>
-        </widget>
-        <widget class="QLabel" name="label_24">
-         <property name="geometry">
-          <rect>
-           <x>10</x>
-           <y>100</y>
-           <width>1071</width>
-           <height>21</height>
-          </rect>
-         </property>
-         <property name="font">
-          <font>
-           <pointsize>12</pointsize>
-          </font>
-         </property>
-         <property name="text">
-          <string>Permet de séparer un vecteur en plusieurs vecteurs en fonction d'un attributs</string>
-         </property>
-        </widget>
-        <widget class="QLabel" name="label_25">
-         <property name="geometry">
-          <rect>
-           <x>10</x>
-           <y>370</y>
-           <width>1071</width>
-           <height>21</height>
-          </rect>
-         </property>
-         <property name="font">
-          <font>
-           <pointsize>12</pointsize>
-          </font>
-         </property>
-         <property name="text">
-          <string>Permet de fusionner plusieurs vecteurs afin de réaliser un import de plusieurs mesures en une seule fois</string>
-         </property>
+}
+
+QPushButton#zipbutton_2::hover{
+   background-color: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1, stop: 0 white, stop: 1 rgb(225, 225, 225))}
+</string>
+           </property>
+           <property name="text">
+            <string>Créer une archive .zip</string>
+           </property>
+          </widget>
+          <widget class="QLabel" name="label_22">
+           <property name="geometry">
+            <rect>
+             <x>20</x>
+             <y>190</y>
+             <width>171</width>
+             <height>21</height>
+            </rect>
+           </property>
+           <property name="toolTip">
+            <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;justify&quot;&gt;Donner un nom à la couche fusionnée (sans extension)&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+           </property>
+           <property name="whatsThis">
+            <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;justify&quot;&gt;Si une couche contient éventuellement plusieurs mesures, cette partiedu plugin va permettre de les séparer en fonction du champ défini ci-dessous.&lt;/p&gt;&lt;p align=&quot;justify&quot;&gt;Les couches créées sont présentes dans un dossier spécifique sous C:/GeomCE/&amp;quot;nom de la couche d'origine&amp;quot; et seront importées ensuite dans l'interface &lt;/p&gt;&lt;p align=&quot;justify&quot;&gt;&lt;br/&gt;&lt;/p&gt;&lt;p align=&quot;justify&quot;&gt;ex : un fichier polygone.shp avec un champ &amp;quot;nom&amp;quot; contient 3 entités (2 MC1 et 1 MC2). 2 couches shapes (MC1.shp et MC2.shpà) seront créées dans le dossier C:/GeoMCE/polygone &lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+           </property>
+           <property name="text">
+            <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:12pt;&quot;&gt;Enregistrer sous&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+           </property>
+          </widget>
+          <widget class="QPushButton" name="fusion">
+           <property name="geometry">
+            <rect>
+             <x>10</x>
+             <y>260</y>
+             <width>1061</width>
+             <height>31</height>
+            </rect>
+           </property>
+           <property name="font">
+            <font>
+             <pointsize>12</pointsize>
+             <weight>75</weight>
+             <bold>true</bold>
+            </font>
+           </property>
+           <property name="styleSheet">
+            <string notr="true">QPushButton#fusion{
+   background-color: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1, stop: 0 white, stop: 1 rgb(217, 217, 217));
+   border-style: solid;
+   border-width: 1px;
+   border-color: rgb(132, 132, 132);
+   border-radius: 3px;
+}
+
+QPushButton#fusion:hover:pressed {
+   background-color: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1, stop:1 white, stop: 0 rgb(217, 217, 217));
+  	border-color: rgb(0, 85, 255);
+}
+
+QPushButton#fusion::hover{
+   background-color: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1, stop: 0 white, stop: 1 rgb(225, 225, 225))}
+</string>
+           </property>
+           <property name="text">
+            <string>Fusionner les couches vecteurs</string>
+           </property>
+          </widget>
+          <widget class="QPushButton" name="dossier_2">
+           <property name="geometry">
+            <rect>
+             <x>670</x>
+             <y>310</y>
+             <width>200</width>
+             <height>41</height>
+            </rect>
+           </property>
+           <property name="font">
+            <font>
+             <pointsize>12</pointsize>
+            </font>
+           </property>
+           <property name="toolTip">
+            <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Ouvre le dossier contenant la mesure&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+           </property>
+           <property name="styleSheet">
+            <string notr="true">QPushButton#dossier_2{
+   background-color: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1, stop: 0 white, stop: 1 rgb(217, 217, 217));
+   border-style: solid;
+   border-width: 1px;
+   border-color: rgb(132, 132, 132);
+   border-radius: 3px;
+}
+
+QPushButton#dossier_2:hover:pressed {
+   background-color: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1, stop:1 white, stop: 0 rgb(217, 217, 217));
+  	border-color: rgb(0, 85, 255);
+}
+
+QPushButton#dossier_2::hover{
+   background-color: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1, stop: 0 white, stop: 1 rgb(225, 225, 225))}
+</string>
+           </property>
+           <property name="text">
+            <string>Ouvrir le dossier</string>
+           </property>
+          </widget>
+         </widget>
         </widget>
        </widget>
        <widget class="QWidget" name="tab_3">
         <attribute name="title">
-         <string>Paramètres de l'extension</string>
+         <string> Paramètres de l'extension   </string>
         </attribute>
         <widget class="QCheckBox" name="checkBox">
          <property name="geometry">
           <rect>
            <x>10</x>
-           <y>350</y>
+           <y>560</y>
            <width>771</width>
            <height>21</height>
           </rect>
@@ -1842,15 +3481,46 @@ QPushButton#dossier:pressed_2 {
            <bold>false</bold>
           </font>
          </property>
+         <property name="styleSheet">
+          <string notr="true">QCheckBox {
+    spacing: 5px;
+}
+
+QCheckBox::indicator {
+    width: 13px;
+    height: 13px;
+	background-color: rgb(255, 255, 255);
+}
+
+QCheckBox::indicator:unchecked {
+image: url(:/plugins/GeoMCE/iconfinder_unchecked_checkbox_83064.png);
+}
+
+QCheckBox::indicator:unchecked:hover {
+image: url(:/plugins/GeoMCE/iconfinder_unchecked_checkbox_83064.png);
+	border-color: 2px,rgb(0, 85, 255);
+}
+
+QCheckBox::indicator:checked {
+image: url(:/plugins/GeoMCE/iconfinder_checked_checkbox_82543.png);
+}
+
+QCheckBox::indicator:checked:hover {
+image: url(:/plugins/GeoMCE/iconfinder_checked_checkbox_82543.png);
+	border-color: 2px,rgb(0, 85, 255);
+}
+
+</string>
+         </property>
          <property name="text">
-          <string>Option &quot;Extension par défaut de la couche vectorielle&quot; configurée sur shape (Expérimetal)</string>
+          <string>Option &quot;Extension par défaut de la couche vectorielle&quot; configurée sur shape (Expérimental)</string>
          </property>
         </widget>
         <widget class="QPushButton" name="pushButton">
          <property name="geometry">
           <rect>
            <x>1000</x>
-           <y>170</y>
+           <y>250</y>
            <width>35</width>
            <height>25</height>
           </rect>
@@ -1861,13 +3531,17 @@ QPushButton#dossier:pressed_2 {
    border-style: solid;
    border-width: 1px;
    border-color: rgb(132, 132, 132);
-   border-radius: 5px;
+   border-radius: 3px;
 }
 
-QPushButton#pushButton:pressed {
+QPushButton#pushButton:hover:pressed {
    background-color: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1, stop:1 white, stop: 0 rgb(217, 217, 217));
   	border-color: rgb(0, 85, 255);
-};</string>
+}
+
+QPushButton#pushButton::hover{
+   background-color: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1, stop: 0 white, stop: 1 rgb(225, 225, 225))}
+</string>
          </property>
          <property name="text">
           <string>...</string>
@@ -1877,7 +3551,7 @@ QPushButton#pushButton:pressed {
          <property name="geometry">
           <rect>
            <x>10</x>
-           <y>170</y>
+           <y>250</y>
            <width>971</width>
            <height>25</height>
           </rect>
@@ -1888,40 +3562,42 @@ QPushButton#pushButton:pressed {
           </font>
          </property>
          <property name="styleSheet">
-          <string notr="true">background-color: rgb(255, 255, 255);
-border-top-color:rgb(132, 132, 132);
-selection-color: rgb(0, 0, 0);
-border-top-width: 1px;
-alternate-background-color: rgb(0, 170, 255);
-selection-background-color: rgb(85, 170, 255);
-border-left-color: rgb(132, 132, 132);
-border-left-width: 1px;
-border-style: solid;
-border-bottom-color: rgb(132, 132, 132);
-border-bottom-width:1px;
-border-right-color : rgb(132, 132, 132);
-border-right-width :1px;
-border-radius: 5px;</string>
+          <string notr="true">QLineEdit {
+    border: 1px solid gray;
+    border-radius: 3px;
+    padding: 0 8px;   
+	background-color: rgb(255, 255, 255);
+}
+QLineEdit::focus {
+	border-color: rgb(0, 85, 255);
+   background-color: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1, stop: 0 white, stop: 1 rgb(245, 245, 245));
+
+}
+QLineEdit:hover{
+   background-color: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1, stop: 0 white, stop: 1 rgb(245, 245, 245))}</string>
+         </property>
+         <property name="clearButtonEnabled">
+          <bool>true</bool>
          </property>
         </widget>
         <widget class="QLabel" name="label_6">
          <property name="geometry">
           <rect>
            <x>10</x>
-           <y>140</y>
+           <y>220</y>
            <width>341</width>
            <height>21</height>
           </rect>
          </property>
          <property name="text">
-          <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:12pt;&quot;&gt;Lien vers le fichier &lt;/span&gt;&lt;span style=&quot; font-size:12pt; font-weight:600;&quot;&gt;COMMUNE.shp&lt;/span&gt;&lt;span style=&quot; font-size:12pt;&quot;&gt; enregistré :&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+          <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:12pt;&quot;&gt;Lien vers le fichier &lt;/span&gt;&lt;span style=&quot; font-size:12pt; font-weight:600;&quot;&gt;COMMUNE.shp&lt;/span&gt;&lt;span style=&quot; font-size:12pt;&quot;&gt; enregistré&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
          </property>
         </widget>
         <widget class="QCheckBox" name="tampon">
          <property name="geometry">
           <rect>
            <x>10</x>
-           <y>230</y>
+           <y>340</y>
            <width>1021</width>
            <height>21</height>
           </rect>
@@ -1931,6 +3607,37 @@ border-radius: 5px;</string>
            <pointsize>12</pointsize>
           </font>
          </property>
+         <property name="styleSheet">
+          <string notr="true">QCheckBox {
+    spacing: 5px;
+}
+
+QCheckBox::indicator {
+    width: 13px;
+    height: 13px;
+	background-color: rgb(255, 255, 255);
+}
+
+QCheckBox::indicator:unchecked {
+image: url(:/plugins/GeoMCE/iconfinder_unchecked_checkbox_83064.png);
+}
+
+QCheckBox::indicator:unchecked:hover {
+image: url(:/plugins/GeoMCE/iconfinder_unchecked_checkbox_83064.png);
+	border-color: 2px,rgb(0, 85, 255);
+}
+
+QCheckBox::indicator:checked {
+image: url(:/plugins/GeoMCE/iconfinder_checked_checkbox_82543.png);
+}
+
+QCheckBox::indicator:checked:hover {
+image: url(:/plugins/GeoMCE/iconfinder_checked_checkbox_82543.png);
+	border-color: 2px,rgb(0, 85, 255);
+}
+
+</string>
+         </property>
          <property name="text">
           <string>Transformer automatiquement les points et les lignes en polygones.</string>
          </property>
@@ -1939,9 +3646,9 @@ border-radius: 5px;</string>
          <property name="geometry">
           <rect>
            <x>10</x>
-           <y>20</y>
+           <y>100</y>
            <width>1061</width>
-           <height>91</height>
+           <height>71</height>
           </rect>
          </property>
          <property name="text">
@@ -1949,7 +3656,7 @@ border-radius: 5px;</string>
 &lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
 p, li { white-space: pre-wrap; }
 &lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'MS Shell Dlg 2'; font-size:8pt; font-weight:400; font-style:normal;&quot;&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:12pt;&quot;&gt;Ces paramètres sont enregistrés dans le fichier QGIS.ini et sont chargés à chaque utilisation de l'extension.&lt;br /&gt;Reportez-vous au module d'aide pour utiliser ces paramètres.&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:12pt;&quot;&gt;Les paramètres suivants sont enregistrés dans le fichier QGIS.ini et sont chargés à chaque utilisation de l'extension.&lt;br /&gt;Reportez-vous au module d'aide pour utiliser ces paramètres.&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
          </property>
          <property name="openExternalLinks">
           <bool>true</bool>
@@ -1959,26 +3666,85 @@ p, li { white-space: pre-wrap; }
          <property name="geometry">
           <rect>
            <x>225</x>
-           <y>260</y>
-           <width>42</width>
+           <y>370</y>
+           <width>61</width>
            <height>22</height>
           </rect>
          </property>
          <property name="styleSheet">
-          <string notr="true">background-color: rgb(255, 255, 255);
-border-top-color:rgb(132, 132, 132);
-selection-color: rgb(0, 0, 0);
-border-top-width: 1px;
-alternate-background-color: rgb(0, 170, 255);
-selection-background-color: rgb(85, 170, 255);
-border-left-color: rgb(132, 132, 132);
-border-left-width: 1px;
-border-style: solid;
-border-bottom-color: rgb(132, 132, 132);
-border-bottom-width:1px;
-border-right-color : rgb(132, 132, 132);
-border-right-width :1px;
-border-radius: 5px;</string>
+          <string notr="true">QSpinBox {
+    padding-right: 15px; /* make room for the arrows */
+    border-width: 3;
+   	border: 1px solid #333333;
+	border-radius: 3px;
+	background:white;
+	padding: 1px 23px 1px 3px;
+    background-color: rgb(255, 255, 255);
+	selection-background-color: rgb(0, 170, 255);
+}
+QSpinBox::up-button {
+    subcontrol-origin: border;
+    subcontrol-position: top right; /* position at the top right corner */
+
+    width: 16px; /* 16 + 2*1px border-width = 15px padding + 3px parent border */
+    border-left-width: 1px;
+    border-left-color: darkgray;
+    border-left-style: solid; /* just a single line */
+    border-bottom-width: 0px;
+    border-bottom-color: darkgray;
+    border-bottom-style: solid; /* just a single line */ 
+}
+
+
+QSpinBox::up-button:hover {
+    border-image: url(:/images/spinup_hover.png) 1;
+}
+
+QSpinBox::up-button:pressed {
+    border-image: url(:/images/spinup_pressed.png) 1;
+}
+
+QSpinBox::up-arrow {
+   	image: url(:/plugins/GeoMCE/icons8-chevron-haut-24.png);
+    width: 24px;
+    height: 24px;
+}
+
+
+QSpinBox::down-button {
+    subcontrol-origin: border;
+    subcontrol-position: bottom right; /* position at bottom right corner */
+
+    width: 16px;
+    border-left-width: 1px;
+    border-left-color: darkgray;
+    border-left-style: solid; /* just a single line */
+    border-top-width: 0px;
+    border-top-color: darkgray;
+    border-top-style: solid; /* just a single line */ 
+}
+
+QSpinBox::down-button:hover {
+    border-image: url(:/images/spindown_hover.png) 1;
+}
+
+QSpinBox::down-button:pressed {
+    border-image: url(:/images/spindown_pressed.png) 1;
+}
+
+QSpinBox::down-arrow {
+image: url(:/plugins/GeoMCE/icons8-chevron-bas-24.png);
+    width: 24px;
+    height: 24px;
+}
+
+QSpinBox:hover{
+   background-color: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1, stop: 0 white, stop: 1 rgb(245, 245, 245))}
+QSpinBox::focus{
+border-color: rgb(0, 85, 255);}</string>
+         </property>
+         <property name="buttonSymbols">
+          <enum>QAbstractSpinBox::PlusMinus</enum>
          </property>
          <property name="minimum">
           <number>1</number>
@@ -1994,7 +3760,7 @@ border-radius: 5px;</string>
          <property name="geometry">
           <rect>
            <x>30</x>
-           <y>260</y>
+           <y>370</y>
            <width>191</width>
            <height>21</height>
           </rect>
@@ -2011,9 +3777,9 @@ border-radius: 5px;</string>
         <widget class="QLabel" name="label_7">
          <property name="geometry">
           <rect>
-           <x>276</x>
-           <y>260</y>
-           <width>271</width>
+           <x>300</x>
+           <y>370</y>
+           <width>280</width>
            <height>21</height>
           </rect>
          </property>
@@ -2030,26 +3796,85 @@ border-radius: 5px;</string>
          <property name="geometry">
           <rect>
            <x>225</x>
-           <y>290</y>
-           <width>42</width>
+           <y>400</y>
+           <width>61</width>
            <height>22</height>
           </rect>
          </property>
          <property name="styleSheet">
-          <string notr="true">background-color: rgb(255, 255, 255);
-border-top-color:rgb(132, 132, 132);
-selection-color: rgb(0, 0, 0);
-border-top-width: 1px;
-alternate-background-color: rgb(0, 170, 255);
-selection-background-color: rgb(85, 170, 255);
-border-left-color: rgb(132, 132, 132);
-border-left-width: 1px;
-border-style: solid;
-border-bottom-color: rgb(132, 132, 132);
-border-bottom-width:1px;
-border-right-color : rgb(132, 132, 132);
-border-right-width :1px;
-border-radius: 5px;</string>
+          <string notr="true">QSpinBox {
+    padding-right: 15px; /* make room for the arrows */
+    border-width: 3;
+   	border: 1px solid #333333;
+	border-radius: 3px;
+	background:white;
+	padding: 1px 23px 1px 3px;
+    background-color: rgb(255, 255, 255);
+	selection-background-color: rgb(0, 170, 255);
+}
+QSpinBox::up-button {
+    subcontrol-origin: border;
+    subcontrol-position: top right; /* position at the top right corner */
+
+    width: 16px; /* 16 + 2*1px border-width = 15px padding + 3px parent border */
+    border-left-width: 1px;
+    border-left-color: darkgray;
+    border-left-style: solid; /* just a single line */
+    border-bottom-width: 0px;
+    border-bottom-color: darkgray;
+    border-bottom-style: solid; /* just a single line */ 
+}
+
+
+QSpinBox::up-button:hover {
+    border-image: url(:/images/spinup_hover.png) 1;
+}
+
+QSpinBox::up-button:pressed {
+    border-image: url(:/images/spinup_pressed.png) 1;
+}
+
+QSpinBox::up-arrow {
+   	image: url(:/plugins/GeoMCE/icons8-chevron-haut-24.png);
+    width: 24px;
+    height: 24px;
+}
+
+
+QSpinBox::down-button {
+    subcontrol-origin: border;
+    subcontrol-position: bottom right; /* position at bottom right corner */
+
+    width: 16px;
+    border-left-width: 1px;
+    border-left-color: darkgray;
+    border-left-style: solid; /* just a single line */
+    border-top-width: 0px;
+    border-top-color: darkgray;
+    border-top-style: solid; /* just a single line */ 
+}
+
+QSpinBox::down-button:hover {
+    border-image: url(:/images/spindown_hover.png) 1;
+}
+
+QSpinBox::down-button:pressed {
+    border-image: url(:/images/spindown_pressed.png) 1;
+}
+
+QSpinBox::down-arrow {
+image: url(:/plugins/GeoMCE/icons8-chevron-bas-24.png);
+    width: 24px;
+    height: 24px;
+}
+
+QSpinBox:hover{
+   background-color: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1, stop: 0 white, stop: 1 rgb(245, 245, 245))}
+QSpinBox::focus{
+border-color: rgb(0, 85, 255);}</string>
+         </property>
+         <property name="buttonSymbols">
+          <enum>QAbstractSpinBox::PlusMinus</enum>
          </property>
          <property name="minimum">
           <number>1</number>
@@ -2061,8 +3886,8 @@ border-radius: 5px;</string>
         <widget class="QLabel" name="label_18">
          <property name="geometry">
           <rect>
-           <x>276</x>
-           <y>290</y>
+           <x>300</x>
+           <y>400</y>
            <width>281</width>
            <height>21</height>
           </rect>
@@ -2080,7 +3905,7 @@ border-radius: 5px;</string>
          <property name="geometry">
           <rect>
            <x>30</x>
-           <y>290</y>
+           <y>400</y>
            <width>191</width>
            <height>21</height>
           </rect>
@@ -2097,10 +3922,10 @@ border-radius: 5px;</string>
         <widget class="QPushButton" name="sauvegarder_tampon">
          <property name="geometry">
           <rect>
-           <x>480</x>
-           <y>260</y>
-           <width>201</width>
-           <height>51</height>
+           <x>30</x>
+           <y>430</y>
+           <width>191</width>
+           <height>41</height>
           </rect>
          </property>
          <property name="font">
@@ -2114,13 +3939,17 @@ border-radius: 5px;</string>
    border-style: solid;
    border-width: 1px;
    border-color: rgb(132, 132, 132);
-   border-radius: 5px;
+   border-radius: 3px;
 }
 
-QPushButton#sauvegarder_tampon:pressed {
+QPushButton#sauvegarder_tampon:hover:pressed {
    background-color: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1, stop:1 white, stop: 0 rgb(217, 217, 217));
   	border-color: rgb(0, 85, 255);
-};</string>
+}
+
+QPushButton#sauvegarder_tampon::hover{
+   background-color: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1, stop: 0 white, stop: 1 rgb(225, 225, 225))}
+</string>
          </property>
          <property name="text">
           <string>Sauvegarder ces valeurs</string>
@@ -2130,7 +3959,7 @@ QPushButton#sauvegarder_tampon:pressed {
          <property name="geometry">
           <rect>
            <x>940</x>
-           <y>650</y>
+           <y>760</y>
            <width>121</width>
            <height>41</height>
           </rect>
@@ -2148,16 +3977,80 @@ QPushButton#sauvegarder_tampon:pressed {
    border-style: solid;
    border-width: 1px;
    border-color: rgb(132, 132, 132);
-   border-radius: 5px;
+   border-radius: 3px;
 }
 
-QPushButton#Exit_3:pressed {
+QPushButton#Exit_3:hover:pressed {
    background-color: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1, stop:1 white, stop: 0 rgb(217, 217, 217));
   	border-color: rgb(0, 85, 255);
-};</string>
+}
+
+QPushButton#Exit_3::hover{
+   background-color: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1, stop: 0 white, stop: 1 rgb(225, 225, 225))}
+</string>
          </property>
          <property name="text">
           <string>Fermer</string>
+         </property>
+        </widget>
+        <widget class="QLabel" name="label_33">
+         <property name="geometry">
+          <rect>
+           <x>10</x>
+           <y>526</y>
+           <width>491</width>
+           <height>20</height>
+          </rect>
+         </property>
+         <property name="font">
+          <font>
+           <pointsize>12</pointsize>
+           <weight>75</weight>
+           <bold>true</bold>
+          </font>
+         </property>
+         <property name="text">
+          <string>Gestion de l'extension des fichiers en sortie de traitement :</string>
+         </property>
+        </widget>
+        <widget class="QLabel" name="label_34">
+         <property name="geometry">
+          <rect>
+           <x>10</x>
+           <y>306</y>
+           <width>491</width>
+           <height>20</height>
+          </rect>
+         </property>
+         <property name="font">
+          <font>
+           <pointsize>12</pointsize>
+           <weight>75</weight>
+           <bold>true</bold>
+          </font>
+         </property>
+         <property name="text">
+          <string>Modification des points et lignes en polygones :</string>
+         </property>
+        </widget>
+        <widget class="QLabel" name="label_35">
+         <property name="geometry">
+          <rect>
+           <x>10</x>
+           <y>190</y>
+           <width>491</width>
+           <height>20</height>
+          </rect>
+         </property>
+         <property name="font">
+          <font>
+           <pointsize>12</pointsize>
+           <weight>75</weight>
+           <bold>true</bold>
+          </font>
+         </property>
+         <property name="text">
+          <string>Communes concernées par les mesures :</string>
          </property>
         </widget>
         <zorder>checkBox</zorder>
@@ -2174,6 +4067,9 @@ QPushButton#Exit_3:pressed {
         <zorder>distance_tampon_ligne</zorder>
         <zorder>sauvegarder_tampon</zorder>
         <zorder>Exit_3</zorder>
+        <zorder>label_33</zorder>
+        <zorder>label_34</zorder>
+        <zorder>label_35</zorder>
        </widget>
       </widget>
       <widget class="QLabel" name="label_3">
@@ -2233,17 +4129,25 @@ QPushButton#Exit_3:pressed {
   <tabstop>nom</tabstop>
   <tabstop>comboBox</tabstop>
   <tabstop>comboBox_2</tabstop>
-  <tabstop>description</tabstop>
   <tabstop>decision</tabstop>
   <tabstop>refei</tabstop>
+  <tabstop>description</tabstop>
+  <tabstop>surf_prescrite</tabstop>
+  <tabstop>surf_unite</tabstop>
+  <tabstop>lin_prescrit</tabstop>
+  <tabstop>line_unite</tabstop>
+  <tabstop>nb_point_prescrit</tabstop>
+  <tabstop>ORE</tabstop>
+  <tabstop>delivrance</tabstop>
   <tabstop>duree</tabstop>
   <tabstop>comboBox_3</tabstop>
+  <tabstop>echeances</tabstop>
+  <tabstop>date_echeance</tabstop>
   <tabstop>comboBox_4</tabstop>
   <tabstop>montant</tabstop>
   <tabstop>cout</tabstop>
   <tabstop>faunes</tabstop>
   <tabstop>flores</tabstop>
-  <tabstop>echeances</tabstop>
   <tabstop>change_another</tabstop>
   <tabstop>save</tabstop>
   <tabstop>show_t</tabstop>
@@ -2251,6 +4155,11 @@ QPushButton#Exit_3:pressed {
   <tabstop>dossier</tabstop>
   <tabstop>eff_form</tabstop>
   <tabstop>Exit</tabstop>
+  <tabstop>g_l</tabstop>
+  <tabstop>g_pt</tabstop>
+  <tabstop>g_poly</tabstop>
+  <tabstop>g_c</tabstop>
+  <tabstop>geoportail</tabstop>
   <tabstop>mMapLayerComboBox_2</tabstop>
   <tabstop>mFieldComboBox</tabstop>
   <tabstop>enregistrement</tabstop>
@@ -2265,7 +4174,11 @@ QPushButton#Exit_3:pressed {
   <tabstop>communes</tabstop>
   <tabstop>pushButton</tabstop>
   <tabstop>tampon</tabstop>
+  <tabstop>distance_tampon_point</tabstop>
+  <tabstop>distance_tampon_ligne</tabstop>
+  <tabstop>sauvegarder_tampon</tabstop>
   <tabstop>checkBox</tabstop>
+  <tabstop>Exit_3</tabstop>
   <tabstop>about</tabstop>
   <tabstop>tabWidget</tabstop>
   <tabstop>scrollArea</tabstop>
