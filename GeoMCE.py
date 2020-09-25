@@ -1271,23 +1271,23 @@ class GeoMCE(object):
         root = QgsProject.instance().layerTreeRoot()
         groupe = root.addGroup("MC existantes")
         if self.dlg.g_l.isChecked():
-            uri= "https://datacarto.cdata.cerema.fr/wfs?service=WFS&request=GetFeatures&TYPENAME=ms:geomce_3857_l_mesure_compensatoire_l_000"
+            uri= "https://datacarto.cdata.cerema.fr/wfs/1abbb6d6-5f68-4fd4-b27a-eaee9d5ec26a?service=WFS&request=GetFeatures&TYPENAME=ms:geomce_3857_l_mesure_compensatoire_l_000"
             vlayer = QgsVectorLayer(uri, "MC existantes - linéaire", "WFS")
             QgsProject.instance().addMapLayer(vlayer, False)
             groupe.addLayer(vlayer)
         if self.dlg.g_pt.isChecked():
-            uri2= "https://datacarto.cdata.cerema.fr/wfs?service=WFS&request=GetFeatures&TYPENAME=ms:geomce_3857_l_mesure_compensatoire_p_000"
+            uri2= "https://datacarto.cdata.cerema.fr/wfs/1abbb6d6-5f68-4fd4-b27a-eaee9d5ec26a?service=WFS&request=GetFeatures&TYPENAME=ms:geomce_3857_l_mesure_compensatoire_p_000"
             vlayer2 = QgsVectorLayer(uri2, "MC existantes - point", "WFS")			
 
             QgsProject.instance().addMapLayer(vlayer2, False)
             groupe.addLayer(vlayer2)
         if self.dlg.g_poly.isChecked():
-            uri3= "https://datacarto.cdata.cerema.fr/wfs?service=WFS&request=GetFeatures&TYPENAME=ms:geomce_3857_l_mesure_compensatoire_s_000"
+            uri3= "https://datacarto.cdata.cerema.fr/wfs/1abbb6d6-5f68-4fd4-b27a-eaee9d5ec26a?service=WFS&request=GetFeatures&TYPENAME=ms:geomce_3857_l_mesure_compensatoire_s_000"
             vlayer3 = QgsVectorLayer(uri3, "MC existantes - surface", "WFS") 
             QgsProject.instance().addMapLayer(vlayer3, False)
             groupe.addLayer(vlayer3)        
         if self.dlg.g_c.isChecked():
-            uri4= "https://datacarto.cdata.cerema.fr/wfs?service=WFS&request=GetFeatures&TYPENAME=ms:geomce_3857_l_mesure_compensatoire_commune_000"
+            uri4= "https://datacarto.cdata.cerema.fr/wfs/1abbb6d6-5f68-4fd4-b27a-eaee9d5ec26a?service=WFS&request=GetFeatures&TYPENAME=ms:geomce_3857_l_mesure_compensatoire_commune_000"
             vlayer4 = QgsVectorLayer(uri4, "MC existantes - commune", "WFS")
             QgsProject.instance().addMapLayer(vlayer4, False)
             groupe.addLayer(vlayer4)
