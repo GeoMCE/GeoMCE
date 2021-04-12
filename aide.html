@@ -23,6 +23,7 @@
 <h3><span style="color: #000000;">1.1/ Couche &agrave; traiter</span></h3>
 <p><span style="color: #000000;"><img src="https://raw.githubusercontent.com/GeoMCE/ressources/master/onglet_principal_1.png" width="866" height="89" /></span></p>
 <p><span style="color: #000000;"><strong>Couche &agrave; traiter</strong> : Vecteur (shape) qui va &ecirc;tre modifier afin d'&ecirc;tre compatible avec G&eacute;oMCE.</span></p>
+<p><span style="color: #000000;"><strong>Validit&eacute; de la g&eacute;om&eacute;trie</strong> : Ouvre le traitement "V&eacute;rifier la validit&eacute;". Permet de s'assurer que la g&eacute;om&eacute;trie ne pr&eacute;sente pas de probl&egrave;mes notamment les auto-intersections de polygones qui empechent l'ex&eacute;cution du plugin</span></p>
 <p><span style="color: #000000;"><img src="https://raw.githubusercontent.com/GeoMCE/ressources/master/bon.png" alt="" width="25" height="25" />&nbsp;: La couche &agrave; traiter est compatible avec un import dans G&eacute;oMCE</span></p>
 <p><span style="color: #000000;"><img src="https://raw.githubusercontent.com/GeoMCE/ressources/master/pasbon.png" alt="" width="25" height="25" />&nbsp;: La couche &agrave; traiter n'est pas compatible avec un import dans G&eacute;oMCE. Avant toute manipulation de cette couche, elle doit &ecirc;tre convertie au format <strong>shape</strong> (si la couche est dans un autre format) ainsi que dans l'un des types de g&eacute;om&eacute;tries suivants :</span></p>
 <ul>
@@ -31,12 +32,15 @@
 <li><span style="color: #000000;">(Multi)Polygon</span></li>
 </ul>
 <p><span style="color: #000000;"><strong>Cr&eacute;ation des champs compatibles avec l'outil G&eacute;oMCE :</strong>&nbsp;La <strong>table attributaire d'origine est totalement effac&eacute;e et remplac&eacute;e</strong> par une nouvelle table. Cette op&eacute;ration est <strong>irr&eacute;versible</strong>. Afin de ne pas perdre vos donn&eacute;es, il est pr&eacute;f&eacute;rable de travailler avec des copies de vos shapes.</span>&nbsp;</p>
+<p><strong>Mettre &agrave; jour une mesure existante dans G&eacute;oMCE&nbsp;</strong>: Option est r&eacute;serv&eacute;e aux agents ayant acc&egrave;s &agrave; G&eacute;oMCE.</p>
+<p>Elle permet d'importer de nouvelles g&eacute;om&eacute;tries dans une mesure d&eacute;j&agrave; existante dans l'outil. Les g&eacute;om&eacute;tries et champs existants dans la base de donn&eacute;e sont conserv&eacute;es et ne peuvent &ecirc;tre modifier depuis cette extension.</p>
+<p>Afin de r&eacute;aliser cette op&eacute;ration, <span style="text-decoration: underline;">il faut que le champ nom de la mesure &agrave; mettre &agrave; jour corresponde parfaitement au nom de la mesure existante dans G&eacute;oMCE</span> (en cas de diff&eacute;rence, une nouvelle mesure sera cr&eacute;e).</p>
+<p>Dans G&eacute;oMCE, la mise &agrave; jour des g&eacute;om&eacute;tries d'une mesure s'effectue de mani&egrave;re similaire &agrave; un import standard.</p>
 <h3>1.2/ Formulaire de saisie</h3>
 <p>Ensemble des donn&eacute;es qui seront &eacute;crites dans la nouvelle table attributaire.</p>
 <p><span style="color: #ff0000;"><span style="color: #000000;">Les champs marqu&eacute;s d'un</span> *&nbsp;<span style="color: #000000;">sont <strong>obligatoires</strong>. Les autres champs peuvent &ecirc;tre laiss&eacute;s vides.</span></span></p>
 <p><span style="color: #ff0000;"><span style="color: #000000;">Les champs marqu&eacute;s d'un <span style="color: #0000ff;">**<span style="color: #000000;"> autorisent une <strong>saisie multiple</strong>.</span></span></span></span></p>
 <p><span style="color: #ff0000;"><span style="color: #000000;"><span style="color: #0000ff;"><span style="color: #000000;">L'ensemble des champs textes sont limit&eacute;s &agrave; <strong>254 caract&egrave;res max</strong> (limite due au format shape).</span></span></span></span></p>
-<p><span style="color: #ff0000;"><span style="color: #000000;"><span style="color: #0000ff;"><span style="color: #000000;">La saisie de caract&egrave;res sp&eacute;ciaux (&eacute;, &agrave;, &ccedil;,...) est possible toutefois ils seront convertis dans le fichier shape (e, a, c,...).</span></span></span></span></p>
 <h4><span style="color: #ff0000;"><span style="color: #000000;"><span style="color: #0000ff;"><span style="color: #000000;">1.2.1 Donn&eacute;es g&eacute;n&eacute;rales</span></span></span></span></h4>
 <p><span style="color: #ff0000;"><span style="color: #000000;"><span style="color: #0000ff;"><span style="color: #000000;"><img src="https://raw.githubusercontent.com/GeoMCE/ressources/master/onglet_principal_2.png" alt="" width="866" height="444" /></span></span></span></span></p>
 <p><strong>Nom de la mesure</strong> : Indiquer le nom de la mesure</p>
@@ -99,6 +103,7 @@
 <p><span style="color: #000000;"><img src="https://raw.githubusercontent.com/GeoMCE/ressources/master/parametres_1.png" alt="" width="866" height="89" /></span></p>
 <p><span style="color: #000000;">G&eacute;oMCE permet de renseigner les codes INSEE des communes concern&eacute;es par les mesures. Afin de saisir ces donn&eacute;es depuis l'extension, il faut au pr&eacute;alable t&eacute;l&eacute;charger <a href="https://geoservices.ign.fr/documentation/diffusion/telechargement-donnees-libres.html#admin-express">les donn&eacute;es ADMIN-EXPRESS</a> sur le site de l'IGN puis extraire les fichiers <strong>COMMUNE</strong> (shp, shx, prj, cpg, dbf) sur votre ordinateur. Renseigner ensuite le chemin d'acc&egrave;s du fichier COMMUNE.shp</span></p>
 <p><span style="color: #000000;">La sauvegarde de ce param&egrave;tre est automatique.</span></p>
+<p><span style="color: #000000;"><span style="text-decoration: underline;"><strong>Remarque</strong> </span>: cette fonctionalit&eacute; semble poser probl&egrave;me sur QGIS 3.4.5. Il est recommand&eacute; de ne pas l'utiliser si vous utilisez cette version du logiciel.</span></p>
 <h3><span style="color: #000000;">3.2/ Transformer automatiquement les points et les lignes en polygones</span></h3>
 <p><span style="color: #000000;"><img src="https://raw.githubusercontent.com/GeoMCE/ressources/master/parametres_2.png" alt="" width="866" height="88" /></span></p>
 <p>Utilisation du traitement natif de QGIS <strong>Buffer.</strong></p>
@@ -110,7 +115,24 @@
 <p>Par d&eacute;faut, Qgis3.x privil&eacute;gie le format <strong>Geopackage</strong> (.gpkg) au format <strong>shape</strong> (.shp) mais il est possible de configurer ce param&egrave;tre diff&eacute;remment dans les options de QGIS.</p>
 <p>L'extension prend en compte ce comportement par d&eacute;faut de QGIS et transforme les .gpkg g&eacute;n&eacute;r&eacute; (split vector layer, merge, buffer) en .shp. Toutefois, si l'utilisateur configure par d&eacute;faut une sortie en shape, il convient de cocher cette case pour que l'extension fonctionne en cons&eacute;quence.</p>
 <p>Ce param&egrave;tre est exp&eacute;rimental et peut ne pas fonctionner correctement. <strong>Il est conseill&eacute; de ne pas changer le comportement natif de QGIS concernant les traitements.</strong></p>
-<p><strong>4/ Changelog&nbsp;</strong></p>
+<h2>4/ Bugs connus et changelog</h2>
+<p><span style="text-decoration: underline;">Bugs connus :</span></p>
+<ul>
+<li><a href="https://github.com/GeoMCE/GeoMCE/issues/19">La fermeture d'un projet avec des rasters peut entrainer un crash complet de QGIS</a> - Globalement, la pr&eacute;sence seule de raster avec le plugin cause soucis. En cours d'investigation. Il est recommand&eacute; de d&eacute;sactiver le plugin quand celui n'est pas utilis&eacute;</li>
+<li>La fonction de recherche automatique du code INSEE des communes concern&eacute;s par la mesure plante sur QGIS 3.4.5. La solution est de ne pas utiliser cette fonctionnalit&eacute; si vous utilisez cette version du plugin (en ne mettant pas de lien vers un fichier COMMUNE.shp)</li>
+</ul>
+<p><span style="text-decoration: underline;">Changelog :</span></p>
+<p>v1.6 :</p>
+<ul>
+<li>Mise &agrave; jour des cat&eacute;gories ERC</li>
+<li>Ajout d'un raccourci vers letraitement "V&eacute;rifier la g&eacute;om&eacute;trie"</li>
+<li>Quelques corrections mineures</li>
+</ul>
+<p>v1.5.1 :&nbsp;</p>
+<ul>
+<li>Les accents sont accept&eacute;s par G&eacute;oMCE, suppression de la modification apparue sur la 1.1.1</li>
+<li>Correction de bugs</li>
+</ul>
 <p>v1.5:</p>
 <ul>
 <li>Refonte graphique. Homog&eacute;n&eacute;isation et am&eacute;lioration de la lisibilit&eacute; des champs.</li>

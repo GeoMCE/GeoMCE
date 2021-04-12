@@ -1,5 +1,7 @@
 <RCC>
   <qresource prefix="/plugins/GeoMCE">
+    <file>checkbox_disable.png</file>
+    <file>question.png</file>
     <file>icons8-chevron-haut-24.png</file>
     <file>iconfinder_unchecked_checkbox_83064.png</file>
     <file>iconfinder_checked_checkbox_82543.png</file>

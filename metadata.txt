@@ -10,7 +10,7 @@
 name=GeoMCE
 qgisMinimumVersion=3.0
 description=Mise en compatibilité des fichiers shape pour les importer dans l'outil GéoMCE
-version=1.5
+version=1.5.1
 author=DREAL Auvergne-Rhône-Alpes
 email=cedric.claude@developpement-durable.gouv.fr
 
@@ -25,6 +25,8 @@ repository=https://github.com/GeoMCE/GeoMCE/tree/QGIS-3.x
 
 # Uncomment the following line and add your changelog:
 changelog=
+  v1.5.1 : - Les accents sont acceptés par GéoMCE, suppression de la modification apparue sur la 1.1.1
+         - Correction de bugs
   v1.5 : - Refonte graphique. Homogénéisation et amélioration de la lisibilité des champs.
          - Possibilité de charger directement les flux WFS qui alimentent Géoportail
          - Ajout des champs "surface prescrit", "linéaire prescrit" et "nombre de points prescrit" (avec leurs unités) et Obligation Réelle Environnementale. Ces champs sont inactifs car une mise à jour de GéoMCE est nécessaire

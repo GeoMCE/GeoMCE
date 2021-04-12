@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>1102</width>
-    <height>1001</height>
+    <width>1106</width>
+    <height>1005</height>
    </rect>
   </property>
   <property name="sizePolicy">
@@ -34,16 +34,22 @@
   <layout class="QGridLayout" name="gridLayout">
    <item row="0" column="0">
     <widget class="QScrollArea" name="scrollArea">
+     <property name="sizePolicy">
+      <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+       <horstretch>0</horstretch>
+       <verstretch>0</verstretch>
+      </sizepolicy>
+     </property>
      <property name="widgetResizable">
-      <bool>true</bool>
+      <bool>false</bool>
      </property>
      <widget class="QWidget" name="scrollAreaWidgetContents">
       <property name="geometry">
        <rect>
         <x>0</x>
         <y>0</y>
-        <width>1082</width>
-        <height>981</height>
+        <width>1078</width>
+        <height>979</height>
        </rect>
       </property>
       <widget class="QPushButton" name="about">
@@ -77,7 +83,10 @@
 QPushButton#about:pressed {
    background-color: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1, stop:1 white, stop: 0 rgb(217, 217, 217));
   	border-color: rgb(0, 85, 255);
-};</string>
+}
+
+QPushButton#about::hover{
+   background-color: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1, stop: 0 white, stop: 1 rgb(225, 225, 225))}</string>
        </property>
        <property name="text">
         <string>Aide - A propos</string>
@@ -242,7 +251,7 @@ QPushButton#save::hover{
          <property name="geometry">
           <rect>
            <x>4</x>
-           <y>69</y>
+           <y>77</y>
            <width>1071</width>
            <height>31</height>
           </rect>
@@ -289,7 +298,7 @@ QPushButton#create_new_field_2::hover{
          <property name="geometry">
           <rect>
            <x>20</x>
-           <y>28</y>
+           <y>22</y>
            <width>141</width>
            <height>22</height>
           </rect>
@@ -343,8 +352,8 @@ QPushButton#Exit::hover{
          <property name="geometry">
           <rect>
            <x>170</x>
-           <y>26</y>
-           <width>871</width>
+           <y>20</y>
+           <width>721</width>
            <height>25</height>
           </rect>
          </property>
@@ -538,7 +547,7 @@ QPushButton#dossier::hover{
          <property name="geometry">
           <rect>
            <x>1050</x>
-           <y>26</y>
+           <y>20</y>
            <width>25</width>
            <height>25</height>
           </rect>
@@ -563,7 +572,7 @@ QPushButton#dossier::hover{
          <property name="geometry">
           <rect>
            <x>1050</x>
-           <y>26</y>
+           <y>20</y>
            <width>25</width>
            <height>25</height>
           </rect>
@@ -634,6 +643,7 @@ QPushButton#eff_form::hover{
          </property>
          <property name="font">
           <font>
+           <family>MS Reference Sans Serif</family>
            <pointsize>12</pointsize>
           </font>
          </property>
@@ -643,12 +653,12 @@ QPushButton#eff_form::hover{
          <property name="styleSheet">
           <string notr="true">QToolBox::tab {
     background: rgb(0, 166, 90);
-    color: rgb(218, 218, 218);
+    color: white;
     border: 1px solid #C4C4C3;
     border-right : 7775 px;
     font: italic;
     image:url(:/plugins/GeoMCE/plus.png);
-   image-position: right;
+    image-position: right;
 }
 
 QToolBox::tab:selected { /* italicize selected tabs */
@@ -698,6 +708,12 @@ QToolBox::tab:selected { /* italicize selected tabs */
              <width>501</width>
              <height>25</height>
             </rect>
+           </property>
+           <property name="maximumSize">
+            <size>
+             <width>501</width>
+             <height>25</height>
+            </size>
            </property>
            <property name="font">
             <font>
@@ -790,7 +806,12 @@ QComboBox QAbstractItemView{
 background-color: rgb(255, 255, 255);}
 
 QComboBox:hover{
-   background-color: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1, stop: 0 white, stop: 1 rgb(245, 245, 245))}</string>
+   background-color: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1, stop: 0 white, stop: 1 rgb(245, 245, 245))}
+
+QComboBox::disabled 
+{ 
+background-color: #f0f0f0; 
+}</string>
            </property>
            <property name="editable">
             <bool>false</bool>
@@ -891,7 +912,10 @@ background-color: rgb(255, 255, 255);}
 QComboBox:hover{
    background-color: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1, stop: 0 white, stop: 1 rgb(245, 245, 245))}
 
-</string>
+QComboBox::disabled 
+{ 
+background-color: #f0f0f0; 
+}</string>
            </property>
            <property name="currentText">
             <string/>
@@ -899,10 +923,10 @@ QComboBox:hover{
            <property name="maxVisibleItems">
             <number>13</number>
            </property>
-           <property name="separator">
+           <property name="separator" stdset="0">
             <string>|</string>
            </property>
-           <property name="defaultText">
+           <property name="defaultText" stdset="0">
             <string/>
            </property>
           </widget>
@@ -930,20 +954,20 @@ QComboBox:hover{
             <rect>
              <x>20</x>
              <y>0</y>
-             <width>161</width>
+             <width>501</width>
              <height>22</height>
             </rect>
            </property>
            <property name="font">
             <font>
-             <family>MS Reference Sans Serif</family>
+             <family>MS Shell Dlg 2</family>
             </font>
            </property>
            <property name="toolTip">
             <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:9pt;&quot;&gt;Nom de la couche&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
            </property>
            <property name="text">
-            <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;right&quot;&gt;&lt;span style=&quot; font-size:12pt;&quot;&gt;Nom de la mesure&lt;/span&gt;&lt;span style=&quot; font-size:12pt; color:#ff0000;&quot;&gt;*&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+            <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:12pt;&quot;&gt;Nom de la mesure&lt;/span&gt;&lt;span style=&quot; font-size:12pt; color:#ff0000;&quot;&gt;*&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
            </property>
           </widget>
           <widget class="QLineEdit" name="decision">
@@ -976,7 +1000,12 @@ QLineEdit::focus {
 
 }
 QLineEdit:hover{
-   background-color: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1, stop: 0 white, stop: 1 rgb(245, 245, 245))}</string>
+   background-color: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1, stop: 0 white, stop: 1 rgb(245, 245, 245))}
+
+QLineEdit::disabled 
+{ 
+background-color: #f0f0f0; 
+}</string>
            </property>
            <property name="maxLength">
             <number>254</number>
@@ -1018,7 +1047,12 @@ QLineEdit::focus {
 
 }
 QLineEdit:hover{
-   background-color: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1, stop: 0 white, stop: 1 rgb(245, 245, 245))}</string>
+   background-color: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1, stop: 0 white, stop: 1 rgb(245, 245, 245))}
+
+QLineEdit::disabled 
+{ 
+background-color: #f0f0f0; 
+}</string>
            </property>
            <property name="maxLength">
             <number>254</number>
@@ -1059,9 +1093,7 @@ QLineEdit:hover{
             </rect>
            </property>
            <property name="font">
-            <font>
-             <pointsize>12</pointsize>
-            </font>
+            <font/>
            </property>
            <property name="toolTip">
             <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Fonctionnalité à venir&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
@@ -1158,7 +1190,7 @@ border-color: rgb(0, 85, 255);}</string>
             <rect>
              <x>400</x>
              <y>380</y>
-             <width>121</width>
+             <width>142</width>
              <height>24</height>
             </rect>
            </property>
@@ -1270,7 +1302,7 @@ border-color: rgb(0, 85, 255);}</string>
             <rect>
              <x>20</x>
              <y>380</y>
-             <width>121</width>
+             <width>142</width>
              <height>24</height>
             </rect>
            </property>
@@ -1407,7 +1439,7 @@ QDoubleSpinBox:hover{
             <rect>
              <x>170</x>
              <y>380</y>
-             <width>121</width>
+             <width>142</width>
              <height>24</height>
             </rect>
            </property>
@@ -1494,7 +1526,7 @@ QComboBox:hover{
             <rect>
              <x>550</x>
              <y>380</y>
-             <width>121</width>
+             <width>142</width>
              <height>24</height>
             </rect>
            </property>
@@ -1600,8 +1632,7 @@ QComboBox:hover{
 QCheckBox::indicator {
     width: 13px;
     height: 13px;
-	background-color: rgb();
-	color: rgb(197, 197, 197);
+	background-color: rgb(255, 255, 255);
 }
 
 QCheckBox::indicator:unchecked {
@@ -1622,7 +1653,9 @@ image: url(:/plugins/GeoMCE/iconfinder_checked_checkbox_82543.png);
 	border-color: 2px,rgb(0, 85, 255);
 }
 
-</string>
+QCheckBox::indicator:disabled {
+image: url(:/plugins/GeoMCE/checkbox_disable.png);
+}</string>
            </property>
            <property name="text">
             <string>Cette mesure fait l'objet d'une Obligation Réelle Environnementale (ORE)</string>
@@ -1656,7 +1689,13 @@ QPlainTextEdit::focus {
 }
 
 QPlainTextEdit:hover{
-   background-color: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1, stop: 0 white, stop: 1 rgb(250, 250, 250))}</string>
+   background-color: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1, stop: 0 white, stop: 1 rgb(250, 250, 250))}
+
+
+QPlainTextEdit::disabled 
+{ 
+background-color: #f0f0f0; 
+}</string>
            </property>
            <property name="maximumBlockCount">
             <number>0</number>
@@ -1665,6 +1704,28 @@ QPlainTextEdit:hover{
             <string>Champ limité à 254 caractères - Glisser/déposer autorisé</string>
            </property>
           </widget>
+          <widget class="QLabel" name="label_20">
+           <property name="geometry">
+            <rect>
+             <x>20</x>
+             <y>0</y>
+             <width>501</width>
+             <height>22</height>
+            </rect>
+           </property>
+           <property name="font">
+            <font>
+             <family>MS Shell Dlg 2</family>
+            </font>
+           </property>
+           <property name="toolTip">
+            <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:9pt;&quot;&gt;Nom de la couche&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+           </property>
+           <property name="text">
+            <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:12pt;&quot;&gt;Nom de la mesure dans GéoMCE à mettre à jour &lt;/span&gt;&lt;span style=&quot; font-size:12pt; color:#ff0000;&quot;&gt;*&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+           </property>
+          </widget>
+          <zorder>label_20</zorder>
           <zorder>label_8</zorder>
           <zorder>nom</zorder>
           <zorder>label_10</zorder>
@@ -1692,8 +1753,8 @@ QPlainTextEdit:hover{
            <rect>
             <x>0</x>
             <y>0</y>
-            <width>1081</width>
-            <height>452</height>
+            <width>100</width>
+            <height>30</height>
            </rect>
           </property>
           <attribute name="label">
@@ -1735,9 +1796,7 @@ QPlainTextEdit:hover{
             </rect>
            </property>
            <property name="font">
-            <font>
-             <pointsize>12</pointsize>
-            </font>
+            <font/>
            </property>
            <property name="toolTip">
             <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Durée d'application de la mesure&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
@@ -1810,7 +1869,10 @@ image: url(:/plugins/GeoMCE/icons8-chevron-bas-24.png);
     height: 24px;
 }
 
-
+QSpinBox::disabled 
+{ 
+background-color: #f0f0f0; 
+}
 QSpinBox::focus{
 border-color: rgb(0, 85, 255);}
 
@@ -1854,7 +1916,12 @@ QLineEdit::focus {
 
 }
 QLineEdit:hover{
-   background-color: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1, stop: 0 white, stop: 1 rgb(245, 245, 245))}</string>
+   background-color: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1, stop: 0 white, stop: 1 rgb(245, 245, 245))}
+
+QLineEdit::disabled 
+{ 
+background-color: #f0f0f0; 
+}</string>
            </property>
            <property name="maxLength">
             <number>254</number>
@@ -1873,9 +1940,7 @@ QLineEdit:hover{
             </rect>
            </property>
            <property name="font">
-            <font>
-             <pointsize>12</pointsize>
-            </font>
+            <font/>
            </property>
            <property name="toolTip">
             <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Montant prévisionnel de la mise en palce de la mesure en k€&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
@@ -1948,7 +2013,10 @@ image: url(:/plugins/GeoMCE/icons8-chevron-bas-24.png);
     height: 24px;
 }
 
-
+QSpinBox::disabled 
+{ 
+background-color: #f0f0f0; 
+}
 QSpinBox::focus{
 border-color: rgb(0, 85, 255);}
 QSpinBox:hover{
@@ -1971,9 +2039,7 @@ QSpinBox:hover{
             </rect>
            </property>
            <property name="font">
-            <font>
-             <pointsize>12</pointsize>
-            </font>
+            <font/>
            </property>
            <property name="toolTip">
             <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Montant prévisionnel du suivi de la mesure en €&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
@@ -2017,7 +2083,10 @@ QSpinBox::up-arrow {
     width: 24px;
     height: 24px;
 }
-
+QSpinBox::disabled 
+{ 
+background-color: #f0f0f0; 
+}
 
 QSpinBox::down-button {
     subcontrol-origin: border;
@@ -2125,7 +2194,12 @@ border-color: rgb(0, 85, 255);}
 QComboBox QAbstractItemView{
 background-color: rgb(255, 255, 255);}
 QComboBox:hover{
-   background-color: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1, stop: 0 white, stop: 1 rgb(245, 245, 245))}</string>
+   background-color: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1, stop: 0 white, stop: 1 rgb(245, 245, 245))}
+
+QComboBox::disabled 
+{ 
+background-color: #f0f0f0; 
+}</string>
            </property>
           </widget>
           <widget class="QLabel" name="label_36">
@@ -2143,7 +2217,7 @@ QComboBox:hover{
           </widget>
           <widget class="QLabel" name="label_19">
            <property name="enabled">
-            <bool>false</bool>
+            <bool>true</bool>
            </property>
            <property name="geometry">
             <rect>
@@ -2206,7 +2280,12 @@ background-color: rgb(255, 255, 255);}
 
 
 QComboBox:hover{
-   background-color: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1, stop: 0 white, stop: 1 rgb(245, 245, 245))}</string>
+   background-color: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1, stop: 0 white, stop: 1 rgb(245, 245, 245))}
+
+QComboBox::disabled 
+{ 
+background-color: #f0f0f0; 
+}</string>
            </property>
           </widget>
           <widget class="QLabel" name="label_16">
@@ -2224,7 +2303,7 @@ QComboBox:hover{
           </widget>
           <widget class="QLabel" name="label_41">
            <property name="enabled">
-            <bool>false</bool>
+            <bool>true</bool>
            </property>
            <property name="geometry">
             <rect>
@@ -2395,14 +2474,27 @@ background-color: rgb(255, 255, 255);}
 
 
 QComboBox:hover{
-   background-color: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1, stop: 0 white, stop: 1 rgb(245, 245, 245))}</string>
+   background-color: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1, stop: 0 white, stop: 1 rgb(245, 245, 245))}
+
+QComboBox::disabled 
+{ 
+background-color: #f0f0f0; 
+}</string>
            </property>
-           <property name="separator">
+           <property name="separator" stdset="0">
             <string>, n+</string>
            </property>
           </widget>
          </widget>
          <widget class="QWidget" name="page_3">
+          <property name="geometry">
+           <rect>
+            <x>0</x>
+            <y>0</y>
+            <width>100</width>
+            <height>30</height>
+           </rect>
+          </property>
           <attribute name="label">
            <string>   Espèces concernées par la mesure</string>
           </attribute>
@@ -2468,7 +2560,12 @@ QComboBox QAbstractItemView{
 background-color: rgb(255, 255, 255);}
 
 QComboBox:hover{
-   background-color: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1, stop: 0 white, stop: 1 rgb(245, 245, 245))}</string>
+   background-color: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1, stop: 0 white, stop: 1 rgb(245, 245, 245))}
+
+QComboBox::disabled 
+{ 
+background-color: #f0f0f0; 
+}</string>
            </property>
            <property name="editable">
             <bool>true</bool>
@@ -2476,7 +2573,7 @@ QComboBox:hover{
            <property name="maxVisibleItems">
             <number>25</number>
            </property>
-           <property name="separator">
+           <property name="separator" stdset="0">
             <string>|</string>
            </property>
           </widget>
@@ -2543,7 +2640,11 @@ background-color: rgb(255, 255, 255);}
 
 
 QComboBox:hover{
-   background-color: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1, stop: 0 white, stop: 1 rgb(245, 245, 245))}</string>
+   background-color: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1, stop: 0 white, stop: 1 rgb(245, 245, 245))}
+QComboBox::disabled 
+{ 
+background-color: #f0f0f0; 
+}</string>
            </property>
            <property name="editable">
             <bool>true</bool>
@@ -2551,11 +2652,127 @@ QComboBox:hover{
            <property name="maxVisibleItems">
             <number>25</number>
            </property>
-           <property name="separator">
+           <property name="separator" stdset="0">
             <string>|</string>
            </property>
           </widget>
          </widget>
+        </widget>
+        <widget class="QCheckBox" name="maj">
+         <property name="geometry">
+          <rect>
+           <x>20</x>
+           <y>50</y>
+           <width>801</width>
+           <height>17</height>
+          </rect>
+         </property>
+         <property name="font">
+          <font>
+           <pointsize>10</pointsize>
+          </font>
+         </property>
+         <property name="toolTip">
+          <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:12pt;&quot;&gt;Cette option est réservée aux agents ayant accès à GéoMCE.&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-size:12pt;&quot;&gt;Elle permet d'importer de nouvelles géométries dans une mesure déjà existante dans l'outil. Les géométries et champs existants dans la base de donnée sont conservées et ne peuvent être modifier depuis cette extension.&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-size:12pt;&quot;&gt;Afin de rélaiser cette opération, il faut que le champ &lt;/span&gt;&lt;span style=&quot; font-size:12pt; font-weight:600;&quot;&gt;nom de la mesure à mettre à jour &lt;/span&gt;&lt;span style=&quot; font-size:12pt;&quot;&gt;corresponde parfaitement au nom de la mesure existante dans GéoMCE.&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-size:12pt;&quot;&gt;Dans GéoMCE, la mise à jour des géométries d'une mesure s'effectue de manière similaire à un import standard.&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+         </property>
+         <property name="styleSheet">
+          <string notr="true">QCheckBox {
+    spacing: 5px;
+}
+
+QCheckBox::indicator {
+    width: 13px;
+    height: 13px;
+	background-color: rgb(255, 255, 255);
+}
+
+QCheckBox::indicator:unchecked {
+image: url(:/plugins/GeoMCE/iconfinder_unchecked_checkbox_83064.png);
+}
+
+QCheckBox::indicator:unchecked:hover {
+image: url(:/plugins/GeoMCE/iconfinder_unchecked_checkbox_83064.png);
+	border-color: 2px,rgb(0, 85, 255);
+}
+
+QCheckBox::indicator:checked {
+image: url(:/plugins/GeoMCE/iconfinder_checked_checkbox_82543.png);
+}
+
+QCheckBox::indicator:checked:hover {
+image: url(:/plugins/GeoMCE/iconfinder_checked_checkbox_82543.png);
+	border-color: 2px,rgb(0, 85, 255);
+}
+
+QCheckBox::indicator:disabled {
+image: url(:/plugins/GeoMCE/checkbox_disable.png);
+}</string>
+         </property>
+         <property name="text">
+          <string>Mettre à jour la géométrie d'une mesure existante dans GéoMCE (fonctionnalité réservée aux agents ayant des droits d'accès à GéoMCE) </string>
+         </property>
+        </widget>
+        <widget class="QLabel" name="label_42">
+         <property name="geometry">
+          <rect>
+           <x>830</x>
+           <y>49</y>
+           <width>21</width>
+           <height>21</height>
+          </rect>
+         </property>
+         <property name="toolTip">
+          <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:12pt;&quot;&gt;Cette option est réservée aux agents ayant accès à GéoMCE.&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-size:12pt;&quot;&gt;Elle permet d'importer de nouvelles géométries dans une mesure déjà existante dans l'outil. Les géométries et champs existants dans la base de donnée sont conservées et ne peuvent être modifier depuis cette extension.&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-size:12pt;&quot;&gt;Afin de rélaiser cette opération, il faut que le champ &lt;/span&gt;&lt;span style=&quot; font-size:12pt; font-weight:600;&quot;&gt;nom de la mesure à mettre à jour &lt;/span&gt;&lt;span style=&quot; font-size:12pt;&quot;&gt;corresponde parfaitement au nom de la mesure existante dans GéoMCE.&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-size:12pt;&quot;&gt;Dans GéoMCE, la mise à jour des géométries d'une mesure s'effectue de manière similaire à un import standard.&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+         </property>
+         <property name="whatsThis">
+          <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:12pt;&quot;&gt;Cette option est réservée aux agents ayant accès à GéoMCE.&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-size:12pt;&quot;&gt;Elle permet d'importer de nouvelles géométries dans une mesure déjà existante dans l'outil. Les géométries et champs existants dans la base de donnée sont conservées et ne peuvent être modifier depuis cette extension.&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-size:12pt;&quot;&gt;Afin de rélaiser cette opération, il faut que le champ &lt;/span&gt;&lt;span style=&quot; font-size:12pt; font-weight:600;&quot;&gt;nom de la mesure à mettre à jour &lt;/span&gt;&lt;span style=&quot; font-size:12pt;&quot;&gt;corresponde parfaitement au nom de la mesure existante dans GéoMCE.&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-size:12pt;&quot;&gt;Dans GéoMCE, la mise à jour des géométries d'une mesure s'effectue de manière similaire à un import standard.&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+         </property>
+         <property name="inputMethodHints">
+          <set>Qt::ImhNone</set>
+         </property>
+         <property name="text">
+          <string/>
+         </property>
+         <property name="pixmap">
+          <pixmap resource="resources.qrc">:/plugins/GeoMCE/question.png</pixmap>
+         </property>
+         <property name="scaledContents">
+          <bool>true</bool>
+         </property>
+        </widget>
+        <widget class="QPushButton" name="validity">
+         <property name="geometry">
+          <rect>
+           <x>900</x>
+           <y>20</y>
+           <width>141</width>
+           <height>25</height>
+          </rect>
+         </property>
+         <property name="toolTip">
+          <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Permet de vérifier la validité de la géométrie (auto-croissement notamment). En cas de géométrie invalide, la modification de la couche renvoie un message d'erreur et n'aboutit pas.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+         </property>
+         <property name="styleSheet">
+          <string notr="true">QPushButton#validity {
+   background-color: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1, stop: 0 white, stop: 1 rgb(217, 217, 217));
+   border-style: solid;
+   border-width: 1px;
+   border-color: rgb(132, 132, 132);
+   border-radius: 3px;
+}
+
+QPushButton#validity:hover:pressed {
+   background-color: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1, stop:1 white, stop: 0 rgb(217, 217, 217));
+  	border-color: rgb(0, 85, 255);
+}
+
+QPushButton#validity::hover{
+   background-color: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1, stop: 0 white, stop: 1 rgb(225, 225, 225))}
+</string>
+         </property>
+         <property name="text">
+          <string>Validité de la géométrie</string>
+         </property>
         </widget>
        </widget>
        <widget class="QWidget" name="tab">
@@ -2746,7 +2963,9 @@ image: url(:/plugins/GeoMCE/iconfinder_checked_checkbox_82543.png);
 	border-color: 2px,rgb(0, 85, 255);
 }
 
-</string>
+QCheckBox::indicator:disabled {
+image: url(:/plugins/GeoMCE/checkbox_disable.png);
+}</string>
            </property>
            <property name="text">
             <string>Mesures compensatoires géolocalisées en point</string>
@@ -2798,7 +3017,9 @@ image: url(:/plugins/GeoMCE/iconfinder_checked_checkbox_82543.png);
 	border-color: 2px,rgb(0, 85, 255);
 }
 
-</string>
+QCheckBox::indicator:disabled {
+image: url(:/plugins/GeoMCE/checkbox_disable.png);
+}</string>
            </property>
            <property name="text">
             <string>Mesures compensatoires géolocalisées en polygone</string>
@@ -2850,7 +3071,9 @@ image: url(:/plugins/GeoMCE/iconfinder_checked_checkbox_82543.png);
 	border-color: 2px,rgb(0, 85, 255);
 }
 
-</string>
+QCheckBox::indicator:disabled {
+image: url(:/plugins/GeoMCE/checkbox_disable.png);
+}</string>
            </property>
            <property name="text">
             <string>Communes ayant au moins une mesure compensatoire non géolocalisée</string>
@@ -2899,7 +3122,9 @@ image: url(:/plugins/GeoMCE/iconfinder_checked_checkbox_82543.png);
 	border-color: 2px,rgb(0, 85, 255);
 }
 
-</string>
+QCheckBox::indicator:disabled {
+image: url(:/plugins/GeoMCE/checkbox_disable.png);
+}</string>
            </property>
            <property name="text">
             <string>Mesures compensatoires géolocalisées en linéaire</string>
@@ -2983,6 +3208,9 @@ QComboBox:hover{
             <font>
              <pointsize>12</pointsize>
             </font>
+           </property>
+           <property name="toolTip">
+            <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Un dossier en local est à privilégier par rapport à un dossier réseau&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
            </property>
            <property name="styleSheet">
             <string notr="true">QLineEdit {
@@ -3168,56 +3396,17 @@ QPushButton#create_new_field::hover{
           </widget>
          </widget>
          <widget class="QWidget" name="page_6">
+          <property name="geometry">
+           <rect>
+            <x>0</x>
+            <y>0</y>
+            <width>1081</width>
+            <height>542</height>
+           </rect>
+          </property>
           <attribute name="label">
            <string>   Fusionner des couches vecteurs de mêmes géométries</string>
           </attribute>
-          <widget class="QgsFileWidget" name="mQgsFileWidget">
-           <property name="geometry">
-            <rect>
-             <x>20</x>
-             <y>220</y>
-             <width>1040</width>
-             <height>25</height>
-            </rect>
-           </property>
-           <property name="sizePolicy">
-            <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
-             <horstretch>0</horstretch>
-             <verstretch>25</verstretch>
-            </sizepolicy>
-           </property>
-           <property name="baseSize">
-            <size>
-             <width>0</width>
-             <height>0</height>
-            </size>
-           </property>
-           <property name="font">
-            <font>
-             <pointsize>12</pointsize>
-            </font>
-           </property>
-           <property name="styleSheet">
-            <string notr="true">QLineEdit {
-    border: 1px solid gray;
-    border-radius: 3px;
-    padding: 0 8px;   
-	background-color: rgb(255, 255, 255);
-}
-QLineEdit::focus {
-	border-color: rgb(0, 85, 255);
-}</string>
-           </property>
-           <property name="dialogTitle">
-            <string>Créer un fichier (ne pas mettre .shp)</string>
-           </property>
-           <property name="storageMode">
-            <enum>QgsFileWidget::SaveFile</enum>
-           </property>
-           <property name="relativeStorage">
-            <enum>QgsFileWidget::Absolute</enum>
-           </property>
-          </widget>
           <widget class="QPushButton" name="show_t_2">
            <property name="geometry">
             <rect>
@@ -3458,6 +3647,62 @@ QPushButton#dossier_2::hover{
             <string>Ouvrir le dossier</string>
            </property>
           </widget>
+          <widget class="QPushButton" name="pushButton_4">
+           <property name="geometry">
+            <rect>
+             <x>1020</x>
+             <y>220</y>
+             <width>35</width>
+             <height>25</height>
+            </rect>
+           </property>
+           <property name="styleSheet">
+            <string notr="true">QPushButton#pushButton_4 {
+   background-color: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1, stop: 0 white, stop: 1 rgb(217, 217, 217));
+   border-style: solid;
+   border-width: 1px;
+   border-color: rgb(132, 132, 132);
+   border-radius: 5px;
+}
+
+QPushButton#pushButton_4:hover:pressed {
+   background-color: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1, stop:1 white, stop: 0 rgb(217, 217, 217));
+  	border-color: rgb(0, 85, 255);
+}
+
+QPushButton#pushButton_4::hover{
+   background-color: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1, stop: 0 white, stop: 1 rgb(225, 225, 225))}
+</string>
+           </property>
+           <property name="text">
+            <string>...</string>
+           </property>
+          </widget>
+          <widget class="QLineEdit" name="mQgsFileWidget">
+           <property name="geometry">
+            <rect>
+             <x>20</x>
+             <y>220</y>
+             <width>991</width>
+             <height>25</height>
+            </rect>
+           </property>
+           <property name="styleSheet">
+            <string notr="true">QLineEdit {
+    border: 1px solid gray;
+    border-radius: 3px;
+    padding: 0 8px;   
+	background-color: rgb(255, 255, 255);
+}
+QLineEdit::focus {
+	border-color: rgb(0, 85, 255);
+   background-color: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1, stop: 0 white, stop: 1 rgb(245, 245, 245));
+
+}
+QLineEdit:hover{
+   background-color: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1, stop: 0 white, stop: 1 rgb(245, 245, 245))}</string>
+           </property>
+          </widget>
          </widget>
         </widget>
        </widget>
@@ -3510,7 +3755,9 @@ image: url(:/plugins/GeoMCE/iconfinder_checked_checkbox_82543.png);
 	border-color: 2px,rgb(0, 85, 255);
 }
 
-</string>
+QCheckBox::indicator:disabled {
+image: url(:/plugins/GeoMCE/checkbox_disable.png);
+}</string>
          </property>
          <property name="text">
           <string>Option &quot;Extension par défaut de la couche vectorielle&quot; configurée sur shape (Expérimental)</string>
@@ -3585,12 +3832,12 @@ QLineEdit:hover{
           <rect>
            <x>10</x>
            <y>220</y>
-           <width>341</width>
+           <width>661</width>
            <height>21</height>
           </rect>
          </property>
          <property name="text">
-          <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:12pt;&quot;&gt;Lien vers le fichier &lt;/span&gt;&lt;span style=&quot; font-size:12pt; font-weight:600;&quot;&gt;COMMUNE.shp&lt;/span&gt;&lt;span style=&quot; font-size:12pt;&quot;&gt; enregistré&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+          <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:12pt;&quot;&gt;Lien vers le fichier &lt;/span&gt;&lt;span style=&quot; font-size:12pt; font-weight:600;&quot;&gt;COMMUNE.shp&lt;/span&gt;&lt;span style=&quot; font-size:12pt;&quot;&gt; enregistré (Laisser vide si QGIS3.4.5)&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
          </property>
         </widget>
         <widget class="QCheckBox" name="tampon">
@@ -3636,7 +3883,9 @@ image: url(:/plugins/GeoMCE/iconfinder_checked_checkbox_82543.png);
 	border-color: 2px,rgb(0, 85, 255);
 }
 
-</string>
+QCheckBox::indicator:disabled {
+image: url(:/plugins/GeoMCE/checkbox_disable.png);
+}</string>
          </property>
          <property name="text">
           <string>Transformer automatiquement les points et les lignes en polygones.</string>
@@ -4108,11 +4357,6 @@ QPushButton#Exit_3::hover{
    <header>qgsfieldcombobox.h</header>
   </customwidget>
   <customwidget>
-   <class>QgsFileWidget</class>
-   <extends>QWidget</extends>
-   <header>qgsfilewidget.h</header>
-  </customwidget>
-  <customwidget>
    <class>QgsMapLayerComboBox</class>
    <extends>QComboBox</extends>
    <header>qgsmaplayercombobox.h</header>
@@ -4143,8 +4387,8 @@ QPushButton#Exit_3::hover{
   <tabstop>comboBox_3</tabstop>
   <tabstop>echeances</tabstop>
   <tabstop>date_echeance</tabstop>
-  <tabstop>comboBox_4</tabstop>
   <tabstop>montant</tabstop>
+  <tabstop>comboBox_4</tabstop>
   <tabstop>cout</tabstop>
   <tabstop>faunes</tabstop>
   <tabstop>flores</tabstop>
@@ -4179,10 +4423,635 @@ QPushButton#Exit_3::hover{
   <tabstop>sauvegarder_tampon</tabstop>
   <tabstop>checkBox</tabstop>
   <tabstop>Exit_3</tabstop>
-  <tabstop>about</tabstop>
   <tabstop>tabWidget</tabstop>
+  <tabstop>about</tabstop>
   <tabstop>scrollArea</tabstop>
  </tabstops>
  <resources/>
- <connections/>
+ <connections>
+  <connection>
+   <sender>maj</sender>
+   <signal>clicked(bool)</signal>
+   <receiver>description</receiver>
+   <slot>setDisabled(bool)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>53</x>
+     <y>238</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>661</x>
+     <y>460</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>maj</sender>
+   <signal>clicked(bool)</signal>
+   <receiver>comboBox</receiver>
+   <slot>setDisabled(bool)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>130</x>
+     <y>232</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>497</x>
+     <y>445</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>maj</sender>
+   <signal>clicked(bool)</signal>
+   <receiver>comboBox_2</receiver>
+   <slot>setDisabled(bool)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>161</x>
+     <y>233</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>503</x>
+     <y>514</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>maj</sender>
+   <signal>clicked(bool)</signal>
+   <receiver>decision</receiver>
+   <slot>setDisabled(bool)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>235</x>
+     <y>239</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>510</x>
+     <y>583</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>maj</sender>
+   <signal>clicked(bool)</signal>
+   <receiver>refei</receiver>
+   <slot>setDisabled(bool)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>271</x>
+     <y>235</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>523</x>
+     <y>652</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>maj</sender>
+   <signal>clicked(bool)</signal>
+   <receiver>surf_prescrite</receiver>
+   <slot>setDisabled(bool)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>201</x>
+     <y>238</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>139</x>
+     <y>715</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>maj</sender>
+   <signal>clicked(bool)</signal>
+   <receiver>surf_unite</receiver>
+   <slot>setDisabled(bool)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>336</x>
+     <y>236</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>295</x>
+     <y>720</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>maj</sender>
+   <signal>clicked(bool)</signal>
+   <receiver>lin_prescrit</receiver>
+   <slot>setDisabled(bool)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>300</x>
+     <y>231</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>508</x>
+     <y>723</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>maj</sender>
+   <signal>clicked(bool)</signal>
+   <receiver>line_unite</receiver>
+   <slot>setDisabled(bool)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>56</x>
+     <y>227</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>609</x>
+     <y>712</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>maj</sender>
+   <signal>clicked(bool)</signal>
+   <receiver>nb_point_prescrit</receiver>
+   <slot>setDisabled(bool)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>353</x>
+     <y>234</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>840</x>
+     <y>707</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>maj</sender>
+   <signal>clicked(bool)</signal>
+   <receiver>ORE</receiver>
+   <slot>setDisabled(bool)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>251</x>
+     <y>233</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>268</x>
+     <y>754</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>maj</sender>
+   <signal>clicked(bool)</signal>
+   <receiver>delivrance</receiver>
+   <slot>setDisabled(bool)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>63</x>
+     <y>238</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>290</x>
+     <y>515</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>maj</sender>
+   <signal>clicked(bool)</signal>
+   <receiver>duree</receiver>
+   <slot>setDisabled(bool)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>213</x>
+     <y>232</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>736</x>
+     <y>515</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>maj</sender>
+   <signal>clicked(bool)</signal>
+   <receiver>comboBox_3</receiver>
+   <slot>setDisabled(bool)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>292</x>
+     <y>230</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>904</x>
+     <y>515</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>maj</sender>
+   <signal>clicked(bool)</signal>
+   <receiver>echeances</receiver>
+   <slot>setDisabled(bool)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>260</x>
+     <y>239</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>426</x>
+     <y>585</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>maj</sender>
+   <signal>clicked(bool)</signal>
+   <receiver>date_echeance</receiver>
+   <slot>setDisabled(bool)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>297</x>
+     <y>239</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>874</x>
+     <y>585</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>maj</sender>
+   <signal>clicked(bool)</signal>
+   <receiver>montant</receiver>
+   <slot>setDisabled(bool)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>343</x>
+     <y>237</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>210</x>
+     <y>655</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>maj</sender>
+   <signal>clicked(bool)</signal>
+   <receiver>comboBox_4</receiver>
+   <slot>setDisabled(bool)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>188</x>
+     <y>234</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>746</x>
+     <y>655</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>maj</sender>
+   <signal>clicked(bool)</signal>
+   <receiver>cout</receiver>
+   <slot>setDisabled(bool)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>108</x>
+     <y>230</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>210</x>
+     <y>725</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>maj</sender>
+   <signal>clicked(bool)</signal>
+   <receiver>faunes</receiver>
+   <slot>setDisabled(bool)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>46</x>
+     <y>229</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>603</x>
+     <y>539</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>maj</sender>
+   <signal>clicked(bool)</signal>
+   <receiver>flores</receiver>
+   <slot>setDisabled(bool)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>298</x>
+     <y>234</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>855</x>
+     <y>609</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>maj</sender>
+   <signal>clicked(bool)</signal>
+   <receiver>label_4</receiver>
+   <slot>hide()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>192</x>
+     <y>233</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>141</x>
+     <y>343</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>maj</sender>
+   <signal>clicked(bool)</signal>
+   <receiver>label_13</receiver>
+   <slot>setDisabled(bool)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>368</x>
+     <y>236</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>349</x>
+     <y>400</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>maj</sender>
+   <signal>clicked(bool)</signal>
+   <receiver>label_14</receiver>
+   <slot>setDisabled(bool)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>95</x>
+     <y>236</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>82</x>
+     <y>486</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>maj</sender>
+   <signal>clicked(bool)</signal>
+   <receiver>label_10</receiver>
+   <slot>setDisabled(bool)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>407</x>
+     <y>239</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>253</x>
+     <y>552</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>maj</sender>
+   <signal>clicked(bool)</signal>
+   <receiver>label_11</receiver>
+   <slot>setDisabled(bool)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>433</x>
+     <y>238</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>168</x>
+     <y>622</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>maj</sender>
+   <signal>clicked(bool)</signal>
+   <receiver>label_29</receiver>
+   <slot>setDisabled(bool)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>383</x>
+     <y>233</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>139</x>
+     <y>692</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>maj</sender>
+   <signal>clicked(bool)</signal>
+   <receiver>label_30</receiver>
+   <slot>setDisabled(bool)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>458</x>
+     <y>232</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>436</x>
+     <y>692</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>maj</sender>
+   <signal>clicked(bool)</signal>
+   <receiver>label_32</receiver>
+   <slot>setDisabled(bool)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>713</x>
+     <y>237</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>789</x>
+     <y>692</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>maj</sender>
+   <signal>clicked(bool)</signal>
+   <receiver>label_19</receiver>
+   <slot>setDisabled(bool)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>119</x>
+     <y>232</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>119</x>
+     <y>467</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>maj</sender>
+   <signal>clicked(bool)</signal>
+   <receiver>label_40</receiver>
+   <slot>setDisabled(bool)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>142</x>
+     <y>233</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>149</x>
+     <y>537</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>maj</sender>
+   <signal>clicked(bool)</signal>
+   <receiver>label_37</receiver>
+   <slot>setDisabled(bool)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>79</x>
+     <y>239</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>75</x>
+     <y>620</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>maj</sender>
+   <signal>clicked(bool)</signal>
+   <receiver>label_36</receiver>
+   <slot>setDisabled(bool)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>52</x>
+     <y>230</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>46</x>
+     <y>679</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>maj</sender>
+   <signal>clicked(bool)</signal>
+   <receiver>label_12</receiver>
+   <slot>setDisabled(bool)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>642</x>
+     <y>233</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>641</x>
+     <y>467</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>maj</sender>
+   <signal>clicked(bool)</signal>
+   <receiver>label_41</receiver>
+   <slot>setDisabled(bool)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>607</x>
+     <y>235</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>623</x>
+     <y>545</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>maj</sender>
+   <signal>clicked(bool)</signal>
+   <receiver>label_16</receiver>
+   <slot>setDisabled(bool)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>736</x>
+     <y>238</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>693</x>
+     <y>615</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>maj</sender>
+   <signal>clicked(bool)</signal>
+   <receiver>label_38</receiver>
+   <slot>setDisabled(bool)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>275</x>
+     <y>233</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>276</x>
+     <y>500</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>maj</sender>
+   <signal>clicked(bool)</signal>
+   <receiver>label_39</receiver>
+   <slot>setDisabled(bool)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>180</x>
+     <y>228</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>184</x>
+     <y>562</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>maj</sender>
+   <signal>clicked(bool)</signal>
+   <receiver>label_8</receiver>
+   <slot>setDisabled(bool)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>683</x>
+     <y>232</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>622</x>
+     <y>334</y>
+    </hint>
+   </hints>
+  </connection>
+ </connections>
 </ui>
