@@ -1,3 +1,6 @@
+REMARQUE - La recherche du code INSEE apporte une erreur si la mesure chevauche plusieurs communes. Pour remédier temporairement à ce problème, il convient de créer un nouveau champ nommmé 'TYPE' dans la couche commune.shp
+
+
 <h1 style="color: #5e9ca0;">Extension G&eacute;oMCE pour QGIS 3.x</h1>
 <p> Plugin QGIS (v3.10) destiné aux porteurs de projets, bureaux d'études et services de l'état. Il permet la mise en forme de la table attributaire de fichier Shape dans un format compatible avec l'outil national de géolocalisation mesures compensatoires des atteintes à la biodiversité GéoMCE.</br>
 REMARQUE : QGIS 3.4.5 semble provoquer un bug avec la fonctionnalit&eacute; permettant de r&eacute;cup&eacute;rer les codes INSEE des communes concern&eacute;es par les mesures. Il convient de passer à la version 3.10. A d&eacute;faut, NE PAS RENSEIGNER de chemin vers une couche COMMUNE.shp dans l'onglet "paramètres de l'extension"</p>
